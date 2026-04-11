@@ -1,0 +1,21 @@
+<header>
+    <div class="gov-banner">
+        <div class="container">
+            {{ .Site.Params.gov_name }}
+        </div>
+    </div>
+    <div class="container">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-text">{{ .Site.Params.portal_name }}</div>
+            </a>
+            <nav>
+                <ul>
+                    {{ range .Site.Menus.main }}
+                    <li><a href="{{ .URL }}" title="{{ .Name }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

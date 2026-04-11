@@ -1,0 +1,61 @@
+{{ define "main" }}
+<div class="container">
+    <h1 class="page-title">{{ .Title }}</h1>
+
+    <div style="max-width: 800px; margin: 0 auto;">
+        <div class="card" style="padding: 40px; margin-bottom: 40px;">
+            <h3 style="margin-bottom: 20px;">Track your Application</h3>
+            <p style="margin-bottom: 25px; color: var(--gray-dark);">Enter your reference number below to see the current status of your application.</p>
+
+            <div style="display: flex; gap: 10px;">
+                <input type="text" placeholder="Ref No: NTC-2024-XXXXX" style="flex: 1; padding: 15px; border: 2px solid var(--navy); border-radius: 4px; font-size: 1.1rem;">
+                <button class="btn btn-primary" style="padding: 0 30px;">Track Now</button>
+            </div>
+        </div>
+
+        <!-- Mock Result (Visible for demo) -->
+        <div class="card" style="border-left: 10px solid var(--warning);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <div>
+                    <span class="badge badge-evaluation">UNDER EVALUATION</span>
+                    <h2 style="margin-top: 10px; color: var(--navy);">Ref: NTC-2024-08152</h2>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-weight: bold;">Date Submitted</div>
+                    <div>August 15, 2024</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <p><strong>Service:</strong> Radio Operator Certificate (Renewal)</p>
+                <p><strong>Applicant:</strong> JUAN DELA CRUZ</p>
+                <p><strong>Office:</strong> NTC NCR</p>
+            </div>
+
+            <!-- Stepper -->
+            <div style="position: relative; padding-left: 30px; border-left: 2px solid var(--gray);">
+                <div style="margin-bottom: 30px; position: relative;">
+                    <div style="position: absolute; left: -36px; top: 0; width: 10px; height: 10px; background: var(--success); border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--success);"></div>
+                    <div style="font-weight: bold; color: var(--success);">Application Received</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-dark);">August 15, 2024 | 09:12 AM</div>
+                </div>
+                <div style="margin-bottom: 30px; position: relative;">
+                    <div style="position: absolute; left: -36px; top: 0; width: 10px; height: 10px; background: var(--warning); border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--warning);"></div>
+                    <div style="font-weight: bold;">Under Evaluation</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-dark);">August 16, 2024 | 10:45 AM</div>
+                    <p style="font-size: 0.9rem; margin-top: 5px;">Your documents are being reviewed by our evaluators.</p>
+                </div>
+                <div style="position: relative; opacity: 0.5;">
+                    <div style="position: absolute; left: -36px; top: 0; width: 10px; height: 10px; background: var(--gray); border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--gray);"></div>
+                    <div style="font-weight: bold;">Payment Verification</div>
+                    <div style="font-size: 0.8rem;">Pending</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <p>Having trouble? <a href="/contact/">Contact support</a> or call our hotline at {{ .Site.Params.contact_phone }}.</p>
+        </div>
+    </div>
+</div>
+{{ end }}

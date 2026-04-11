@@ -1,0 +1,77 @@
+{{ define "main" }}
+    {{ partial "hero.html" . }}
+
+    {{ partial "alerts.html" . }}
+
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px; color: var(--navy);">Major Transactions</h2>
+            <div class="card-grid">
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">📄</div>
+                    <h3>Radio Operator Certificate</h3>
+                    <p>Apply for or renew your radio operator certification.</p>
+                    <a href="/services/radio-operator/" class="btn btn-primary" style="margin-top: 15px;">Learn More</a>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">📜</div>
+                    <h3>Permits & Licenses</h3>
+                    <p>Business and individual permits for telecom operations.</p>
+                    <a href="/services/permits/" class="btn btn-primary" style="margin-top: 15px;">Learn More</a>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">📡</div>
+                    <h3>Equipment Registration</h3>
+                    <p>Register your telecommunications equipment and devices.</p>
+                    <a href="/services/equipment/" class="btn btn-primary" style="margin-top: 15px;">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: var(--white); padding: 80px 0;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 50px; color: var(--navy);">How It Works</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
+                <div style="flex: 1; min-width: 200px; text-align: center;">
+                    <div style="background: var(--navy); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: bold;">1</div>
+                    <h4>Select Service</h4>
+                    <p>Choose the specific NTC service you need.</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; text-align: center;">
+                    <div style="background: var(--navy); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: bold;">2</div>
+                    <h4>Fill Application</h4>
+                    <p>Complete the digital application form accurately.</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; text-align: center;">
+                    <div style="background: var(--navy); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: bold;">3</div>
+                    <h4>Upload Documents</h4>
+                    <p>Provide clear scans of the required documents.</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; text-align: center;">
+                    <div style="background: var(--navy); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: bold;">4</div>
+                    <h4>Track & Receive</h4>
+                    <p>Monitor status and get your digital certificate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2 style="color: var(--navy);">Latest Announcements</h2>
+                <a href="/announcements/">View All</a>
+            </div>
+            <div class="card-grid">
+                {{ range first 3 (where .Site.RegularPages "Section" "announcements") }}
+                <div class="card">
+                    <small>{{ .Date.Format "Jan 02, 2006" }}</small>
+                    <h3 style="margin: 10px 0;"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                    <p>{{ .Summary | truncate 100 }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+{{ end }}

@@ -1,0 +1,67 @@
+{{ define "main" }}
+<div class="container">
+    <h1 class="page-title">{{ .Title }}</h1>
+
+    <div style="background: var(--white); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
+        <!-- Stepper -->
+        <div style="display: flex; background: var(--gray-light); border-bottom: 1px solid var(--gray);">
+            {{ $steps := slice "Service Selection" "Form Completion" "Requirements" "Review & Submit" }}
+            {{ range $index, $step := $steps }}
+            <div style="flex: 1; padding: 20px; text-align: center; border-right: 1px solid var(--gray); {{ if eq $index 0 }}background: var(--white); border-bottom: 3px solid var(--accent); font-weight: bold;{{ end }}">
+                <div style="font-size: 0.8rem; color: var(--gray-dark);">STEP {{ add $index 1 }}</div>
+                <div>{{ $step }}</div>
+            </div>
+            {{ end }}
+        </div>
+
+        <div style="padding: 40px;">
+            <div id="application-form">
+                <div class="form-section">
+                    <h3 style="margin-bottom: 20px; color: var(--navy);">Select Digital Service</h3>
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Service Category</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 4px;">
+                            <option>Certificates</option>
+                            <option>Permits and Licenses</option>
+                            <option>Equipment Registration</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Processing Mode</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div style="border: 2px solid var(--accent); padding: 20px; border-radius: 8px; position: relative; background: #f0f7ff;">
+                                <div style="position: absolute; top: 10px; right: 10px; color: var(--accent);">✓</div>
+                                <strong>Regular Processing</strong>
+                                <p style="font-size: 0.9rem; margin-top: 10px;">Standard processing time as per citizen's charter.</p>
+                            </div>
+                            <div style="border: 1px solid var(--gray); padding: 20px; border-radius: 8px; cursor: pointer;">
+                                <strong>Express Processing</strong>
+                                <p style="font-size: 0.9rem; margin-top: 10px;">Accelerated processing for urgent requirements (additional fees apply).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Regional Office</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 4px;">
+                            <option>NTC Central Office</option>
+                            <option>NTC Region I</option>
+                            <option>NTC Region II</option>
+                            <option>NTC NCR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; margin-top: 40px; border-top: 1px solid var(--gray); padding-top: 20px;">
+                    <button class="btn btn-primary" style="padding: 12px 40px;">Next Step &rarr;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px; padding: 20px; background: #fff3cd; color: #856404; border-radius: 4px; border-left: 5px solid #ffeeba;">
+        <strong>Important:</strong> Please ensure all uploaded documents are in PDF or JPG format and do not exceed 5MB per file.
+    </div>
+</div>
+{{ end }}
