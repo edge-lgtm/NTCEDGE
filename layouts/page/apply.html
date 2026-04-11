@@ -2,66 +2,95 @@
 <div class="container">
     <h1 class="page-title">{{ .Title }}</h1>
 
-    <div style="background: var(--white); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
+    <div style="background: var(--white); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 40px;">
         <!-- Stepper -->
-        <div style="display: flex; background: var(--gray-light); border-bottom: 1px solid var(--gray);">
-            {{ $steps := slice "Service Selection" "Form Completion" "Requirements" "Review & Submit" }}
+        <div style="display: flex; background: var(--gray-light); border-bottom: 1px solid var(--gray); overflow-x: auto;">
+            {{ $steps := slice "Service Selection" "Region" "Processing Mode" "Application Form" "Upload Requirements" "Review" "Submit" "Confirmation" }}
             {{ range $index, $step := $steps }}
-            <div style="flex: 1; padding: 20px; text-align: center; border-right: 1px solid var(--gray); {{ if eq $index 0 }}background: var(--white); border-bottom: 3px solid var(--accent); font-weight: bold;{{ end }}">
-                <div style="font-size: 0.8rem; color: var(--gray-dark);">STEP {{ add $index 1 }}</div>
-                <div>{{ $step }}</div>
+            <div style="flex: 1; min-width: 120px; padding: 15px 10px; text-align: center; border-right: 1px solid var(--gray); {{ if eq $index 0 }}background: var(--white); border-bottom: 3px solid var(--accent); font-weight: bold;{{ end }}">
+                <div style="font-size: 0.7rem; color: var(--gray-dark);">STEP {{ add $index 1 }}</div>
+                <div style="font-size: 0.85rem;">{{ $step }}</div>
             </div>
             {{ end }}
         </div>
 
         <div style="padding: 40px;">
-            <div id="application-form">
-                <div class="form-section">
-                    <h3 style="margin-bottom: 20px; color: var(--navy);">Select Digital Service</h3>
-                    <div style="margin-bottom: 30px;">
-                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Service Category</label>
-                        <select style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 4px;">
-                            <option>Certificates</option>
-                            <option>Permits and Licenses</option>
-                            <option>Equipment Registration</option>
-                        </select>
-                    </div>
+            <div id="step-1">
+                <h3 style="margin-bottom: 20px; color: var(--navy);">1. Select Digital Service</h3>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">Service Category</label>
+                    <select style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 4px;">
+                        <option>Certificates</option>
+                        <option>Permits and Licenses</option>
+                        <option>Equipment Registration</option>
+                    </select>
+                </div>
+            </div>
 
-                    <div style="margin-bottom: 30px;">
-                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Processing Mode</label>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div style="border: 2px solid var(--accent); padding: 20px; border-radius: 8px; position: relative; background: #f0f7ff;">
-                                <div style="position: absolute; top: 10px; right: 10px; color: var(--accent);">✓</div>
-                                <strong>Regular Processing</strong>
-                                <p style="font-size: 0.9rem; margin-top: 10px;">Standard processing time as per citizen's charter.</p>
-                            </div>
-                            <div style="border: 1px solid var(--gray); padding: 20px; border-radius: 8px; cursor: pointer;">
-                                <strong>Express Processing</strong>
-                                <p style="font-size: 0.9rem; margin-top: 10px;">Accelerated processing for urgent requirements (additional fees apply).</p>
-                            </div>
+            <div id="step-2" style="margin-top: 40px; padding-top: 40px; border-top: 1px dashed var(--gray);">
+                <h3 style="margin-bottom: 20px; color: var(--navy);">2. Select Region</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                    <div style="padding: 10px; border: 1px solid var(--gray); border-radius: 4px; text-align: center; cursor: pointer;">NCR</div>
+                    <div style="padding: 10px; border: 2px solid var(--accent); border-radius: 4px; text-align: center; background: #f0f7ff;">Region I</div>
+                    <div style="padding: 10px; border: 1px solid var(--gray); border-radius: 4px; text-align: center; cursor: pointer;">Region II</div>
+                    <div style="padding: 10px; border: 1px solid var(--gray); border-radius: 4px; text-align: center; cursor: pointer;">Region III</div>
+                </div>
+            </div>
+
+            <div id="step-3" style="margin-top: 40px; padding-top: 40px; border-top: 1px dashed var(--gray);">
+                <h3 style="margin-bottom: 20px; color: var(--navy);">3. Choose Processing Mode</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="border: 2px solid var(--accent); padding: 20px; border-radius: 8px; position: relative; background: #f0f7ff;">
+                        <div style="position: absolute; top: 10px; right: 10px; color: var(--accent);">✓</div>
+                        <strong>Regular Processing</strong>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Standard processing time as per citizen's charter.</p>
+                    </div>
+                    <div style="border: 1px solid var(--gray); padding: 20px; border-radius: 8px; cursor: pointer;">
+                        <strong>Express Processing</strong>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Accelerated processing (additional fees apply).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step-5" style="margin-top: 40px; padding-top: 40px; border-top: 1px dashed var(--gray);">
+                <h3 style="margin-bottom: 20px; color: var(--navy);">5. Upload Requirements</h3>
+                <div style="border: 2px dashed var(--gray); padding: 40px; text-align: center; border-radius: 8px; background: var(--gray-light);">
+                    <div style="font-size: 3rem; color: var(--gray); margin-bottom: 15px;">📤</div>
+                    <p>Drag and drop your files here or <span style="color: var(--accent); font-weight: bold; cursor: pointer;">Browse Files</span></p>
+                    <p style="font-size: 0.8rem; color: var(--gray-dark); margin-top: 10px;">Accepted formats: PDF, JPG, PNG (Max 5MB per file)</p>
+                </div>
+            </div>
+
+            <div id="step-6" style="margin-top: 40px; padding-top: 40px; border-top: 1px dashed var(--gray);">
+                <h3 style="margin-bottom: 20px; color: var(--navy);">6. Review Details</h3>
+                <div class="card" style="background: #fafafa;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <small style="color: var(--gray-dark);">Full Name</small>
+                            <div style="font-weight: bold;">JUAN DELA CRUZ</div>
+                        </div>
+                        <div>
+                            <small style="color: var(--gray-dark);">Service Type</small>
+                            <div style="font-weight: bold;">Radio Operator Certificate</div>
                         </div>
                     </div>
-
-                    <div style="margin-bottom: 30px;">
-                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Regional Office</label>
-                        <select style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 4px;">
-                            <option>NTC Central Office</option>
-                            <option>NTC Region I</option>
-                            <option>NTC Region II</option>
-                            <option>NTC NCR</option>
-                        </select>
-                    </div>
                 </div>
+            </div>
 
-                <div style="display: flex; justify-content: flex-end; margin-top: 40px; border-top: 1px solid var(--gray); padding-top: 20px;">
-                    <button class="btn btn-primary" style="padding: 12px 40px;">Next Step &rarr;</button>
-                </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px; border-top: 1px solid var(--gray); padding-top: 20px; gap: 15px;">
+                <button class="btn btn-outline" style="color: var(--navy); border-color: var(--navy);">Save Draft</button>
+                <button class="btn btn-primary" style="padding: 12px 40px;">Next Step &rarr;</button>
             </div>
         </div>
     </div>
 
-    <div style="margin-top: 30px; padding: 20px; background: #fff3cd; color: #856404; border-radius: 4px; border-left: 5px solid #ffeeba;">
-        <strong>Important:</strong> Please ensure all uploaded documents are in PDF or JPG format and do not exceed 5MB per file.
+    <!-- Modals (Mock) -->
+    <div style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 30px; border-radius: 8px; max-width: 500px; width: 90%;">
+            <h3 style="margin-bottom: 15px;">Terms and Conditions</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 20px;">I hereby certify that all information provided is true and correct...</p>
+            <button class="btn btn-primary" style="width: 100%;">I Accept and Submit</button>
+        </div>
     </div>
 </div>
 {{ end }}
