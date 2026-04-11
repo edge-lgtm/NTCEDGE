@@ -1,5 +1,5 @@
 <div class="breadcrumbs">
-    <a href="/">Home</a>
+    <a href="{{ "" | relURL }}">Home</a>
     {{ range .Ancestors.Reverse }}
         <span> / </span><a href="{{ .Permalink }}">{{ .Title }}</a>
     {{ end }}

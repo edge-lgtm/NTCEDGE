@@ -2,6 +2,10 @@
 <div class="container">
     <h1 class="page-title">{{ .Title }}</h1>
 
+    <div class="content" style="margin-bottom: 20px;">
+        {{ .Content }}
+    </div>
+
     <div style="max-width: 800px; margin: 0 auto;">
         <div class="card" style="padding: 40px; margin-bottom: 40px;">
             <h3 style="margin-bottom: 20px;">Track your Application</h3>
@@ -54,7 +58,7 @@
         </div>
 
         <div style="margin-top: 40px; text-align: center;">
-            <p>Having trouble? <a href="/contact/">Contact support</a> or call our hotline at {{ .Site.Params.contact_phone }}.</p>
+            <p>Having trouble? <a href="{{ "contact/" | relURL }}">Contact support</a> or call our hotline at {{ .Site.Params.contact_phone }}.</p>
         </div>
     </div>
 </div>

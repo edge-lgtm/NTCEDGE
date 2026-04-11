@@ -3,8 +3,8 @@
         <h1>{{ .Site.Params.portal_name }}</h1>
         <p>Your digital gateway to regulatory and telecommunications-related services in the Philippines.</p>
         <div style="display: flex; gap: 15px; justify-content: center;">
-            <a href="/apply/" class="btn btn-primary">Apply Now</a>
-            <a href="/track/" class="btn btn-outline">Track Application</a>
+            <a href="{{ "apply/" | relURL }}" class="btn btn-primary">Apply Now</a>
+            <a href="{{ "track/" | relURL }}" class="btn btn-outline">Track Application</a>
         </div>
     </div>
 </section>
