@@ -6,13 +6,13 @@
     </div>
     <div class="container">
         <div class="nav-container">
-            <a href="/" class="logo">
+            <a href="{{ "" | relURL }}" class="logo">
                 <div class="logo-text">{{ .Site.Params.portal_name }}</div>
             </a>
             <nav>
                 <ul>
                     {{ range .Site.Menus.main }}
-                    <li><a href="{{ .URL }}" title="{{ .Name }}">{{ .Name }}</a></li>
+                    <li><a href="{{ .URL | relURL }}" title="{{ .Name }}">{{ .Name }}</a></li>
                     {{ end }}
                 </ul>
             </nav>

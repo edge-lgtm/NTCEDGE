@@ -41,7 +41,7 @@
                     <p><strong>Processing Time:</strong> {{ .Params.processing_time }}</p>
                     <p><strong>Fees:</strong> {{ .Params.fees }}</p>
                 </div>
-                <a href="/apply/?service={{ .Title | urlize }}" class="btn btn-primary" style="width: 100%; text-align: center;">Proceed to Application</a>
+                <a href="{{ (printf "apply/?service=%s" (.Title | urlize)) | relURL }}" class="btn btn-primary" style="width: 100%; text-align: center;">Proceed to Application</a>
             </div>
         </div>
     </div>

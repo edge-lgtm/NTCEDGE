@@ -11,19 +11,19 @@
                     <div style="font-size: 3rem; margin-bottom: 15px;">📄</div>
                     <h3>Radio Operator Certificate</h3>
                     <p>Apply for or renew your radio operator certification.</p>
-                    <a href="/services/radio-operator/" class="btn btn-primary" style="margin-top: 15px;">Learn More</a>
+                    <a href="{{ "services/radio-operator/" | relURL }}" class="btn btn-primary" style="margin-top: 15px;">Learn More</a>
                 </div>
                 <div class="card" style="text-align: center;">
                     <div style="font-size: 3rem; margin-bottom: 15px;">📜</div>
                     <h3>Permits & Licenses</h3>
                     <p>Business and individual permits for telecom operations.</p>
-                    <a href="/services/permits/" class="btn btn-primary" style="margin-top: 15px;">Learn More</a>
+                    <a href="{{ "services/permits/" | relURL }}" class="btn btn-primary" style="margin-top: 15px;">Learn More</a>
                 </div>
                 <div class="card" style="text-align: center;">
                     <div style="font-size: 3rem; margin-bottom: 15px;">📡</div>
                     <h3>Equipment Registration</h3>
                     <p>Register your telecommunications equipment and devices.</p>
-                    <a href="/services/equipment/" class="btn btn-primary" style="margin-top: 15px;">Learn More</a>
+                    <a href="{{ "services/equipment/" | relURL }}" class="btn btn-primary" style="margin-top: 15px;">Learn More</a>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
                 <h2 style="color: var(--navy);">Latest Announcements</h2>
-                <a href="/announcements/">View All</a>
+                <a href="{{ "announcements/" | relURL }}">View All</a>
             </div>
             <div class="card-grid">
                 {{ range first 3 (where .Site.RegularPages "Section" "announcements") }}
