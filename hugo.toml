@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'http://edge-lgtm.github.io/NTCEDGE/'
 languageCode = 'en-us'
 title = 'NTC EDGE Portal'
 
