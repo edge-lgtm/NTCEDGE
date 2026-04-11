@@ -1,0 +1,53 @@
+{{ define "main" }}
+<div class="container">
+    <h1 class="page-title">{{ .Title }}</h1>
+
+    <div class="content" style="margin-bottom: 50px; max-width: 800px;">
+        <p style="font-size: 1.1rem; color: var(--gray-dark);">Find answers to common questions about the NTC EDGE Portal and our digital services. Can't find what you're looking for? <a href="{{ "contact/" | relURL }}">Contact our support team</a>.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 0 auto;">
+        {{ range $index, $faq := (split .RawContent "###") }}
+        {{ if gt $index 0 }}
+        {{ $parts := split $faq "\n" }}
+        <div class="card" style="padding: 0; overflow: hidden; border-top: none; border-left: 4px solid var(--accent);">
+            <details style="width: 100%;">
+                <summary style="padding: 25px; cursor: pointer; font-weight: 700; color: var(--navy); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+                    {{ index $parts 0 }}
+                    <span style="font-size: 1.2rem; transition: transform 0.3s;">+</span>
+                </summary>
+                <div style="padding: 0 25px 25px 25px; color: var(--gray-dark); border-top: 1px solid var(--gray-light); line-height: 1.8;">
+                    {{ range $p_index, $p_content := $parts }}
+                        {{ if gt $p_index 0 }}
+                            {{ $p_content | markdownify }}
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </details>
+        </div>
+        {{ end }}
+        {{ end }}
+    </div>
+
+    <div style="margin-top: 80px; background: var(--navy); color: var(--white); border-radius: 8px; padding: 60px; text-align: center;">
+        <h2 style="margin-bottom: 20px;">Still have questions?</h2>
+        <p style="margin-bottom: 40px; opacity: 0.8; max-width: 600px; margin-left: auto; margin-right: auto;">Our technical support team is available Monday to Friday, 8:00 AM to 5:00 PM to assist you with any portal-related concerns.</p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <a href="{{ "contact/" | relURL }}" class="btn btn-primary" style="background: var(--white); color: var(--navy);">Contact Support</a>
+            <a href="mailto:{{ .Site.Params.contact_email }}" class="btn btn-outline">Email Help Desk</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    details summary::-webkit-details-marker {
+        display: none;
+    }
+    details[open] summary span {
+        transform: rotate(45deg);
+    }
+    details summary:hover {
+        background: #f8fbff;
+    }
+</style>
+{{ end }}

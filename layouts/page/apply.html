@@ -2,70 +2,120 @@
 <div class="container">
     <h1 class="page-title">{{ .Title }}</h1>
 
-    <div class="content" style="margin-bottom: 20px;">
-        {{ .Content }}
+    <div class="content" style="margin-bottom: 40px; max-width: 800px;">
+        <p style="font-size: 1.1rem; color: var(--gray-dark);">Please follow the multi-step process below to submit your application. Ensure all information provided is accurate and all required documents are clear and legible.</p>
     </div>
 
-    <div style="background: var(--white); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
+    <div style="background: var(--white); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 50px;">
         <!-- Stepper -->
-        <div style="display: flex; background: var(--gray-light); border-bottom: 1px solid var(--gray);">
-            {{ $steps := slice "Service Selection" "Form Completion" "Requirements" "Review & Submit" }}
+        <div class="stepper-container">
+            {{ $steps := slice "Service" "Region" "Mode" "Form" "Upload" "Review" "Submit" "Confirm" }}
             {{ range $index, $step := $steps }}
-            <div style="flex: 1; padding: 20px; text-align: center; border-right: 1px solid var(--gray); {{ if eq $index 0 }}background: var(--white); border-bottom: 3px solid var(--accent); font-weight: bold;{{ end }}">
-                <div style="font-size: 0.8rem; color: var(--gray-dark);">STEP {{ add $index 1 }}</div>
-                <div>{{ $step }}</div>
+            <div class="step-item {{ if eq $index 0 }}active{{ end }}">
+                <span class="step-number">Step {{ add $index 1 }}</span>
+                <span class="step-label">{{ $step }}</span>
             </div>
             {{ end }}
         </div>
 
-        <div style="padding: 40px;">
-            <div id="application-form">
-                <div class="form-section">
-                    <h3 style="margin-bottom: 20px; color: var(--navy);">Select Digital Service</h3>
-                    <div style="margin-bottom: 30px;">
-                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Service Category</label>
-                        <select style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 4px;">
-                            <option>Certificates</option>
+        <div style="padding: 50px;">
+            <div id="application-wizard">
+                <!-- Current Step: Service Selection (Step 1) -->
+                <div class="wizard-step">
+                    <h3 style="margin-bottom: 30px; color: var(--navy); display: flex; align-items: center; gap: 15px;">
+                        <span style="background: var(--accent); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">1</span>
+                        Select Digital Service
+                    </h3>
+
+                    <div class="form-group">
+                        <label class="form-label">Type of Service</label>
+                        <select class="form-control">
+                            <option value="">-- Please Select a Service --</option>
+                            <option>Radio Operator Certificate</option>
                             <option>Permits and Licenses</option>
                             <option>Equipment Registration</option>
                         </select>
                     </div>
 
-                    <div style="margin-bottom: 30px;">
-                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Processing Mode</label>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div style="border: 2px solid var(--accent); padding: 20px; border-radius: 8px; position: relative; background: #f0f7ff;">
-                                <div style="position: absolute; top: 10px; right: 10px; color: var(--accent);">✓</div>
-                                <strong>Regular Processing</strong>
-                                <p style="font-size: 0.9rem; margin-top: 10px;">Standard processing time as per citizen's charter.</p>
-                            </div>
-                            <div style="border: 1px solid var(--gray); padding: 20px; border-radius: 8px; cursor: pointer;">
-                                <strong>Express Processing</strong>
-                                <p style="font-size: 0.9rem; margin-top: 10px;">Accelerated processing for urgent requirements (additional fees apply).</p>
-                            </div>
+                    <div class="form-group">
+                        <label class="form-label">Transaction Type</label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <label style="border: 2px solid var(--accent); padding: 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px; background: #f0f7ff;">
+                                <input type="radio" name="trans_type" checked>
+                                <strong>New Application</strong>
+                            </label>
+                            <label style="border: 1px solid var(--gray); padding: 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px;">
+                                <input type="radio" name="trans_type">
+                                <strong>Renewal</strong>
+                            </label>
+                            <label style="border: 1px solid var(--gray); padding: 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px;">
+                                <input type="radio" name="trans_type">
+                                <strong>Modification</strong>
+                            </label>
                         </div>
-                    </div>
-
-                    <div style="margin-bottom: 30px;">
-                        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Regional Office</label>
-                        <select style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 4px;">
-                            <option>NTC Central Office</option>
-                            <option>NTC Region I</option>
-                            <option>NTC Region II</option>
-                            <option>NTC NCR</option>
-                        </select>
                     </div>
                 </div>
 
-                <div style="display: flex; justify-content: flex-end; margin-top: 40px; border-top: 1px solid var(--gray); padding-top: 20px;">
-                    <button class="btn btn-primary" style="padding: 12px 40px;">Next Step &rarr;</button>
+                <!-- Footer Actions -->
+                <div style="display: flex; justify-content: space-between; margin-top: 50px; border-top: 1px solid var(--gray); padding-top: 30px;">
+                    <button class="btn btn-outline" style="border-color: var(--gray); color: var(--gray-dark);" disabled>&larr; Previous</button>
+                    <button class="btn btn-primary" style="padding-left: 50px; padding-right: 50px;">Next Step &rarr;</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div style="margin-top: 30px; padding: 20px; background: #fff3cd; color: #856404; border-radius: 4px; border-left: 5px solid #ffeeba;">
-        <strong>Important:</strong> Please ensure all uploaded documents are in PDF or JPG format and do not exceed 5MB per file.
+    <!-- UI Mock: Document Section (Preview of Step 5) -->
+    <div style="background: var(--white); border-radius: 8px; border: 1px dashed var(--accent); padding: 40px; text-align: center; margin-bottom: 40px; opacity: 0.6;">
+        <div style="font-size: 3rem; margin-bottom: 20px;">📁</div>
+        <h3 style="color: var(--navy);">Document Upload Preview</h3>
+        <p>Requirements will appear here based on your selected service.</p>
+    </div>
+
+    <!-- Terms Modal Mock -->
+    <div class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2 style="color: var(--navy); margin-bottom: 20px;">Terms and Conditions</h2>
+            <div style="max-height: 300px; overflow-y: auto; margin-bottom: 30px; font-size: 0.9rem; color: var(--gray-dark); line-height: 1.8; border: 1px solid var(--gray); padding: 20px;">
+                <p><strong>1. Data Privacy</strong><br>By using this portal, you agree to the collection and processing of your personal data in accordance with the Data Privacy Act of 2012.</p>
+                <p><strong>2. Accuracy of Information</strong><br>You certify that all information provided is true and correct. Falsification of documents is subject to legal action.</p>
+                <p><strong>3. Payment Policy</strong><br>Regulatory fees are non-refundable once the application has reached the evaluation stage.</p>
+                <p><strong>4. Digital Issuance</strong><br>Approved certificates will be issued digitally and carry the same legal weight as physical copies.</p>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 15px;">
+                <button class="btn btn-outline" style="color: var(--navy); border-color: var(--navy);">Decline</button>
+                <button class="btn btn-primary">I Agree & Continue</button>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Success Modal Mock (Hidden by default) -->
+<div id="success-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content" style="text-align: center;">
+        <div style="background: var(--success); color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 30px;">✓</div>
+        <h2 style="color: var(--navy); margin-bottom: 10px;">Application Submitted!</h2>
+        <p style="color: var(--gray-dark); margin-bottom: 30px;">Your application has been successfully received. Please save your reference number for tracking.</p>
+
+        <div style="background: var(--gray-light); padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid var(--gray);">
+            <div style="font-size: 0.8rem; color: var(--gray-dark); text-transform: uppercase;">Your Reference Number</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--navy); letter-spacing: 2px;">NTC-2024-08152</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="{{ "track/" | relURL }}" class="btn btn-primary">Track My Application</a>
+            <a href="{{ "" | relURL }}" class="btn btn-outline" style="color: var(--navy); border-color: var(--navy);">Back to Home</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .wizard-step {
+        animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
 {{ end }}

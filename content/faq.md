@@ -1,5 +1,6 @@
 ---
 title: "Frequently Asked Questions"
+layout: "faq"
 ---
 ### How do I apply?
 Navigate to the [Apply](/apply/) page, select your desired service, and follow the multi-step instructions provided.

@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="container">
+    <h1 class="page-title">{{ .Title }}</h1>
+
+    <div class="section-block">
+        <div class="content" style="font-size: 1.1rem; line-height: 1.8;">
+            {{ .Content }}
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+        <div class="card" style="text-align: center; border-top-color: var(--accent);">
+            <div style="font-size: 3rem; margin-bottom: 20px;">🏛️</div>
+            <h3>Transparency</h3>
+            <p style="color: var(--gray-dark);">We provide clear information on all regulatory processes and fees.</p>
+        </div>
+        <div class="card" style="text-align: center; border-top-color: var(--accent);">
+            <div style="font-size: 3rem; margin-bottom: 20px;">⚡</div>
+            <h3>Efficiency</h3>
+            <p style="color: var(--gray-dark);">Digital processing reduces turnaround time from weeks to days.</p>
+        </div>
+        <div class="card" style="text-align: center; border-top-color: var(--accent);">
+            <div style="font-size: 3rem; margin-bottom: 20px;">🛡️</div>
+            <h3>Security</h3>
+            <p style="color: var(--gray-dark);">Your data is protected under the Data Privacy Act of 2012.</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 80px; text-align: center;">
+        <h2 style="color: var(--navy); margin-bottom: 30px;">Our Commitment to Quality</h2>
+        <p style="max-width: 800px; margin: 0 auto 40px; color: var(--gray-dark);">The National Telecommunications Commission is ISO 9001:2015 certified, ensuring that our processes meet international standards for quality management systems.</p>
+        <div style="display: inline-block; padding: 20px 40px; border: 2px solid var(--navy); border-radius: 8px; font-weight: 800; color: var(--navy); text-transform: uppercase; letter-spacing: 2px;">
+            ISO 9001:2015 CERTIFIED
+        </div>
+    </div>
+</div>
+{{ end }}

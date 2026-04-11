@@ -1,0 +1,114 @@
+{{ define "main" }}
+<div class="container">
+    <h1 class="page-title">{{ .Title }}</h1>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 60px;">
+        <div>
+            <h2 style="color: var(--navy); margin-bottom: 30px;">Get in Touch</h2>
+            <p style="margin-bottom: 40px; color: var(--gray-dark);">We are committed to providing the best possible service. If you have any questions or feedback, please reach out to us through any of the following channels.</p>
+
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                <div style="display: flex; gap: 20px;">
+                    <div style="font-size: 1.5rem;">📍</div>
+                    <div>
+                        <h4 style="color: var(--navy);">Central Office</h4>
+                        <p style="font-size: 0.95rem; color: var(--gray-dark);">{{ .Site.Params.address }}</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 20px;">
+                    <div style="font-size: 1.5rem;">📞</div>
+                    <div>
+                        <h4 style="color: var(--navy);">Hotline</h4>
+                        <p style="font-size: 0.95rem; color: var(--gray-dark);">{{ .Site.Params.contact_phone }}</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 20px;">
+                    <div style="font-size: 1.5rem;">📧</div>
+                    <div>
+                        <h4 style="color: var(--navy);">Email Support</h4>
+                        <p style="font-size: 0.95rem; color: var(--gray-dark);">{{ .Site.Params.contact_email }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="padding: 40px; border-top-color: var(--accent);">
+            <h3 style="margin-bottom: 25px;">Send an Inquiry</h3>
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" placeholder="Juan Dela Cruz">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="juan@email.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Subject</label>
+                <select class="form-control">
+                    <option>Technical Issue</option>
+                    <option>Application Follow-up</option>
+                    <option>General Inquiry</option>
+                    <option>Feedback</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" rows="5" placeholder="How can we help you?"></textarea>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;">Send Message</button>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h3>Regional Directory</h3>
+        <p style="margin-bottom: 30px; color: var(--gray-dark);">For region-specific concerns, you may contact our regional offices directly.</p>
+
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; min-width: 600px;">
+                <thead>
+                    <tr style="background: var(--navy); color: var(--white); text-align: left;">
+                        <th style="padding: 15px; border: 1px solid var(--navy-dark);">Region</th>
+                        <th style="padding: 15px; border: 1px solid var(--navy-dark);">Office Address</th>
+                        <th style="padding: 15px; border: 1px solid var(--navy-dark);">Contact Number</th>
+                        <th style="padding: 15px; border: 1px solid var(--navy-dark);">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 15px; border: 1px solid var(--gray); font-weight: 700;">NCR</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">BIR Road, Quezon City</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">(02) 8924-4008</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">ntcncr@ntc.gov.ph</td>
+                    </tr>
+                    <tr style="background: #fdfdfd;">
+                        <td style="padding: 15px; border: 1px solid var(--gray); font-weight: 700;">Region I</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">San Fernando, La Union</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">(072) 607-1111</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">ntcr1@ntc.gov.ph</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px; border: 1px solid var(--gray); font-weight: 700;">Region II</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">Tuguegarao City</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">(078) 304-2222</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">ntcr2@ntc.gov.ph</td>
+                    </tr>
+                    <tr style="background: #fdfdfd;">
+                        <td style="padding: 15px; border: 1px solid var(--gray); font-weight: 700;">Region III</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">San Fernando, Pampanga</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">(045) 455-1212</td>
+                        <td style="padding: 15px; border: 1px solid var(--gray);">ntcr3@ntc.gov.ph</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="margin-top: 60px; border-radius: 8px; overflow: hidden; height: 400px; background: #eee; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gray);">
+        <div style="text-align: center; color: var(--gray-dark);">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🗺️</div>
+            <p>Interactive Map Placeholder</p>
+            <p style="font-size: 0.8rem;">(Embedded Google Maps would appear here)</p>
+        </div>
+    </div>
+</div>
+{{ end }}
