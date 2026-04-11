@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="container">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="card-grid">
+        {{ range .Paginator.Pages }}
+        <div class="card">
+            <small>{{ .Date.Format "January 02, 2006" }}</small>
+            <h3 style="margin: 10px 0;"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+            <p>{{ .Summary }}</p>
+            <a href="{{ .Permalink }}" style="display: block; margin-top: 15px; font-weight: bold;">Read More &rarr;</a>
+        </div>
+        {{ end }}
+    </div>
+    {{ partial "pagination.html" . }}
+</div>
+{{ end }}

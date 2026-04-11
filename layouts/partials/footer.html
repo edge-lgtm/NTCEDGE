@@ -1,0 +1,31 @@
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>{{ .Site.Params.agency_name }}</h4>
+                <p>{{ .Site.Params.address }}</p>
+                <p>Email: {{ .Site.Params.contact_email }}</p>
+                <p>Phone: {{ .Site.Params.contact_phone }}</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    {{ range .Site.Menus.main }}
+                    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Government Links</h4>
+                <ul>
+                    <li><a href="https://www.gov.ph">GOV.PH</a></li>
+                    <li><a href="https://ntc.gov.ph">Official NTC Website</a></li>
+                    <li><a href="#">Official Gazette</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top: 40px; text-align: center; font-size: 0.9rem; opacity: 0.7;">
+            &copy; {{ now.Format "2006" }} {{ .Site.Params.agency_name }}. All rights reserved.
+        </div>
+    </div>
+</footer>

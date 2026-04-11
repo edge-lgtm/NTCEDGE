@@ -1,0 +1,64 @@
+{{ define "main" }}
+<div class="container">
+    <h1 class="page-title">{{ .Title }}</h1>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
+        <div class="service-content">
+            <div class="service-meta">
+                <h3>Service Overview</h3>
+                <p>{{ .Description }}</p>
+                <p><strong>Eligibility:</strong> {{ .Params.eligibility }}</p>
+            </div>
+
+            <div class="section-block">
+                <h3>Requirements</h3>
+                <ul>
+                    {{ range .Params.requirements }}
+                    <li>{{ . }}</li>
+                    {{ end }}
+                </ul>
+            </div>
+
+            <div class="section-block" style="margin-top: 30px;">
+                <h3>Processing Steps</h3>
+                <ol>
+                    {{ range .Params.steps }}
+                    <li>{{ . }}</li>
+                    {{ end }}
+                </ol>
+            </div>
+
+            <div class="section-block" style="margin-top: 30px;">
+                {{ .Content }}
+            </div>
+        </div>
+
+        <div class="service-sidebar">
+            <div class="card" style="position: sticky; top: 100px;">
+                <h3>Apply Now</h3>
+                <p>Ready to start your application?</p>
+                <div style="margin: 20px 0; font-size: 0.9rem;">
+                    <p><strong>Processing Time:</strong> {{ .Params.processing_time }}</p>
+                    <p><strong>Fees:</strong> {{ .Params.fees }}</p>
+                </div>
+                <a href="/apply/?service={{ .Title | urlize }}" class="btn btn-primary" style="width: 100%; text-align: center;">Proceed to Application</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .section-block h3 {
+        border-left: 5px solid var(--navy);
+        padding-left: 15px;
+        margin-bottom: 20px;
+        color: var(--navy);
+    }
+    .section-block ul, .section-block ol {
+        padding-left: 20px;
+    }
+    .section-block li {
+        margin-bottom: 10px;
+    }
+</style>
+{{ end }}
