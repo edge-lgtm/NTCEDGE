@@ -1,5 +1,6 @@
 ---
 title: "About NTC EDGE"
+layout: "about"
 ---
 ## Our Mission
 To provide a fast, transparent, and accessible digital platform for all telecommunications-related regulatory services in the Philippines.
