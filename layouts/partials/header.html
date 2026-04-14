@@ -1,4 +1,4 @@
-<header>
+<header role="banner">
     <div class="gov-banner">
         <div class="container">
             {{ .Site.Params.gov_name }}
@@ -6,10 +6,10 @@
     </div>
     <div class="container">
         <div class="nav-container">
-            <a href="{{ "" | relURL }}" class="logo">
+            <a href="{{ "" | relURL }}" class="logo" aria-label="{{ .Site.Params.portal_name }} Home">
                 <div class="logo-text">{{ .Site.Params.portal_name }}</div>
             </a>
-            <nav>
+            <nav role="navigation" aria-label="Main Navigation">
                 <ul>
                     {{ range .Site.Menus.main }}
                     <li><a href="{{ .URL | relURL }}" title="{{ .Name }}">{{ .Name }}</a></li>

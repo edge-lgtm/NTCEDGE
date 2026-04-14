@@ -2,7 +2,7 @@
 <div class="container">
     <h1 class="page-title">{{ .Title }}</h1>
 
-    <div class="content" style="margin-bottom: 40px; max-width: 800px;">
+    <div class="content mb-40 max-800">
         <p style="font-size: 1.1rem; color: var(--gray-dark);">Please follow the multi-step process below to submit your application. Ensure all information provided is accurate and all required documents are clear and legible.</p>
     </div>
 
@@ -21,8 +21,8 @@
         <div style="padding: 50px;">
             <div id="application-wizard">
                 <!-- Current Step: Service Selection (Step 1) -->
-                <div class="wizard-step">
-                    <h3 style="margin-bottom: 30px; color: var(--navy); display: flex; align-items: center; gap: 15px;">
+                <div class="wizard-step" id="step-1">
+                    <h3 class="mb-30 text-navy" style="display: flex; align-items: center; gap: 15px;">
                         <span style="background: var(--accent); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">1</span>
                         Select Digital Service
                     </h3>
@@ -31,7 +31,7 @@
                         <label class="form-label">Type of Service</label>
                         <select class="form-control">
                             <option value="">-- Please Select a Service --</option>
-                            <option>Radio Operator Certificate</option>
+                            <option selected>Radio Operator Certificate</option>
                             <option>Permits and Licenses</option>
                             <option>Equipment Registration</option>
                         </select>
@@ -56,27 +56,113 @@
                     </div>
                 </div>
 
+                <!-- Mock: Region Selection (Step 2 Preview) -->
+                <div class="wizard-step" id="step-2" style="margin-top: 50px; border-top: 1px solid var(--gray); padding-top: 50px;">
+                    <h3 class="mb-30 text-navy" style="display: flex; align-items: center; gap: 15px;">
+                        <span style="background: var(--gray-dark); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">2</span>
+                        Select Region & Processing Mode
+                    </h3>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                        <div class="form-group">
+                            <label class="form-label">Regional Office</label>
+                            <select class="form-control">
+                                <option>National Capital Region (NCR)</option>
+                                <option>Region I - Ilocos Region</option>
+                                <option>Region II - Cagayan Valley</option>
+                                <option>Region III - Central Luzon</option>
+                            </select>
+                            <small class="text-gray-dark mt-10" style="display: block;">Applications are processed by the regional office having jurisdiction over your area.</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Processing Mode</label>
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <label style="border: 1px solid var(--gray); padding: 12px; border-radius: 4px; display: flex; align-items: center; gap: 10px;">
+                                    <input type="radio" name="mode" checked>
+                                    <span><strong>Regular</strong> (Standard timeframe)</span>
+                                </label>
+                                <label style="border: 1px solid var(--gray); padding: 12px; border-radius: 4px; display: flex; align-items: center; gap: 10px; opacity: 0.6;">
+                                    <input type="radio" name="mode" disabled>
+                                    <span><strong>Express</strong> (Currently unavailable)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mock: Document Upload (Step 5 Preview) -->
+                <div class="wizard-step" id="step-5" style="margin-top: 50px; border-top: 1px solid var(--gray); padding-top: 50px;">
+                    <h3 class="mb-30 text-navy" style="display: flex; align-items: center; gap: 15px;">
+                        <span style="background: var(--gray-dark); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">5</span>
+                        Upload Requirements
+                    </h3>
+
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="background: var(--gray-light); padding: 20px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--gray);">
+                            <div>
+                                <div class="fw-bold">1. Duly Accomplished Application Form</div>
+                                <small class="text-gray-dark">Signed and notarized (PDF)</small>
+                            </div>
+                            <button class="btn btn-outline" style="border-color: var(--navy); color: var(--navy); padding: 8px 15px; font-size: 0.8rem;">Choose File</button>
+                        </div>
+                        <div style="background: var(--gray-light); padding: 20px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--gray);">
+                            <div>
+                                <div class="fw-bold">2. Proof of Passing Government Exam</div>
+                                <small class="text-gray-dark">Clear copy of certificate (JPG/PDF)</small>
+                            </div>
+                            <button class="btn btn-outline" style="border-color: var(--navy); color: var(--navy); padding: 8px 15px; font-size: 0.8rem;">Choose File</button>
+                        </div>
+                        <div style="background: var(--gray-light); padding: 20px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--gray);">
+                            <div>
+                                <div class="fw-bold">3. Valid Government ID</div>
+                                <small class="text-gray-dark">Front and back (JPG/PDF)</small>
+                            </div>
+                            <button class="btn btn-outline" style="border-color: var(--navy); color: var(--navy); padding: 8px 15px; font-size: 0.8rem;">Choose File</button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Footer Actions -->
                 <div style="display: flex; justify-content: space-between; margin-top: 50px; border-top: 1px solid var(--gray); padding-top: 30px;">
                     <button class="btn btn-outline" style="border-color: var(--gray); color: var(--gray-dark);" disabled>&larr; Previous</button>
-                    <button class="btn btn-primary" style="padding-left: 50px; padding-right: 50px;">Next Step &rarr;</button>
+                    <button class="btn btn-primary" style="padding-left: 50px; padding-right: 50px;">Continue to Form &rarr;</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- UI Mock: Document Section (Preview of Step 5) -->
-    <div style="background: var(--white); border-radius: 8px; border: 1px dashed var(--accent); padding: 40px; text-align: center; margin-bottom: 40px; opacity: 0.6;">
-        <div style="font-size: 3rem; margin-bottom: 20px;">📁</div>
-        <h3 style="color: var(--navy);">Document Upload Preview</h3>
-        <p>Requirements will appear here based on your selected service.</p>
+    <!-- Review Summary Card (Mock for Step 6) -->
+    <div class="card mb-50" style="background: #f8fbff; border: 1px solid var(--accent); padding: 40px;">
+        <h3 class="text-navy mb-20" style="display: flex; align-items: center; gap: 10px;">
+            <span>📋</span> Application Review Summary
+        </h3>
+        <p class="text-gray-dark mb-30">Please review your details before final submission. Changes cannot be made once submitted.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; font-size: 0.95rem;">
+            <div>
+                <div class="text-gray-dark fw-bold">Service Type</div>
+                <div>Radio Operator Certificate</div>
+            </div>
+            <div>
+                <div class="text-gray-dark fw-bold">Region</div>
+                <div>NCR - National Capital Region</div>
+            </div>
+            <div>
+                <div class="text-gray-dark fw-bold">Applicant Name</div>
+                <div>JUAN DELA CRUZ</div>
+            </div>
+            <div>
+                <div class="text-gray-dark fw-bold">Total Fees</div>
+                <div class="fw-bold text-navy">PHP 1,250.00</div>
+            </div>
+        </div>
     </div>
 
     <!-- Terms Modal Mock -->
     <div class="modal-overlay" style="display: none;">
         <div class="modal-content">
-            <h2 style="color: var(--navy); margin-bottom: 20px;">Terms and Conditions</h2>
-            <div style="max-height: 300px; overflow-y: auto; margin-bottom: 30px; font-size: 0.9rem; color: var(--gray-dark); line-height: 1.8; border: 1px solid var(--gray); padding: 20px;">
+            <h2 class="text-navy mb-20">Terms and Conditions</h2>
+            <div class="mb-30 text-gray-dark" style="max-height: 300px; overflow-y: auto; font-size: 0.9rem; line-height: 1.8; border: 1px solid var(--gray); padding: 20px;">
                 <p><strong>1. Data Privacy</strong><br>By using this portal, you agree to the collection and processing of your personal data in accordance with the Data Privacy Act of 2012.</p>
                 <p><strong>2. Accuracy of Information</strong><br>You certify that all information provided is true and correct. Falsification of documents is subject to legal action.</p>
                 <p><strong>3. Payment Policy</strong><br>Regulatory fees are non-refundable once the application has reached the evaluation stage.</p>
@@ -92,14 +178,14 @@
 
 <!-- Success Modal Mock (Hidden by default) -->
 <div id="success-modal" class="modal-overlay" style="display: none;">
-    <div class="modal-content" style="text-align: center;">
+    <div class="modal-content text-center">
         <div style="background: var(--success); color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 30px;">✓</div>
-        <h2 style="color: var(--navy); margin-bottom: 10px;">Application Submitted!</h2>
-        <p style="color: var(--gray-dark); margin-bottom: 30px;">Your application has been successfully received. Please save your reference number for tracking.</p>
+        <h2 class="text-navy mb-10">Application Submitted!</h2>
+        <p class="text-gray-dark mb-30">Your application has been successfully received. Please save your reference number for tracking.</p>
 
-        <div style="background: var(--gray-light); padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid var(--gray);">
-            <div style="font-size: 0.8rem; color: var(--gray-dark); text-transform: uppercase;">Your Reference Number</div>
-            <div style="font-size: 1.8rem; font-weight: 800; color: var(--navy); letter-spacing: 2px;">NTC-2024-08152</div>
+        <div class="bg-gray-light mb-30" style="padding: 20px; border-radius: 8px; border: 1px solid var(--gray);">
+            <div class="text-gray-dark" style="font-size: 0.8rem; text-transform: uppercase;">Your Reference Number</div>
+            <div class="text-navy" style="font-size: 1.8rem; font-weight: 800; letter-spacing: 2px;">NTC-2024-08152</div>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 10px;">
