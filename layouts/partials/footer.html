@@ -1,26 +1,29 @@
-<footer>
+<footer role="contentinfo">
     <div class="container">
         <div class="footer-grid">
             <div class="footer-section">
                 <h4>{{ .Site.Params.agency_name }}</h4>
                 <p>{{ .Site.Params.address }}</p>
-                <p>Email: {{ .Site.Params.contact_email }}</p>
+                <p>Email: <a href="mailto:{{ .Site.Params.contact_email }}" style="color: white; opacity: 1;">{{ .Site.Params.contact_email }}</a></p>
                 <p>Phone: {{ .Site.Params.contact_phone }}</p>
+                <p style="margin-top: 20px; font-style: italic; opacity: 0.9;">"Bringing NTC services closer to you."</p>
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
-                <ul>
-                    {{ range .Site.Menus.main }}
-                    <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-                    {{ end }}
-                </ul>
+                <nav aria-label="Footer Navigation">
+                    <ul>
+                        {{ range .Site.Menus.main }}
+                        <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+                        {{ end }}
+                    </ul>
+                </nav>
             </div>
             <div class="footer-section">
                 <h4>Government Links</h4>
                 <ul>
-                    <li><a href="https://www.gov.ph">GOV.PH</a></li>
-                    <li><a href="https://ntc.gov.ph">Official NTC Website</a></li>
-                    <li><a href="#">Official Gazette</a></li>
+                    <li><a href="https://www.gov.ph" target="_blank" rel="noopener">GOV.PH</a></li>
+                    <li><a href="https://ntc.gov.ph" target="_blank" rel="noopener">Official NTC Website</a></li>
+                    <li><a href="https://www.officialgazette.gov.ph/" target="_blank" rel="noopener">Official Gazette</a></li>
                 </ul>
             </div>
         </div>

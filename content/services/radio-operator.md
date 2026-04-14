@@ -1,20 +1,21 @@
 ---
 title: "Radio Operator Certificate"
-description: "Application and renewal of Radio Operator Certificates for various categories."
-eligibility: "Filipino citizens, at least 18 years old, who have passed the required examinations."
+description: "Formal application and renewal process for Radio Operator Certificates across all professional and amateur categories."
+eligibility: "Qualified Filipino citizens of legal age who have successfully passed the prescribed government examinations for radio operation."
 processing_time: "5-7 Working Days"
-fees: "PHP 500.00 - 1,500.00 (depending on category)"
+fees: "PHP 500.00 - 1,500.00 (Standard Regulatory Fees)"
 requirements:
-  - "Duly accomplished application form"
-  - "Proof of passing the government examination"
-  - "2x2 ID picture (white background)"
-  - "Valid Government ID"
-  - "Copy of previous certificate (for renewals)"
+  - "Duly accomplished and notarized application form"
+  - "Authenticated Report of Rating or Proof of Examination Results"
+  - "Two (2) recent 2x2 ID photographs with white background"
+  - "Valid Government-issued Identification Document"
+  - "Original copy of expired or expiring certificate (for renewal applications)"
 steps:
-  - "Submit application and requirements through the portal"
-  - "Wait for initial evaluation and payment advice"
-  - "Pay the required fees through authorized channels"
-  - "Upload proof of payment"
-  - "Final approval and issuance of digital certificate"
+  - "Official submission of application via the NTC EDGE Portal"
+  - "Initial administrative and technical evaluation by NTC officers"
+  - "Issuance of Payment Advice for regulatory fees"
+  - "Settlement of fees through authorized government payment channels"
+  - "Technical verification and final approval"
+  - "Issuance and download of the Digital Radio Operator Certificate"
 ---
-The Radio Operator Certificate is a mandatory requirement for individuals operating radio stations and equipment in the Philippines. This digital service allows for faster processing and digital issuance of certificates.
+The Radio Operator Certificate is a mandatory legal requirement for all individuals engaged in the operation and management of radio stations within the jurisdiction of the Republic of the Philippines. This digital service facilitates a streamlined, transparent, and secure certification process.

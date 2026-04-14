@@ -13,33 +13,33 @@ title = 'NTC EDGE Portal'
 
 [[menu.main]]
   name = 'Home'
-  url = '/'
+  url = ''
   weight = 10
 [[menu.main]]
   name = 'Services'
-  url = '/services/'
+  url = 'services/'
   weight = 20
 [[menu.main]]
   name = 'Apply'
-  url = '/apply/'
+  url = 'apply/'
   weight = 30
 [[menu.main]]
   name = 'Track Application'
-  url = '/track/'
+  url = 'track/'
   weight = 40
 [[menu.main]]
   name = 'Announcements'
-  url = '/announcements/'
+  url = 'announcements/'
   weight = 50
 [[menu.main]]
   name = 'FAQ'
-  url = '/faq/'
+  url = 'faq/'
   weight = 60
 [[menu.main]]
   name = 'About'
-  url = '/about/'
+  url = 'about/'
   weight = 70
 [[menu.main]]
   name = 'Contact'
-  url = '/contact/'
+  url = 'contact/'
   weight = 80

@@ -2,18 +2,18 @@
 <div class="container">
     <h1 class="page-title">{{ .Title }}</h1>
 
-    <div class="content" style="margin-bottom: 40px; max-width: 800px;">
+    <div class="content mb-40 max-800">
         <p style="font-size: 1.1rem; color: var(--gray-dark);">Monitor the progress of your application in real-time. Simply enter your reference number provided during submission.</p>
     </div>
 
-    <div style="max-width: 900px; margin: 0 auto;">
-        <div class="card" style="padding: 40px; margin-bottom: 40px; border-top-color: var(--accent);">
-            <h3 style="margin-bottom: 25px; color: var(--navy);">Enter Reference Number</h3>
+    <div class="max-800">
+        <div class="card mb-40" style="padding: 40px; border-top-color: var(--accent);">
+            <h3 class="mb-25 text-navy">Enter Reference Number</h3>
 
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 300px;">
+                <div class="flex-grow-1" style="min-width: 300px;">
                     <input type="text" placeholder="e.g. NTC-2024-XXXXX" class="form-control" style="font-size: 1.2rem; padding: 15px; border-width: 2px;">
-                    <small style="display: block; margin-top: 8px; color: var(--gray-dark);">The reference number can be found in your confirmation email.</small>
+                    <small class="mt-10 text-gray-dark" style="display: block;">The reference number can be found in your confirmation email.</small>
                 </div>
                 <button class="btn btn-primary" style="padding: 0 40px; height: 58px;">Track Application</button>
             </div>
@@ -21,84 +21,84 @@
 
         <!-- Mock Result Layout -->
         <div class="card" style="border-left: 8px solid var(--warning); padding: 40px;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; border-bottom: 1px solid var(--gray); padding-bottom: 20px;">
+            <div class="mb-30" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid var(--gray); padding-bottom: 20px;">
                 <div>
                     <span class="badge badge-evaluation">Under Evaluation</span>
-                    <h2 style="margin-top: 15px; color: var(--navy); font-size: 2rem;">NTC-2024-08152</h2>
-                    <p style="color: var(--gray-dark); margin-top: 5px;">Submitted on August 15, 2024 | 09:12 AM</p>
+                    <h2 class="text-navy" style="margin-top: 15px; font-size: 2rem;">NTC-2024-08152</h2>
+                    <p class="text-gray-dark" style="margin-top: 5px;">Submitted on August 15, 2024 | 09:12 AM</p>
                 </div>
                 <div style="text-align: right; background: #fff8e1; padding: 15px; border-radius: 8px; border: 1px solid #ffe082;">
-                    <div style="font-size: 0.8rem; font-weight: 700; color: #856404; text-transform: uppercase;">Estimated Release</div>
-                    <div style="font-size: 1.2rem; font-weight: 800; color: var(--navy);">August 22, 2024</div>
+                    <div class="text-gray-dark fw-bold" style="font-size: 0.8rem; text-transform: uppercase;">Estimated Release</div>
+                    <div class="text-navy" style="font-size: 1.2rem; font-weight: 800;">August 22, 2024</div>
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px;">
+            <div class="mb-40" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
                 <div>
-                    <div style="font-size: 0.85rem; color: var(--gray-dark); text-transform: uppercase; font-weight: 700;">Service</div>
-                    <div style="font-weight: 600; color: var(--navy);">Radio Operator Certificate (Renewal)</div>
+                    <div class="text-gray-dark fw-bold" style="font-size: 0.85rem; text-transform: uppercase;">Service</div>
+                    <div class="text-navy fw-bold">Radio Operator Certificate (Renewal)</div>
                 </div>
                 <div>
-                    <div style="font-size: 0.85rem; color: var(--gray-dark); text-transform: uppercase; font-weight: 700;">Applicant</div>
-                    <div style="font-weight: 600; color: var(--navy);">JUAN DELA CRUZ</div>
+                    <div class="text-gray-dark fw-bold" style="font-size: 0.85rem; text-transform: uppercase;">Applicant</div>
+                    <div class="text-navy fw-bold">JUAN DELA CRUZ</div>
                 </div>
                 <div>
-                    <div style="font-size: 0.85rem; color: var(--gray-dark); text-transform: uppercase; font-weight: 700;">Office</div>
-                    <div style="font-weight: 600; color: var(--navy);">NTC NCR (National Capital Region)</div>
+                    <div class="text-gray-dark fw-bold" style="font-size: 0.85rem; text-transform: uppercase;">Office</div>
+                    <div class="text-navy fw-bold">NTC NCR (National Capital Region)</div>
                 </div>
             </div>
 
             <!-- Enhanced Timeline -->
-            <h4 style="margin-bottom: 25px; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Application Timeline</h4>
+            <h4 class="mb-25 text-navy" style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Application Timeline</h4>
             <div style="position: relative; padding-left: 40px;">
                 <div style="position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--gray);"></div>
 
                 <!-- Completed Step -->
-                <div style="margin-bottom: 35px; position: relative;">
+                <div class="mb-40" style="position: relative;">
                     <div style="position: absolute; left: -40px; top: 0; width: 16px; height: 16px; background: var(--success); border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--success); z-index: 1;"></div>
-                    <div style="font-weight: 700; color: var(--navy);">Application Received</div>
-                    <div style="font-size: 0.85rem; color: var(--gray-dark);">August 15, 2024 | 09:12 AM</div>
-                    <p style="font-size: 0.9rem; margin-top: 8px; padding: 10px; background: #f8f9fa; border-radius: 4px;">System successfully logged your application and requirements.</p>
+                    <div class="text-navy fw-bold">Application Received</div>
+                    <div class="text-gray-dark" style="font-size: 0.85rem;">August 15, 2024 | 09:12 AM</div>
+                    <p class="mt-10 bg-gray-light" style="font-size: 0.9rem; padding: 10px; border-radius: 4px;">System successfully logged your application and requirements.</p>
                 </div>
 
                 <!-- Current Step -->
-                <div style="margin-bottom: 35px; position: relative;">
+                <div class="mb-40" style="position: relative;">
                     <div style="position: absolute; left: -40px; top: 0; width: 16px; height: 16px; background: var(--warning); border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--warning); z-index: 1;"></div>
-                    <div style="font-weight: 700; color: var(--navy);">Document Evaluation</div>
-                    <div style="font-size: 0.85rem; color: var(--gray-dark);">August 16, 2024 | 10:45 AM</div>
-                    <p style="font-size: 0.9rem; margin-top: 8px; padding: 10px; background: #fffdf7; border: 1px solid #fff3cd; border-radius: 4px;">Evaluators are currently reviewing the technical specifications of your radio equipment.</p>
+                    <div class="text-navy fw-bold">Document Evaluation</div>
+                    <div class="text-gray-dark" style="font-size: 0.85rem;">August 16, 2024 | 10:45 AM</div>
+                    <p class="mt-10" style="font-size: 0.9rem; padding: 10px; background: #fffdf7; border: 1px solid #fff3cd; border-radius: 4px;">Evaluators are currently reviewing the technical specifications of your radio equipment.</p>
                 </div>
 
                 <!-- Pending Steps -->
-                <div style="margin-bottom: 35px; position: relative; opacity: 0.4;">
+                <div class="mb-40" style="position: relative; opacity: 0.4;">
                     <div style="position: absolute; left: -40px; top: 0; width: 16px; height: 16px; background: var(--gray); border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--gray); z-index: 1;"></div>
-                    <div style="font-weight: 700;">Payment Verification</div>
+                    <div class="fw-bold">Payment Verification</div>
                     <div style="font-size: 0.85rem;">Pending approval of documents</div>
                 </div>
 
                 <div style="position: relative; opacity: 0.4;">
                     <div style="position: absolute; left: -40px; top: 0; width: 16px; height: 16px; background: var(--gray); border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--gray); z-index: 1;"></div>
-                    <div style="font-weight: 700;">Issuance of Digital Certificate</div>
+                    <div class="fw-bold">Issuance of Digital Certificate</div>
                     <div style="font-size: 0.85rem;">Pending payment</div>
                 </div>
             </div>
         </div>
 
         <!-- Notes / Reminders Section -->
-        <div style="margin-top: 40px; padding: 30px; background: #e7f3ff; border-radius: 8px; border-left: 6px solid var(--accent);">
-            <h4 style="color: var(--navy); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+        <div class="mt-40" style="padding: 30px; background: #e7f3ff; border-radius: 8px; border-left: 6px solid var(--accent);">
+            <h4 class="text-navy mb-15" style="display: flex; align-items: center; gap: 10px;">
                 <span>💡</span> Important Notes
             </h4>
             <ul style="padding-left: 20px; color: #004085; font-size: 0.95rem;">
-                <li style="margin-bottom: 10px;">Please check your registered email (j***@email.com) for any notifications regarding missing requirements.</li>
-                <li style="margin-bottom: 10px;">Payments can be made via Landbank Link.BizPortal or at any NTC Regional Office.</li>
+                <li class="mb-10">Please check your registered email (j***@email.com) for any notifications regarding missing requirements.</li>
+                <li class="mb-10">Payments can be made via Landbank Link.BizPortal or at any NTC Regional Office.</li>
                 <li>Your reference number is valid for 30 days. Unpaid applications will be automatically cancelled after this period.</li>
             </ul>
         </div>
 
-        <div style="margin-top: 50px; text-align: center; border-top: 1px solid var(--gray); padding-top: 30px;">
-            <p style="color: var(--gray-dark);">Having trouble tracking your application? <br>
-            <a href="{{ "contact/" | relURL }}" style="font-weight: bold;">Contact Support</a> or call our hotline at <span style="color: var(--navy); font-weight: bold;">{{ .Site.Params.contact_phone }}</span></p>
+        <div class="mt-50 text-center" style="border-top: 1px solid var(--gray); padding-top: 30px;">
+            <p class="text-gray-dark">Having trouble tracking your application? <br>
+            <a href="{{ "contact/" | relURL }}" class="fw-bold">Contact Support</a> or call our hotline at <span class="text-navy fw-bold">{{ .Site.Params.contact_phone }}</span></p>
         </div>
     </div>
 </div>
