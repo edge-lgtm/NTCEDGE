@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { BulkApplication, Decision, SOASummary } from '../types/evaluator';
+import { mockBulkApplications } from '../data/mockData';
 
 interface EvaluatorState {
   selectedBulkId: string | null;
@@ -10,6 +11,8 @@ interface EvaluatorState {
   isSuccessModalOpen: boolean;
   searchQuery: string;
   bulkApplications: BulkApplication[];
+  currentPage: number;
+  itemsPerPage: number;
 
   // Actions
   setSelectedBulkId: (id: string | null) => void;
@@ -22,9 +25,8 @@ interface EvaluatorState {
   setSearchQuery: (query: string) => void;
   submitDecisions: () => void;
   resetSelection: () => void;
+  setCurrentPage: (page: number) => void;
 }
-
-import { mockBulkApplications } from '../data/mockData';
 
 export const useEvaluatorStore = create<EvaluatorState>((set) => ({
   selectedBulkId: null,
@@ -35,8 +37,16 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
   isSuccessModalOpen: false,
   searchQuery: '',
   bulkApplications: mockBulkApplications,
+  currentPage: 1,
+  itemsPerPage: 5,
 
-  setSelectedBulkId: (id) => set({ selectedBulkId: id, selectedApplicantIds: [], stagedDecisions: {}, activeTab: 'bulk' }),
+  setSelectedBulkId: (id) => set({
+    selectedBulkId: id,
+    selectedApplicantIds: [],
+    stagedDecisions: {},
+    activeTab: 'bulk',
+    currentPage: 1
+  }),
   setActiveTab: (tab) => set({ activeTab: tab }),
   toggleApplicantSelection: (id) => set((state) => ({
     selectedApplicantIds: state.selectedApplicantIds.includes(id)
@@ -79,7 +89,13 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
       isSuccessModalOpen: true
     };
   }),
-  resetSelection: () => set({ selectedApplicantIds: [], stagedDecisions: {}, isSuccessModalOpen: false }),
+  resetSelection: () => set({
+    selectedApplicantIds: [],
+    stagedDecisions: {},
+    isSuccessModalOpen: false,
+    currentPage: 1
+  }),
+  setCurrentPage: (page) => set({ currentPage: page }),
 }));
 
 export const calculateSOA = (selectedCount: number): SOASummary => {
@@ -93,10 +109,12 @@ export const calculateSOA = (selectedCount: number): SOASummary => {
       dueDate: null,
     };
   }
-  const licenseFee = selectedCount * 500;
-  const inspectionFee = selectedCount * 200;
-  const docStampTax = 30;
-  const surcharge = 0;
+  // Simplified calculation logic for "government-grade" feel
+  const licenseFee = selectedCount * 550.00;
+  const inspectionFee = selectedCount * 250.00;
+  const docStampTax = 30.00; // Fixed per batch or per application? Usually per application or batch.
+  const surcharge = 0.00;
+
   return {
     licenseFee,
     inspectionFee,
