@@ -11,24 +11,9 @@
             </div>
 
             <div class="card-grid">
-                <div class="card text-center">
-                    <div class="home-service-icon">📄</div>
-                    <h3>Radio Operator Certificate</h3>
-                    <p class="mb-20 flex-grow-1">Secure your certification for radio operation and management through our streamlined digital process.</p>
-                    <a href="{{ "services/radio-operator/" | relURL }}" class="btn btn-primary">Learn More</a>
-                </div>
-                <div class="card text-center">
-                    <div class="home-service-icon">📜</div>
-                    <h3>Permits & Licenses</h3>
-                    <p class="mb-20 flex-grow-1">Apply for new business permits or renew existing licenses for telecommunications operations.</p>
-                    <a href="{{ "services/permits/" | relURL }}" class="btn btn-primary">Learn More</a>
-                </div>
-                <div class="card text-center">
-                    <div class="home-service-icon">📡</div>
-                    <h3>Equipment Registration</h3>
-                    <p class="mb-20 flex-grow-1">Register your telecommunications devices and customer premises equipment for regulatory compliance.</p>
-                    <a href="{{ "services/equipment/" | relURL }}" class="btn btn-primary">Learn More</a>
-                </div>
+                {{ range first 3 (where .Site.RegularPages "Section" "services") }}
+                    {{ partial "service-card.html" . }}
+                {{ end }}
             </div>
             <div class="text-center mt-50">
                 <a href="{{ "services/" | relURL }}" class="fw-bold" style="display: inline-flex; align-items: center; gap: 10px;">View All Services <span>&rarr;</span></a>
