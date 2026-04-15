@@ -1,9 +1,11 @@
 export type Decision = 'approved' | 'endorsed' | 'declined' | null;
 
+export type ApplicantStatus = 'Pending' | 'Approved' | 'Endorsed' | 'Declined';
+
 export interface Applicant {
   id: string;
   name: string;
-  status: 'Pending' | 'Approved' | 'Endorsed' | 'Declined';
+  status: ApplicantStatus;
   applicationType: string;
   submissionDate: string;
 }
@@ -24,4 +26,11 @@ export interface SOASummary {
   surcharge: number;
   total: number;
   dueDate: string | null;
+}
+
+export interface PaginationState {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
 }

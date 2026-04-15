@@ -1,30 +1,38 @@
-import { BulkApplication } from '../types/evaluator';
+import { BulkApplication, Applicant } from '../types/evaluator';
+
+const generateApplicants = (count: number, startIndex: number): Applicant[] => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: `app-${startIndex + i}`,
+    name: `APPLICANT ${startIndex + i} - ${['JUAN DELA CRUZ', 'MARIA CLARA', 'JOSE RIZAL', 'ANDRES BONIFACIO', 'EMILIO AGUINALDO', 'APOLINARIO MABINI', 'MELCHORA AQUINO', 'GABRIELA SILANG'][i % 8]}`,
+    status: 'Pending',
+    applicationType: i % 3 === 0 ? 'New' : 'Renewal',
+    submissionDate: `2024-08-${String(10 + (i % 20)).padStart(2, '0')}`,
+  }));
+};
 
 export const mockBulkApplications: BulkApplication[] = [
   {
     id: 'bulk-1',
     referenceNumber: 'BULK-2024-001',
     title: 'NCR Radio Operators Batch A',
-    applicantsCount: 5,
+    applicantsCount: 25,
     status: 'Pending',
-    applicants: [
-      { id: 'app-1', name: 'JUAN DELA CRUZ', status: 'Pending', applicationType: 'New', submissionDate: '2024-08-10' },
-      { id: 'app-2', name: 'MARIA CLARA', status: 'Pending', applicationType: 'Renewal', submissionDate: '2024-08-11' },
-      { id: 'app-3', name: 'JOSE RIZAL', status: 'Pending', applicationType: 'New', submissionDate: '2024-08-12' },
-      { id: 'app-4', name: 'ANDRES BONIFACIO', status: 'Pending', applicationType: 'Renewal', submissionDate: '2024-08-13' },
-      { id: 'app-5', name: 'EMILIO AGUINALDO', status: 'Pending', applicationType: 'New', submissionDate: '2024-08-14' },
-    ],
+    applicants: generateApplicants(25, 1),
   },
   {
     id: 'bulk-2',
     referenceNumber: 'BULK-2024-002',
     title: 'Region III Equipment Batch',
-    applicantsCount: 3,
+    applicantsCount: 8,
     status: 'Pending',
-    applicants: [
-      { id: 'app-6', name: 'APOLINARIO MABINI', status: 'Pending', applicationType: 'New', submissionDate: '2024-08-15' },
-      { id: 'app-7', name: 'MELCHORA AQUINO', status: 'Pending', applicationType: 'Renewal', submissionDate: '2024-08-16' },
-      { id: 'app-8', name: 'GABRIELA SILANG', status: 'Pending', applicationType: 'New', submissionDate: '2024-08-17' },
-    ],
+    applicants: generateApplicants(8, 26),
+  },
+  {
+    id: 'bulk-3',
+    referenceNumber: 'BULK-2024-003',
+    title: 'Mobile Service Providers Q3',
+    applicantsCount: 12,
+    status: 'Pending',
+    applicants: generateApplicants(12, 34),
   },
 ];
