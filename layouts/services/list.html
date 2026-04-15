@@ -1,13 +1,19 @@
 {{ define "main" }}
 <div class="container">
     <h1 class="page-title">{{ .Title }}</h1>
-    <div class="content">
+    <div class="content mb-40 max-800">
         {{ .Content }}
     </div>
-    <div class="card-grid">
-        {{ range .Pages }}
-            {{ partial "service-card.html" . }}
-        {{ end }}
-    </div>
+
+    {{ range .Pages.GroupByParam "category" }}
+    <section class="mb-60">
+        <h2 class="text-navy mb-30" style="border-bottom: 2px solid var(--accent); padding-bottom: 10px; display: inline-block; font-size: 1.8rem;">{{ .Key }}</h2>
+        <div class="card-grid">
+            {{ range .Pages }}
+                {{ partial "service-card.html" . }}
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
 </div>
 {{ end }}

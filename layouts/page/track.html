@@ -3,6 +3,7 @@
     <h1 class="page-title">{{ .Title }}</h1>
 
     <div class="content mb-40 max-800">
+        {{ .Content }}
         <p style="font-size: 1.1rem; color: var(--gray-dark);">Monitor the progress of your application in real-time. Simply enter your reference number provided during submission.</p>
     </div>
 
@@ -23,7 +24,10 @@
         <div class="card" style="border-left: 8px solid var(--warning); padding: 40px;">
             <div class="mb-30" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid var(--gray); padding-bottom: 20px;">
                 <div>
-                    <span class="badge badge-evaluation">Under Evaluation</span>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <span class="badge badge-received">Received</span>
+                        <span class="badge badge-evaluation">Under Evaluation</span>
+                    </div>
                     <h2 class="text-navy" style="margin-top: 15px; font-size: 2rem;">NTC-2024-08152</h2>
                     <p class="text-gray-dark" style="margin-top: 5px;">Submitted on August 15, 2024 | 09:12 AM</p>
                 </div>

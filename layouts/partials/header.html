@@ -9,10 +9,10 @@
             <a href="{{ "" | relURL }}" class="logo" aria-label="{{ .Site.Params.portal_name }} Home">
                 <div class="logo-text">{{ .Site.Params.portal_name }}</div>
             </a>
-            <nav role="navigation" aria-label="Main Navigation">
-                <ul>
+            <nav id="main-nav" role="navigation" aria-label="Main Navigation">
+                <ul role="menubar">
                     {{ range .Site.Menus.main }}
-                    <li><a href="{{ .URL | relURL }}" title="{{ .Name }}">{{ .Name }}</a></li>
+                    <li role="none"><a href="{{ .URL | relURL }}" title="{{ .Name }}" role="menuitem">{{ .Name }}</a></li>
                     {{ end }}
                 </ul>
             </nav>

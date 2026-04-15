@@ -1,8 +1,27 @@
 <div class="card">
+    <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px;">{{ .Params.category }}</div>
     <h3>{{ .Title }}</h3>
-    <p>{{ .Description }}</p>
-    <div style="margin: 15px 0;">
-        <strong>Eligibility:</strong> {{ .Params.eligibility }}
+    <p class="mb-20">{{ .Description }}</p>
+
+    {{ with .Params.requirements }}
+    <div style="margin: 15px 0; font-size: 0.9rem;">
+        <div class="fw-bold text-navy mb-5">Key Requirements:</div>
+        <ul style="padding-left: 20px; color: var(--gray-dark);">
+            {{ range first 2 . }}
+            <li>{{ . }}</li>
+            {{ end }}
+            {{ if gt (len .) 2 }}
+            <li>...and more</li>
+            {{ end }}
+        </ul>
     </div>
-    <a href="{{ .Permalink }}" class="btn btn-primary">Learn More & Apply</a>
+    {{ end }}
+
+    <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--gray-light); display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-size: 0.85rem;">
+            <span class="text-gray-dark">Processing:</span>
+            <span class="text-navy fw-bold">{{ .Params.processing_time }}</span>
+        </div>
+        <a href="{{ .Permalink }}" class="btn btn-primary" style="padding: 10px 15px; font-size: 0.8rem;">Learn More</a>
+    </div>
 </div>

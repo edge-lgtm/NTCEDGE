@@ -3,6 +3,7 @@
     <h1 class="page-title">{{ .Title }}</h1>
 
     <div class="content mb-40 max-800">
+        {{ .Content }}
         <p style="font-size: 1.1rem; color: var(--gray-dark);">Please follow the multi-step process below to submit your application. Ensure all information provided is accurate and all required documents are clear and legible.</p>
     </div>
 
@@ -28,8 +29,8 @@
                     </h3>
 
                     <div class="form-group">
-                        <label class="form-label">Type of Service</label>
-                        <select class="form-control">
+                        <label for="service_type" class="form-label">Type of Service</label>
+                        <select id="service_type" class="form-control" aria-required="true">
                             <option value="">-- Please Select a Service --</option>
                             <option selected>Radio Operator Certificate</option>
                             <option>Permits and Licenses</option>
@@ -65,8 +66,8 @@
 
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                         <div class="form-group">
-                            <label class="form-label">Regional Office</label>
-                            <select class="form-control">
+                            <label for="region" class="form-label">Regional Office</label>
+                            <select id="region" class="form-control">
                                 <option>National Capital Region (NCR)</option>
                                 <option>Region I - Ilocos Region</option>
                                 <option>Region II - Cagayan Valley</option>

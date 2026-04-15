@@ -2,6 +2,10 @@
 <div class="container">
     <h1 class="page-title">{{ .Title }}</h1>
 
+    <div class="content mb-40">
+        {{ .Content }}
+    </div>
+
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 60px;">
         <div>
             <h3 class="text-navy mb-20">Get in Touch</h3>
@@ -32,27 +36,27 @@
             </div>
         </div>
 
-        <div class="card" style="padding: 40px;">
-            <h3 class="text-navy mb-25">Send an Inquiry</h3>
+        <div class="card" style="padding: 40px;" role="form" aria-labelledby="inquiry-title">
+            <h3 id="inquiry-title" class="text-navy mb-25">Send an Inquiry</h3>
             <div class="form-group">
-                <label class="form-label">Full Name</label>
-                <input type="text" class="form-control" placeholder="Juan Dela Cruz">
+                <label for="full_name" class="form-label">Full Name</label>
+                <input type="text" id="full_name" class="form-control" placeholder="Juan Dela Cruz" required>
             </div>
             <div class="form-group">
-                <label class="form-label">Email Address</label>
-                <input type="email" class="form-control" placeholder="juan@example.com">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" class="form-control" placeholder="juan@example.com" required>
             </div>
             <div class="form-group">
-                <label class="form-label">Subject</label>
-                <select class="form-control">
+                <label for="subject" class="form-label">Subject</label>
+                <select id="subject" class="form-control">
                     <option>Technical Issue</option>
                     <option>Application Follow-up</option>
                     <option>General Inquiry</option>
                 </select>
             </div>
             <div class="form-group">
-                <label class="form-label">Message</label>
-                <textarea class="form-control" rows="5" placeholder="How can we help you?"></textarea>
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" class="form-control" rows="5" placeholder="How can we help you?" required></textarea>
             </div>
             <button class="btn btn-primary" style="width: 100%;">Send Message</button>
         </div>
