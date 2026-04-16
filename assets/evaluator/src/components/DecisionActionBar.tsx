@@ -46,22 +46,19 @@ export const DecisionActionBar = () => {
           <div className="flex gap-2 items-center">
             <ActionButton
               onClick={() => stageDecision(selectedApplicantIds, 'approved')}
-              label="Approve"
-              count={approvedCount}
+              label={`Approve ${approvedCount > 0 ? `(${approvedCount})` : ''}`}
               variant="success"
               icon={<CheckCircle2 size={14} />}
             />
             <ActionButton
               onClick={() => stageDecision(selectedApplicantIds, 'endorsed')}
-              label="Endorse"
-              count={endorsedCount}
+              label={`Endorse ${endorsedCount > 0 ? `(${endorsedCount})` : ''}`}
               variant="primary"
               icon={<ArrowRightCircle size={14} />}
             />
             <ActionButton
               onClick={() => stageDecision(selectedApplicantIds, 'declined')}
-              label="Decline"
-              count={declinedCount}
+              label={`Decline ${declinedCount > 0 ? `(${declinedCount})` : ''}`}
               variant="error"
               icon={<XCircle size={14} />}
             />
@@ -83,12 +80,11 @@ export const DecisionActionBar = () => {
 interface ActionButtonProps {
   onClick: () => void;
   label: string;
-  count: number;
   variant: 'success' | 'primary' | 'error';
   icon: React.ReactNode;
 }
 
-const ActionButton = ({ onClick, label, count, variant, icon }: ActionButtonProps) => {
+const ActionButton = ({ onClick, label, variant, icon }: ActionButtonProps) => {
   const styles = {
     success: "border-green-600 text-green-700 hover:bg-green-50",
     primary: "border-[#2D0C8A] text-[#2D0C8A] hover:bg-[#F5F3FF]",
@@ -102,11 +98,6 @@ const ActionButton = ({ onClick, label, count, variant, icon }: ActionButtonProp
     >
       {icon}
       <span>{label}</span>
-      {count > 0 && (
-        <span className="flex items-center justify-center min-w-[16px] h-4 px-1 bg-current text-white rounded-full text-[9px] ml-0.5">
-          {count}
-        </span>
-      )}
     </button>
   );
 };

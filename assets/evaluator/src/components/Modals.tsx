@@ -1,7 +1,82 @@
 import React from 'react';
-import { AlertCircle, Check, X, ShieldAlert } from 'lucide-react';
+import { AlertCircle, Check, X, ShieldAlert, User, Mail, Phone, MapPin, FileText } from 'lucide-react';
 import { useEvaluatorStore } from '../store/useEvaluatorStore';
-import { Modal } from './Common';
+import { Modal, StatusBadge } from './Common';
+
+export const ApplicantDetailsModal = () => {
+  const { selectedApplicantId, selectedBulkId, bulkApplications, setSelectedApplicantId } = useEvaluatorStore();
+
+  const bulkApp = bulkApplications.find(a => a.id === selectedBulkId);
+  const applicant = bulkApp?.applicants.find(a => a.id === selectedApplicantId);
+
+  if (!applicant) return null;
+
+  return (
+    <Modal
+      isOpen={!!selectedApplicantId}
+      onClose={() => setSelectedApplicantId(null)}
+      title="Applicant Profile"
+    >
+      <div className="space-y-8">
+        <div className="flex items-center gap-5">
+          <div className="w-16 h-16 bg-purple-100 text-purple-700 rounded-2xl flex items-center justify-center font-black text-2xl">
+            {applicant.name.charAt(0)}
+          </div>
+          <div>
+            <h4 className="text-xl font-black text-gray-900">{applicant.name}</h4>
+            <div className="flex items-center gap-2 mt-1">
+              <StatusBadge status={applicant.status} />
+              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">REF: {applicant.id.toUpperCase()}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-6">
+          <InfoBlock icon={<Mail size={14} />} label="Email Address" value="j.delacruz@example.com" />
+          <InfoBlock icon={<Phone size={14} />} label="Phone Number" value="+63 917 123 4567" />
+          <InfoBlock icon={<MapPin size={14} />} label="Location" value="Quezon City, NCR" />
+          <InfoBlock icon={<FileText size={14} />} label="Application Type" value={applicant.applicationType} />
+        </div>
+
+        <div className="pt-6 border-t border-gray-100">
+          <h5 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">Submitted Documents</h5>
+          <div className="space-y-3">
+            <DocumentItem name="Valid ID.pdf" size="1.2 MB" />
+            <DocumentItem name="Training Certificate.pdf" size="2.4 MB" />
+            <DocumentItem name="Exam Result.pdf" size="0.8 MB" />
+          </div>
+        </div>
+
+        <button
+          onClick={() => setSelectedApplicantId(null)}
+          className="w-full py-4 bg-gray-50 text-gray-500 rounded-xl font-black hover:bg-gray-100 transition-all"
+        >
+          Close Preview
+        </button>
+      </div>
+    </Modal>
+  );
+};
+
+const InfoBlock = ({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) => (
+  <div>
+    <div className="flex items-center gap-1.5 mb-1.5 text-gray-400">
+      {icon}
+      <span className="text-[9px] font-black uppercase tracking-widest">{label}</span>
+    </div>
+    <div className="text-sm font-bold text-gray-900">{value}</div>
+  </div>
+);
+
+const DocumentItem = ({ name, size }: { name: string, size: string }) => (
+  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-100 group hover:border-purple-200 hover:bg-purple-50/30 transition-all cursor-pointer">
+    <div className="flex items-center gap-3">
+      <FileText size={16} className="text-gray-400 group-hover:text-purple-600" />
+      <span className="text-xs font-bold text-gray-700">{name}</span>
+    </div>
+    <span className="text-[10px] font-medium text-gray-400">{size}</span>
+  </div>
+);
 
 export const ConfirmDecisionModal = () => {
   const { isConfirmModalOpen, setConfirmModalOpen, submitDecisions } = useEvaluatorStore();

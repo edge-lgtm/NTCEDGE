@@ -6,16 +6,19 @@ interface EvaluatorState {
   selectedBulkId: string | null;
   activeTab: 'bulk' | 'details' | 'soa';
   selectedApplicantIds: string[];
+  selectedApplicantId: string | null;
   stagedDecisions: Record<string, Decision>;
   isConfirmModalOpen: boolean;
   isSuccessModalOpen: boolean;
   searchQuery: string;
+  applicantSearchQuery: string;
   bulkApplications: BulkApplication[];
   currentPage: number;
   itemsPerPage: number;
 
   // Actions
   setSelectedBulkId: (id: string | null) => void;
+  setSelectedApplicantId: (id: string | null) => void;
   setActiveTab: (tab: 'bulk' | 'details' | 'soa') => void;
   toggleApplicantSelection: (id: string) => void;
   setAllApplicantsSelection: (ids: string[], select: boolean) => void;
@@ -23,6 +26,7 @@ interface EvaluatorState {
   setConfirmModalOpen: (open: boolean) => void;
   setSuccessModalOpen: (open: boolean) => void;
   setSearchQuery: (query: string) => void;
+  setApplicantSearchQuery: (query: string) => void;
   submitDecisions: () => void;
   resetSelection: () => void;
   setCurrentPage: (page: number) => void;
@@ -32,10 +36,12 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
   selectedBulkId: null,
   activeTab: 'bulk',
   selectedApplicantIds: [],
+  selectedApplicantId: null,
   stagedDecisions: {},
   isConfirmModalOpen: false,
   isSuccessModalOpen: false,
   searchQuery: '',
+  applicantSearchQuery: '',
   bulkApplications: mockBulkApplications,
   currentPage: 1,
   itemsPerPage: 5,
@@ -43,10 +49,13 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
   setSelectedBulkId: (id) => set({
     selectedBulkId: id,
     selectedApplicantIds: [],
+    selectedApplicantId: null,
     stagedDecisions: {},
     activeTab: 'bulk',
-    currentPage: 1
+    currentPage: 1,
+    applicantSearchQuery: ''
   }),
+  setSelectedApplicantId: (id) => set({ selectedApplicantId: id }),
   setActiveTab: (tab) => set({ activeTab: tab }),
   toggleApplicantSelection: (id) => set((state) => ({
     selectedApplicantIds: state.selectedApplicantIds.includes(id)
@@ -66,6 +75,7 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
   setConfirmModalOpen: (open) => set({ isConfirmModalOpen: open }),
   setSuccessModalOpen: (open) => set({ isSuccessModalOpen: open }),
   setSearchQuery: (query) => set({ searchQuery: query }),
+  setApplicantSearchQuery: (query) => set({ applicantSearchQuery: query, currentPage: 1 }),
   submitDecisions: () => set((state) => {
     const updatedBulkApplications = state.bulkApplications.map(bulk => {
       if (bulk.id === state.selectedBulkId) {

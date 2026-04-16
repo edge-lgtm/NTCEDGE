@@ -4,9 +4,10 @@ import { SidebarNav, EmptyState } from './components/Layout';
 import { FeedPanel } from './components/FeedPanel';
 import { BulkApplicationHeader } from './components/BulkApplicationHeader';
 import { ApplicantsTable } from './components/ApplicantsTable';
+import { BulkApplicationDetails } from './components/BulkApplicationDetails';
 import { SOAView } from './components/SOAView';
 import { DecisionActionBar } from './components/DecisionActionBar';
-import { ConfirmDecisionModal, SubmissionSuccessModal } from './components/Modals';
+import { ConfirmDecisionModal, SubmissionSuccessModal, ApplicantDetailsModal } from './components/Modals';
 
 export const EvaluatorApp = () => {
   const { selectedBulkId, activeTab } = useEvaluatorStore();
@@ -29,14 +30,7 @@ export const EvaluatorApp = () => {
             {/* Scrollable Content Area */}
             <div className="flex-1 overflow-y-auto px-10 py-8 custom-scrollbar pb-32">
               {activeTab === 'bulk' && <ApplicantsTable />}
-              {activeTab === 'details' && (
-                <div className="flex flex-col items-center justify-center h-full text-gray-400 py-20">
-                   <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-                     <span className="font-bold">...</span>
-                   </div>
-                   <p className="font-bold text-sm uppercase tracking-widest">Application details preview coming soon</p>
-                </div>
-              )}
+              {activeTab === 'details' && <BulkApplicationDetails />}
               {activeTab === 'soa' && <SOAView />}
             </div>
 
@@ -55,6 +49,7 @@ export const EvaluatorApp = () => {
       {/* Global Modals */}
       <ConfirmDecisionModal />
       <SubmissionSuccessModal />
+      <ApplicantDetailsModal />
 
       {/* Custom Scrollbar Styles */}
       <style dangerouslySetInnerHTML={{ __html: `
