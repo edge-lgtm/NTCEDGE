@@ -66,7 +66,7 @@ export const DecisionActionBar = () => {
             <button
               disabled={stagedCount === 0}
               onClick={() => setConfirmModalOpen(true)}
-              className="px-6 py-2.5 bg-[#1A0B4B] text-white rounded-xl font-black text-xs hover:bg-[#2D0C8A] transition-all shadow-lg shadow-purple-900/20 disabled:opacity-30 disabled:grayscale disabled:cursor-not-allowed transform active:scale-95"
+              className="px-8 py-3 bg-[#2D0C8A] text-white rounded-xl font-black text-xs hover:bg-[#1A0B4B] transition-all shadow-xl shadow-purple-900/30 disabled:opacity-30 disabled:grayscale disabled:cursor-not-allowed transform active:scale-95 border-2 border-[#2D0C8A] hover:border-[#1A0B4B]"
             >
               Confirm
             </button>

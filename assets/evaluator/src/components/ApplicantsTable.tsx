@@ -50,15 +50,20 @@ export const ApplicantsTable = () => {
             onChange={(e) => setApplicantSearchQuery(e.target.value)}
           />
         </div>
-        <div className="text-sm font-bold text-gray-400 uppercase tracking-widest">
-          {totalItems} Applicants Found
+        <div className="flex flex-col items-end">
+          <div className="text-sm font-bold text-gray-400 uppercase tracking-widest">
+            {totalItems} Applicants Found
+          </div>
+          <div className="text-[10px] font-bold text-[#2D0C8A] mt-1 bg-purple-50 px-2 py-0.5 rounded border border-purple-100 uppercase tracking-wider">
+            Selection triggers SOA recalculation
+          </div>
         </div>
       </div>
 
       <div className="flex-1 overflow-auto bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
         <table className="w-full text-left border-collapse min-w-[600px]">
           <thead>
-            <tr className="bg-gray-50/80 border-b border-gray-200">
+            <tr className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
               <th className="p-5 w-14">
                 <Checkbox
                   checked={isAllPagedSelected}
