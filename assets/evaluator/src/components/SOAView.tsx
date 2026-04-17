@@ -51,7 +51,9 @@ export const SOAView = () => {
                 </button>
               </div>
               <div className="text-xl font-black text-gray-900">
-                {soa.dueDate ? new Date(soa.dueDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'No due date set'}
+                {soa.dueDate && !isNaN(new Date(soa.dueDate).getTime())
+                  ? new Date(soa.dueDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+                  : 'No due date set'}
               </div>
             </div>
 

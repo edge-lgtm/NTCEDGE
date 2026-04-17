@@ -79,12 +79,12 @@ const DocumentItem = ({ name, size }: { name: string, size: string }) => (
 );
 
 export const ConfirmDecisionModal = () => {
-  const { isConfirmModalOpen, setConfirmModalOpen, submitDecisions } = useEvaluatorStore();
+  const { isConfirmModalOpen, setConfirmModalOpen, submitDecisions, isSubmitting } = useEvaluatorStore();
 
   return (
     <Modal
       isOpen={isConfirmModalOpen}
-      onClose={() => setConfirmModalOpen(false)}
+      onClose={() => !isSubmitting && setConfirmModalOpen(false)}
       title="Confirm Final Submission"
     >
       <div className="space-y-6">
@@ -105,16 +105,25 @@ export const ConfirmDecisionModal = () => {
 
         <div className="flex gap-4 pt-4">
           <button
+            disabled={isSubmitting}
             onClick={() => setConfirmModalOpen(false)}
-            className="flex-1 py-4 font-black text-gray-500 hover:text-gray-700 transition-colors bg-gray-50 hover:bg-gray-100 rounded-xl"
+            className="flex-1 py-4 font-black text-gray-500 hover:text-gray-700 transition-colors bg-gray-50 hover:bg-gray-100 rounded-xl disabled:opacity-50"
           >
             No, Review Again
           </button>
           <button
+            disabled={isSubmitting}
             onClick={submitDecisions}
-            className="flex-1 py-4 bg-[#2D0C8A] text-white rounded-xl font-black shadow-xl shadow-purple-900/20 hover:bg-[#1A0B4B] transition-all transform active:scale-95"
+            className="flex-1 py-4 bg-[#2D0C8A] text-white rounded-xl font-black shadow-xl shadow-purple-900/20 hover:bg-[#1A0B4B] transition-all transform active:scale-95 flex items-center justify-center gap-2 disabled:opacity-80"
           >
-            Yes, Submit Now
+            {isSubmitting ? (
+              <>
+                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <span>Submitting...</span>
+              </>
+            ) : (
+              'Yes, Submit Now'
+            )}
           </button>
         </div>
       </div>

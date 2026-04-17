@@ -9,12 +9,14 @@ function cn(...inputs: ClassValue[]) {
 }
 
 export const FeedPanel = () => {
-  const { searchQuery, setSearchQuery, selectedBulkId, setSelectedBulkId, bulkApplications } = useEvaluatorStore();
+  const { searchQuery, setSearchQuery, selectedBulkId, setSelectedBulkId, bulkApplications, feedTab, setFeedTab } = useEvaluatorStore();
 
-  const filteredApps = bulkApplications.filter(app =>
-    app.referenceNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    app.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredApps = bulkApplications.filter(app => {
+    const matchesSearch = app.referenceNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      app.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesTab = app.status.toLowerCase() === feedTab;
+    return matchesSearch && matchesTab;
+  });
 
   return (
     <div className="w-85 flex-shrink-0 border-r border-gray-200 bg-white flex flex-col z-10 shadow-sm">
@@ -33,8 +35,24 @@ export const FeedPanel = () => {
       </div>
 
       <div className="flex border-b border-gray-100 bg-gray-50/50 p-1 mx-4 my-2 rounded-lg">
-        <button className="flex-1 py-2 text-xs font-bold text-[#2D0C8A] bg-white rounded-md shadow-sm border border-gray-100">Pending</button>
-        <button className="flex-1 py-2 text-xs font-bold text-gray-500 hover:text-gray-700 transition-colors">History</button>
+        <button
+          onClick={() => setFeedTab('pending')}
+          className={cn(
+            "flex-1 py-2 text-xs font-bold transition-all rounded-md",
+            feedTab === 'pending' ? "text-[#2D0C8A] bg-white shadow-sm border border-gray-100" : "text-gray-500 hover:text-gray-700"
+          )}
+        >
+          Pending
+        </button>
+        <button
+          onClick={() => setFeedTab('history')}
+          className={cn(
+            "flex-1 py-2 text-xs font-bold transition-all rounded-md",
+            feedTab === 'history' ? "text-[#2D0C8A] bg-white shadow-sm border border-gray-100" : "text-gray-500 hover:text-gray-700"
+          )}
+        >
+          History
+        </button>
       </div>
 
       <div className="flex-1 overflow-y-auto custom-scrollbar">

@@ -1,0 +1,24 @@
+port 1313 already in use, attempting to use an available port
+Watching for changes in /app/{archetypes,assets,content,layouts,package.json}
+Watching for config changes in /app/hugo.toml
+Start building sites …
+hugo v0.123.7-312735366b20d64bd61bff8627f593749f86c964+extended linux/amd64 BuildDate=2024-03-01T16:16:06Z VendorInfo=gohugoio
+
+WARN  found no layout file for "html" for kind "taxonomy": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
+
+                   | EN
+-------------------+-----
+  Pages            | 25
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     |  0
+  Processed images |  0
+  Aliases          |  1
+  Cleaned          |  0
+
+Built in 1139 ms
+Environment: "development"
+Serving pages from disk
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:34827/NTCEDGE/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
