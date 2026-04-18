@@ -19,7 +19,7 @@ export const FeedPanel = () => {
   });
 
   return (
-    <div className="w-85 flex-shrink-0 border-r border-gray-200 bg-white flex flex-col z-10 shadow-sm">
+    <div className="w-[300px] flex-shrink-0 border-r border-gray-200 bg-white flex flex-col z-10 shadow-sm">
       <div className="p-6 border-b border-gray-100 bg-white">
         <h2 className="text-xl font-extrabold text-gray-900 mb-5 tracking-tight">Feed</h2>
         <div className="relative group">

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { BulkApplication, Decision, SOASummary } from '../types/evaluator';
+import { BulkApplication, Decision, SOASummary, ApplicantStatus } from '../types/evaluator';
 import { mockBulkApplications } from '../data/mockData';
 
 interface EvaluatorState {
@@ -76,7 +76,10 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
     ids.forEach(id => {
       newDecisions[id] = decision;
     });
-    return { stagedDecisions: newDecisions };
+    return {
+      stagedDecisions: newDecisions,
+      selectedApplicantIds: []
+    };
   }),
   setConfirmModalOpen: (open) => set({ isConfirmModalOpen: open }),
   setSuccessModalOpen: (open) => set({ isSuccessModalOpen: open }),
@@ -96,7 +99,7 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
             applicants: bulk.applicants.map(app => {
               const decision = state.stagedDecisions[app.id];
               if (decision) {
-                const formattedStatus = decision.charAt(0).toUpperCase() + decision.slice(1) as any;
+                const formattedStatus = (decision.charAt(0).toUpperCase() + decision.slice(1)) as ApplicantStatus;
                 return { ...app, status: formattedStatus };
               }
               return app;

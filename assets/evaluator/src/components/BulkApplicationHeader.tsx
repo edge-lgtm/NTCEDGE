@@ -14,6 +14,12 @@ export const BulkApplicationHeader = () => {
 
   if (!bulkApp) return null;
 
+  const tabs: { id: 'bulk' | 'details' | 'soa'; label: string }[] = [
+    { id: 'bulk', label: 'Bulk Application' },
+    { id: 'details', label: 'Application Details' },
+    { id: 'soa', label: 'SOA & Payment' }
+  ];
+
   return (
     <div className="bg-white border-b border-gray-200 px-10 pt-8 z-10 relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1A0B4B] via-[#2D0C8A] to-[#3BA4F7]" />
@@ -34,14 +40,10 @@ export const BulkApplicationHeader = () => {
       </div>
 
       <div className="flex gap-10">
-        {[
-          { id: 'bulk', label: 'Bulk Application' },
-          { id: 'details', label: 'Application Details' },
-          { id: 'soa', label: 'SOA & Payment' }
-        ].map((tab) => (
+        {tabs.map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id as any)}
+            onClick={() => setActiveTab(tab.id)}
             className={cn(
               "pb-5 text-sm font-bold transition-all relative",
               activeTab === tab.id ? "text-[#2D0C8A]" : "text-gray-400 hover:text-gray-600"
