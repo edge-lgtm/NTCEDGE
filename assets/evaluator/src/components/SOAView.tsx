@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useEvaluatorStore, calculateSOA } from '../store/useEvaluatorStore';
 import { Calendar, Edit2, Info } from 'lucide-react';
 import { numberToWords } from '../utils/numberToWords';
 
 export const SOAView = () => {
-  const { selectedApplicantIds } = useEvaluatorStore();
-  const soa = calculateSOA(selectedApplicantIds.length);
+  const { selectedApplicantIds, stagedDecisions } = useEvaluatorStore();
+
+  // Calculate total count including currently selected AND staged decisions
+  const totalRelevantCount = useMemo(() => {
+    const stagedCount = Object.keys(stagedDecisions).length;
+    return selectedApplicantIds.length + stagedCount;
+  }, [selectedApplicantIds.length, stagedDecisions]);
+
+  const soa = useMemo(() => calculateSOA(totalRelevantCount), [totalRelevantCount]);
 
   return (
     <div className="max-w-3xl mx-auto py-4">
@@ -13,7 +20,7 @@ export const SOAView = () => {
         <div className="bg-gradient-to-br from-[#1A0B4B] to-[#2D0C8A] p-8 text-white relative">
           <div className="relative z-10">
             <h3 className="text-xl font-black mb-1">Statement of Account</h3>
-            <p className="text-purple-200/80 text-sm font-medium">Summary of fees for {selectedApplicantIds.length} selected applicants</p>
+            <p className="text-purple-200/80 text-sm font-medium">Summary of fees for {totalRelevantCount} applicants</p>
           </div>
           <div className="absolute top-0 right-0 p-8 opacity-10">
             <Info size={120} />

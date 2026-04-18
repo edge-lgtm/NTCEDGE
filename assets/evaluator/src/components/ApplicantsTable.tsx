@@ -62,8 +62,8 @@ export const ApplicantsTable = () => {
 
       <div className="flex-1 overflow-auto bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
         <table className="w-full text-left border-collapse min-w-[600px]">
-          <thead>
-            <tr className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
+          <thead className="sticky top-0 z-10">
+            <tr className="bg-gradient-to-r from-[#F7F7F7] to-white border-b border-gray-200">
               <th className="p-5 w-14">
                 <Checkbox
                   checked={isAllPagedSelected}

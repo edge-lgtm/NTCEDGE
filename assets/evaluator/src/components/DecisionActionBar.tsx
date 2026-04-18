@@ -11,9 +11,9 @@ export const DecisionActionBar = () => {
     setConfirmModalOpen
   } = useEvaluatorStore();
 
-  if (selectedApplicantIds.length === 0) return null;
-
   const stagedCount = Object.keys(stagedDecisions).length;
+  if (selectedApplicantIds.length === 0 && stagedCount === 0) return null;
+
   const approvedCount = Object.values(stagedDecisions).filter(d => d === 'approved').length;
   const endorsedCount = Object.values(stagedDecisions).filter(d => d === 'endorsed').length;
   const declinedCount = Object.values(stagedDecisions).filter(d => d === 'declined').length;
@@ -46,19 +46,22 @@ export const DecisionActionBar = () => {
           <div className="flex gap-2 items-center">
             <ActionButton
               onClick={() => stageDecision(selectedApplicantIds, 'approved')}
-              label={`Approve ${approvedCount > 0 ? `(${approvedCount})` : ''}`}
+              label="Approve"
+              count={approvedCount}
               variant="success"
               icon={<CheckCircle2 size={14} />}
             />
             <ActionButton
               onClick={() => stageDecision(selectedApplicantIds, 'endorsed')}
-              label={`Endorse ${endorsedCount > 0 ? `(${endorsedCount})` : ''}`}
+              label="Endorse"
+              count={endorsedCount}
               variant="primary"
               icon={<ArrowRightCircle size={14} />}
             />
             <ActionButton
               onClick={() => stageDecision(selectedApplicantIds, 'declined')}
-              label={`Decline ${declinedCount > 0 ? `(${declinedCount})` : ''}`}
+              label="Decline"
+              count={declinedCount}
               variant="error"
               icon={<XCircle size={14} />}
             />
@@ -66,9 +69,13 @@ export const DecisionActionBar = () => {
             <button
               disabled={stagedCount === 0}
               onClick={() => setConfirmModalOpen(true)}
-              className="px-8 py-3 bg-[#2D0C8A] text-white rounded-xl font-black text-xs hover:bg-[#1A0B4B] transition-all shadow-xl shadow-purple-900/30 disabled:opacity-30 disabled:grayscale disabled:cursor-not-allowed transform active:scale-95 border-2 border-[#2D0C8A] hover:border-[#1A0B4B]"
+              className={`px-8 py-3 rounded-xl font-black text-xs transition-all shadow-xl transform active:scale-95 border-2 ${
+                stagedCount > 0
+                  ? "bg-[#2D0C8A] text-white border-[#2D0C8A] hover:bg-[#1A0B4B] hover:border-[#1A0B4B] shadow-purple-900/30"
+                  : "bg-gray-100 text-gray-400 border-gray-100 cursor-not-allowed shadow-none"
+              }`}
             >
-              Confirm
+              Confirm {stagedCount > 0 ? `(${stagedCount})` : ''}
             </button>
           </div>
         </div>
@@ -80,11 +87,12 @@ export const DecisionActionBar = () => {
 interface ActionButtonProps {
   onClick: () => void;
   label: string;
+  count: number;
   variant: 'success' | 'primary' | 'error';
   icon: React.ReactNode;
 }
 
-const ActionButton = ({ onClick, label, variant, icon }: ActionButtonProps) => {
+const ActionButton = ({ onClick, label, count, variant, icon }: ActionButtonProps) => {
   const styles = {
     success: "border-green-600 text-green-700 hover:bg-green-50",
     primary: "border-[#2D0C8A] text-[#2D0C8A] hover:bg-[#F5F3FF]",
@@ -97,7 +105,7 @@ const ActionButton = ({ onClick, label, variant, icon }: ActionButtonProps) => {
       className={`flex items-center gap-1.5 px-3 py-2 bg-white border-2 rounded-xl font-black text-[10px] transition-all transform active:scale-95 ${styles[variant]}`}
     >
       {icon}
-      <span>{label}</span>
+      <span>{label} {count > 0 ? `(${count})` : ''}</span>
     </button>
   );
 };
