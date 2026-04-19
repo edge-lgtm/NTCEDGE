@@ -1,6 +1,8 @@
 ---
 title: "Radio Operator Certificate"
 category: "Certificates"
+icon: "radio"
+featured: true
 description: "Formal application and renewal process for Radio Operator Certificates across all professional and amateur categories."
 eligibility: "Qualified Filipino citizens of legal age who have successfully passed the prescribed government examinations for radio operation."
 processing_time: "5-7 Working Days"

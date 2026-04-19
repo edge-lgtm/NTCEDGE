@@ -1,0 +1,11 @@
+<div class="service-icon" style="font-size: 3rem; margin-bottom: 20px;">
+{{ if eq . "radio" }}
+    📡
+{{ else if eq . "license" }}
+    📜
+{{ else if eq . "equipment" }}
+    📱
+{{ else }}
+    🛠️
+{{ end }}
+</div>

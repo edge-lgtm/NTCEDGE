@@ -1,4 +1,7 @@
 <div class="card">
+    {{ with .Params.icon }}
+        {{ partial "icon.html" . }}
+    {{ end }}
     <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px;">{{ .Params.category }}</div>
     <h3>{{ .Title }}</h3>
     <p class="mb-20">{{ .Description }}</p>

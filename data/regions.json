@@ -1,0 +1,26 @@
+[
+  {
+    "region": "NCR",
+    "address": "BIR Road, East Triangle, Diliman, Quezon City",
+    "phone": "(02) 8924-4008",
+    "email": "ntcncr@ntc.gov.ph"
+  },
+  {
+    "region": "Region I",
+    "address": "San Fernando City, La Union",
+    "phone": "(072) 607-1111",
+    "email": "ntcr1@ntc.gov.ph"
+  },
+  {
+    "region": "Region II",
+    "address": "Tuguegarao City, Cagayan",
+    "phone": "(078) 304-2222",
+    "email": "ntcr2@ntc.gov.ph"
+  },
+  {
+    "region": "Region III",
+    "address": "San Fernando City, Pampanga",
+    "phone": "(045) 455-1212",
+    "email": "ntcr3@ntc.gov.ph"
+  }
+]

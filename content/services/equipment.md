@@ -1,6 +1,8 @@
 ---
 title: "Equipment Registration"
 category: "Equipment Registration"
+icon: "equipment"
+featured: true
 description: "Mandatory registration and certification of customer premises equipment (CPE) and various radio communication devices."
 eligibility: "Authorized importers, legitimate equipment dealers, and individual end-users of telecommunications devices."
 processing_time: "3-5 Working Days"
