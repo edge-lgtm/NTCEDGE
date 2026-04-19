@@ -1,6 +1,8 @@
 ---
 title: "Permits and Licenses"
 category: "Permits and Licenses"
+icon: "license"
+featured: true
 description: "Regulatory issuance of permits and licenses for telecommunications networks, broadcast stations, and private radio communication systems."
 eligibility: "Duly registered business entities, government agencies, and authorized individuals intending to operate radio communication facilities."
 processing_time: "15-30 Working Days"

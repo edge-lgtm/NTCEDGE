@@ -11,7 +11,7 @@
             </div>
 
             <div class="card-grid">
-                {{ range first 3 (where .Site.RegularPages "Section" "services") }}
+                {{ range (where .Site.RegularPages "Params.featured" true) }}
                     {{ partial "service-card.html" . }}
                 {{ end }}
             </div>
@@ -25,26 +25,13 @@
         <div class="container">
             <h2 class="text-center mb-60 text-navy" style="font-size: 2.5rem;">How It Works</h2>
             <div class="how-it-works-grid">
+                {{ range .Site.Data.how_it_works }}
                 <div class="text-center">
-                    <div class="step-circle">1</div>
-                    <h4 class="mb-15 text-navy" style="font-size: 1.2rem;">Select Service</h4>
-                    <p class="text-gray-dark" style="font-size: 0.95rem;">Identify the specific regulatory service or permit required for your needs.</p>
+                    <div class="step-circle">{{ .step }}</div>
+                    <h4 class="mb-15 text-navy" style="font-size: 1.2rem;">{{ .title }}</h4>
+                    <p class="text-gray-dark" style="font-size: 0.95rem;">{{ .description }}</p>
                 </div>
-                <div class="text-center">
-                    <div class="step-circle">2</div>
-                    <h4 class="mb-15 text-navy" style="font-size: 1.2rem;">Complete Form</h4>
-                    <p class="text-gray-dark" style="font-size: 0.95rem;">Provide accurate information and upload required documentary attachments.</p>
-                </div>
-                <div class="text-center">
-                    <div class="step-circle">3</div>
-                    <h4 class="mb-15 text-navy" style="font-size: 1.2rem;">Online Payment</h4>
-                    <p class="text-gray-dark" style="font-size: 0.95rem;">Settle regulatory fees securely through our integrated payment partners.</p>
-                </div>
-                <div class="text-center">
-                    <div class="step-circle">4</div>
-                    <h4 class="mb-15 text-navy" style="font-size: 1.2rem;">Track & Download</h4>
-                    <p class="text-gray-dark" style="font-size: 0.95rem;">Monitor application status and receive your digital certificate instantly.</p>
-                </div>
+                {{ end }}
             </div>
         </div>
     </section>
@@ -59,26 +46,26 @@
                     <div class="dashboard-mock">
                         <div class="stat-grid">
                             <div class="stat-card">
-                                <span class="stat-value">12,450+</span>
+                                <span class="stat-value">{{ .Site.Data.stats.total_applications }}</span>
                                 <span class="stat-label">Total Applications</span>
                             </div>
                             <div class="stat-card">
-                                <span class="stat-value">98.2%</span>
+                                <span class="stat-value">{{ .Site.Data.stats.success_rate }}</span>
                                 <span class="stat-label">Success Rate</span>
                             </div>
                             <div class="stat-card">
-                                <span class="stat-value">3.5 Days</span>
+                                <span class="stat-value">{{ .Site.Data.stats.avg_processing }}</span>
                                 <span class="stat-label">Avg. Processing</span>
                             </div>
                             <div class="stat-card">
-                                <span class="stat-value">24/7</span>
+                                <span class="stat-value">{{ .Site.Data.stats.uptime }}</span>
                                 <span class="stat-label">Uptime</span>
                             </div>
                         </div>
                         <div class="stat-progress-bar">
-                            <div class="stat-progress-fill"></div>
+                            <div class="stat-progress-fill" style="width: {{ .Site.Data.stats.within_timeframe }};"></div>
                         </div>
-                        <p class="text-gray-dark mt-10 text-center" style="font-size: 0.8rem;">85% of applications processed within standard timeframe.</p>
+                        <p class="text-gray-dark mt-10 text-center" style="font-size: 0.8rem;">{{ .Site.Data.stats.within_timeframe }} of applications processed within standard timeframe.</p>
                     </div>
                 </div>
                 <div>

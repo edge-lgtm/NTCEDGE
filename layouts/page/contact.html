@@ -77,30 +77,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="fw-bold">NCR</td>
-                        <td>BIR Road, Quezon City</td>
-                        <td>(02) 8924-4008</td>
-                        <td>ntcncr@ntc.gov.ph</td>
+                    {{ range $index, $office := .Site.Data.regions }}
+                    <tr {{ if (mod $index 2) }}style="background: #fdfdfd;"{{ end }}>
+                        <td class="fw-bold">{{ .region }}</td>
+                        <td>{{ .address }}</td>
+                        <td>{{ .phone }}</td>
+                        <td>{{ .email }}</td>
                     </tr>
-                    <tr style="background: #fdfdfd;">
-                        <td class="fw-bold">Region I</td>
-                        <td>San Fernando, La Union</td>
-                        <td>(072) 607-1111</td>
-                        <td>ntcr1@ntc.gov.ph</td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bold">Region II</td>
-                        <td>Tuguegarao City</td>
-                        <td>(078) 304-2222</td>
-                        <td>ntcr2@ntc.gov.ph</td>
-                    </tr>
-                    <tr style="background: #fdfdfd;">
-                        <td class="fw-bold">Region III</td>
-                        <td>San Fernando, Pampanga</td>
-                        <td>(045) 455-1212</td>
-                        <td>ntcr3@ntc.gov.ph</td>
-                    </tr>
+                    {{ end }}
                 </tbody>
             </table>
         </div>

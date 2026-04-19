@@ -1,0 +1,22 @@
+[
+  {
+    "step": 1,
+    "title": "Select Service",
+    "description": "Identify the specific regulatory service or permit required for your needs."
+  },
+  {
+    "step": 2,
+    "title": "Complete Form",
+    "description": "Provide accurate information and upload required documentary attachments."
+  },
+  {
+    "step": 3,
+    "title": "Online Payment",
+    "description": "Settle regulatory fees securely through our integrated payment partners."
+  },
+  {
+    "step": 4,
+    "title": "Track & Download",
+    "description": "Monitor application status and receive your digital certificate instantly."
+  }
+]

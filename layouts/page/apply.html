@@ -21,163 +21,149 @@
 
         <div style="padding: 50px;">
             <div id="application-wizard">
-                <!-- Current Step: Service Selection (Step 1) -->
+                <!-- Step 1: Select Service -->
                 <div class="wizard-step" id="step-1">
-                    <h3 class="mb-30 text-navy" style="display: flex; align-items: center; gap: 15px;">
-                        <span style="background: var(--accent); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">1</span>
-                        Select Digital Service
-                    </h3>
-
+                    <h3 class="mb-30 text-navy">Select Digital Service</h3>
                     <div class="form-group">
                         <label for="service_type" class="form-label">Type of Service</label>
-                        <select id="service_type" class="form-control" aria-required="true">
+                        <select id="service_type" class="form-control">
                             <option value="">-- Please Select a Service --</option>
                             <option selected>Radio Operator Certificate</option>
                             <option>Permits and Licenses</option>
                             <option>Equipment Registration</option>
                         </select>
                     </div>
+                </div>
 
+                <!-- Step 2: Select Region -->
+                <div class="wizard-step" id="step-2">
+                    <h3 class="mb-30 text-navy">Select Regional Office</h3>
                     <div class="form-group">
-                        <label class="form-label">Transaction Type</label>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                            <label style="border: 2px solid var(--accent); padding: 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px; background: #f0f7ff;">
-                                <input type="radio" name="trans_type" checked>
-                                <strong>New Application</strong>
+                        <label for="region_apply" class="form-label">Regional Office</label>
+                        <select id="region_apply" class="form-control">
+                            <option value="">-- Select Regional Office --</option>
+                            {{ range .Site.Data.regions }}
+                            <option>{{ .region }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 3: Choose Processing Mode -->
+                <div class="wizard-step" id="step-3">
+                    <h3 class="mb-30 text-navy">Processing Mode</h3>
+                    <div class="form-group">
+                        <label class="form-label">Select Mode</label>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <label style="border: 1px solid var(--accent); padding: 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px; background: #f0f7ff;">
+                                <input type="radio" name="mode" checked>
+                                <span><strong>Regular</strong> (Standard processing time)</span>
                             </label>
-                            <label style="border: 1px solid var(--gray); padding: 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px;">
-                                <input type="radio" name="trans_type">
-                                <strong>Renewal</strong>
-                            </label>
-                            <label style="border: 1px solid var(--gray); padding: 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px;">
-                                <input type="radio" name="trans_type">
-                                <strong>Modification</strong>
+                            <label style="border: 1px solid var(--gray); padding: 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px; opacity: 0.6;">
+                                <input type="radio" name="mode" disabled>
+                                <span><strong>Express</strong> (Currently unavailable for this service)</span>
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <!-- Mock: Region Selection (Step 2 Preview) -->
-                <div class="wizard-step" id="step-2" style="margin-top: 50px; border-top: 1px solid var(--gray); padding-top: 50px;">
-                    <h3 class="mb-30 text-navy" style="display: flex; align-items: center; gap: 15px;">
-                        <span style="background: var(--gray-dark); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">2</span>
-                        Select Region & Processing Mode
-                    </h3>
-
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                        <div class="form-group">
-                            <label for="region" class="form-label">Regional Office</label>
-                            <select id="region" class="form-control">
-                                <option>National Capital Region (NCR)</option>
-                                <option>Region I - Ilocos Region</option>
-                                <option>Region II - Cagayan Valley</option>
-                                <option>Region III - Central Luzon</option>
-                            </select>
-                            <small class="text-gray-dark mt-10" style="display: block;">Applications are processed by the regional office having jurisdiction over your area.</small>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Processing Mode</label>
-                            <div style="display: flex; flex-direction: column; gap: 10px;">
-                                <label style="border: 1px solid var(--gray); padding: 12px; border-radius: 4px; display: flex; align-items: center; gap: 10px;">
-                                    <input type="radio" name="mode" checked>
-                                    <span><strong>Regular</strong> (Standard timeframe)</span>
-                                </label>
-                                <label style="border: 1px solid var(--gray); padding: 12px; border-radius: 4px; display: flex; align-items: center; gap: 10px; opacity: 0.6;">
-                                    <input type="radio" name="mode" disabled>
-                                    <span><strong>Express</strong> (Currently unavailable)</span>
-                                </label>
-                            </div>
-                        </div>
+                <!-- Step 4: Complete Application Form -->
+                <div class="wizard-step" id="step-4">
+                    <h3 class="mb-30 text-navy">Applicant Details</h3>
+                    <div class="form-group">
+                        <label for="applicant_name" class="form-label">Full Name / Entity Name</label>
+                        <input type="text" id="applicant_name" class="form-control" placeholder="Juan Dela Cruz">
+                    </div>
+                    <div class="form-group">
+                        <label for="applicant_address" class="form-label">Permanent Address</label>
+                        <textarea id="applicant_address" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="applicant_email" class="form-label">Email Address</label>
+                        <input type="email" id="applicant_email" class="form-control" placeholder="juan@example.com">
                     </div>
                 </div>
 
-                <!-- Mock: Document Upload (Step 5 Preview) -->
-                <div class="wizard-step" id="step-5" style="margin-top: 50px; border-top: 1px solid var(--gray); padding-top: 50px;">
-                    <h3 class="mb-30 text-navy" style="display: flex; align-items: center; gap: 15px;">
-                        <span style="background: var(--gray-dark); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">5</span>
-                        Upload Requirements
-                    </h3>
-
+                <!-- Step 5: Upload Requirements -->
+                <div class="wizard-step" id="step-5">
+                    <h3 class="mb-30 text-navy">Upload Documents</h3>
                     <div style="display: flex; flex-direction: column; gap: 15px;">
                         <div style="background: var(--gray-light); padding: 20px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--gray);">
                             <div>
-                                <div class="fw-bold">1. Duly Accomplished Application Form</div>
-                                <small class="text-gray-dark">Signed and notarized (PDF)</small>
+                                <div class="fw-bold">1. Accomplished Application Form</div>
+                                <small class="text-gray-dark">PDF, max 5MB</small>
                             </div>
                             <button class="btn btn-outline" style="border-color: var(--navy); color: var(--navy); padding: 8px 15px; font-size: 0.8rem;">Choose File</button>
                         </div>
                         <div style="background: var(--gray-light); padding: 20px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--gray);">
                             <div>
-                                <div class="fw-bold">2. Proof of Passing Government Exam</div>
-                                <small class="text-gray-dark">Clear copy of certificate (JPG/PDF)</small>
+                                <div class="fw-bold">2. Valid Government ID</div>
+                                <small class="text-gray-dark">JPG or PDF, max 5MB</small>
                             </div>
                             <button class="btn btn-outline" style="border-color: var(--navy); color: var(--navy); padding: 8px 15px; font-size: 0.8rem;">Choose File</button>
                         </div>
-                        <div style="background: var(--gray-light); padding: 20px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--gray);">
+                    </div>
+                </div>
+
+                <!-- Step 6: Review Details -->
+                <div class="wizard-step" id="step-6">
+                    <h3 class="mb-30 text-navy">Review Your Application</h3>
+                    <div class="bg-gray-light" style="padding: 30px; border-radius: 8px; border: 1px solid var(--gray);">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div>
-                                <div class="fw-bold">3. Valid Government ID</div>
-                                <small class="text-gray-dark">Front and back (JPG/PDF)</small>
+                                <div class="text-gray-dark fw-bold" style="font-size: 0.8rem; text-transform: uppercase;">Service Type</div>
+                                <div class="text-navy">Radio Operator Certificate</div>
                             </div>
-                            <button class="btn btn-outline" style="border-color: var(--navy); color: var(--navy); padding: 8px 15px; font-size: 0.8rem;">Choose File</button>
+                            <div>
+                                <div class="text-gray-dark fw-bold" style="font-size: 0.8rem; text-transform: uppercase;">Regional Office</div>
+                                <div class="text-navy" id="review-region">NCR</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-dark fw-bold" style="font-size: 0.8rem; text-transform: uppercase;">Applicant Name</div>
+                                <div class="text-navy" id="review-name">JUAN DELA CRUZ</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-dark fw-bold" style="font-size: 0.8rem; text-transform: uppercase;">Email</div>
+                                <div class="text-navy" id="review-email">juan@example.com</div>
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Step 7: Submit Application -->
+                <div class="wizard-step" id="step-7">
+                    <h3 class="mb-30 text-navy">Terms and Conditions</h3>
+                    <div class="mb-30 text-gray-dark" style="max-height: 250px; overflow-y: auto; font-size: 0.9rem; line-height: 1.8; border: 1px solid var(--gray); padding: 20px; background: #fff;">
+                        <p><strong>1. Data Privacy</strong><br>By using this portal, you agree to the collection and processing of your personal data in accordance with the Data Privacy Act of 2012.</p>
+                        <p><strong>2. Accuracy of Information</strong><br>You certify that all information provided is true and correct. Falsification of documents is subject to legal action.</p>
+                        <p><strong>3. Payment Policy</strong><br>Regulatory fees are non-refundable once the application has reached the evaluation stage.</p>
+                        <p><strong>4. Digital Issuance</strong><br>Approved certificates will be issued digitally and carry the same legal weight as physical copies.</p>
+                    </div>
+                    <label style="display: flex; gap: 10px; align-items: flex-start; cursor: pointer;">
+                        <input type="checkbox" id="terms-agree" style="margin-top: 5px;">
+                        <span>I have read and agree to the Terms and Conditions and certify that all information provided is accurate.</span>
+                    </label>
+                </div>
+
+                <!-- Step 8: Receive Confirmation (This step is handled by the success modal, but we keep it here for the wizard logic) -->
+                <div class="wizard-step" id="step-8">
+                    <div class="text-center py-40">
+                        <div class="spinner" style="margin: 0 auto 20px;"></div>
+                        <p class="text-navy fw-bold">Processing your submission...</p>
                     </div>
                 </div>
 
                 <!-- Footer Actions -->
-                <div style="display: flex; justify-content: space-between; margin-top: 50px; border-top: 1px solid var(--gray); padding-top: 30px;">
-                    <button class="btn btn-outline" style="border-color: var(--gray); color: var(--gray-dark);" disabled>&larr; Previous</button>
-                    <button class="btn btn-primary" style="padding-left: 50px; padding-right: 50px;">Continue to Form &rarr;</button>
+                <div id="wizard-actions" style="display: flex; justify-content: space-between; margin-top: 50px; border-top: 1px solid var(--gray); padding-top: 30px;">
+                    <button class="btn btn-outline" id="prev-btn" style="border-color: var(--gray); color: var(--gray-dark);">&larr; Previous</button>
+                    <button class="btn btn-primary" id="next-btn" style="padding-left: 50px; padding-right: 50px;">Continue &rarr;</button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Review Summary Card (Mock for Step 6) -->
-    <div class="card mb-50" style="background: #f8fbff; border: 1px solid var(--accent); padding: 40px;">
-        <h3 class="text-navy mb-20" style="display: flex; align-items: center; gap: 10px;">
-            <span>📋</span> Application Review Summary
-        </h3>
-        <p class="text-gray-dark mb-30">Please review your details before final submission. Changes cannot be made once submitted.</p>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; font-size: 0.95rem;">
-            <div>
-                <div class="text-gray-dark fw-bold">Service Type</div>
-                <div>Radio Operator Certificate</div>
-            </div>
-            <div>
-                <div class="text-gray-dark fw-bold">Region</div>
-                <div>NCR - National Capital Region</div>
-            </div>
-            <div>
-                <div class="text-gray-dark fw-bold">Applicant Name</div>
-                <div>JUAN DELA CRUZ</div>
-            </div>
-            <div>
-                <div class="text-gray-dark fw-bold">Total Fees</div>
-                <div class="fw-bold text-navy">PHP 1,250.00</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Terms Modal Mock -->
-    <div class="modal-overlay" style="display: none;">
-        <div class="modal-content">
-            <h2 class="text-navy mb-20">Terms and Conditions</h2>
-            <div class="mb-30 text-gray-dark" style="max-height: 300px; overflow-y: auto; font-size: 0.9rem; line-height: 1.8; border: 1px solid var(--gray); padding: 20px;">
-                <p><strong>1. Data Privacy</strong><br>By using this portal, you agree to the collection and processing of your personal data in accordance with the Data Privacy Act of 2012.</p>
-                <p><strong>2. Accuracy of Information</strong><br>You certify that all information provided is true and correct. Falsification of documents is subject to legal action.</p>
-                <p><strong>3. Payment Policy</strong><br>Regulatory fees are non-refundable once the application has reached the evaluation stage.</p>
-                <p><strong>4. Digital Issuance</strong><br>Approved certificates will be issued digitally and carry the same legal weight as physical copies.</p>
-            </div>
-            <div style="display: flex; justify-content: flex-end; gap: 15px;">
-                <button class="btn btn-outline" style="color: var(--navy); border-color: var(--navy);">Decline</button>
-                <button class="btn btn-primary">I Agree & Continue</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Success Modal Mock (Hidden by default) -->
+<!-- Success Modal -->
 <div id="success-modal" class="modal-overlay" style="display: none;">
     <div class="modal-content text-center">
         <div style="background: var(--success); color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 30px;">✓</div>
@@ -191,14 +177,14 @@
 
         <div style="display: flex; flex-direction: column; gap: 10px;">
             <a href="{{ "track/" | relURL }}" class="btn btn-primary">Track My Application</a>
-            <a href="{{ "" | relURL }}" class="btn btn-outline" style="color: var(--navy); border-color: var(--navy);">Back to Home</a>
+            <button onclick="location.reload()" class="btn btn-outline" style="color: var(--navy); border-color: var(--navy);">Submit Another Application</button>
         </div>
     </div>
 </div>
 
 <style>
     .wizard-step {
-        animation: fadeIn 0.5s ease-out;
+        animation: fadeIn 0.4s ease-out;
     }
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }

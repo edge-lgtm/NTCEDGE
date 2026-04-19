@@ -8,20 +8,31 @@
     </div>
 
     <div class="max-800">
-        <div class="card mb-40" style="padding: 40px; border-top-color: var(--accent);">
+        <div class="card mb-40 track-container" style="padding: 40px; border-top-color: var(--accent);">
             <h3 class="mb-25 text-navy">Enter Reference Number</h3>
 
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                 <div class="flex-grow-1" style="min-width: 300px;">
-                    <input type="text" placeholder="e.g. NTC-2024-XXXXX" class="form-control" style="font-size: 1.2rem; padding: 15px; border-width: 2px;">
+                    <input type="text" placeholder="e.g. NTC-2024-08152" class="form-control" style="font-size: 1.2rem; padding: 15px; border-width: 2px;">
                     <small class="mt-10 text-gray-dark" style="display: block;">The reference number can be found in your confirmation email.</small>
                 </div>
                 <button class="btn btn-primary" style="padding: 0 40px; height: 58px;">Track Application</button>
             </div>
         </div>
 
+        <div id="track-loading" style="display: none; text-align: center; padding: 40px;">
+            <div class="spinner" style="margin: 0 auto 20px;"></div>
+            <p class="text-gray-dark">Searching for application records...</p>
+        </div>
+
+        <div id="track-empty" style="display: none; text-align: center; padding: 60px; background: white; border-radius: 8px; border: 1px dashed var(--gray);">
+            <div style="font-size: 3rem; margin-bottom: 20px;">🔍</div>
+            <h3 class="text-navy">No Application Found</h3>
+            <p class="text-gray-dark">We couldn't find any application with that reference number. Please check the number and try again.</p>
+        </div>
+
         <!-- Mock Result Layout -->
-        <div class="card" style="border-left: 8px solid var(--warning); padding: 40px;">
+        <div id="track-result" class="card" style="display: none; border-left: 8px solid var(--warning); padding: 40px;">
             <div class="mb-30" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid var(--gray); padding-bottom: 20px;">
                 <div>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
