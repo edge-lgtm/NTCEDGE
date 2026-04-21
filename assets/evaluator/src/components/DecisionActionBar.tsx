@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Info, CheckCircle2, XCircle, ArrowRightCircle } from 'lucide-react';
 import { useEvaluatorStore } from '../store/useEvaluatorStore';
+import { colors } from './Common';
 
 export const DecisionActionBar = () => {
   const {
@@ -17,6 +18,8 @@ export const DecisionActionBar = () => {
   const approvedCount = Object.values(stagedDecisions).filter(d => d === 'approved').length;
   const endorsedCount = Object.values(stagedDecisions).filter(d => d === 'endorsed').length;
   const declinedCount = Object.values(stagedDecisions).filter(d => d === 'declined').length;
+
+  const hasSelection = selectedApplicantIds.length > 0;
 
   return (
     <AnimatePresence>
@@ -50,6 +53,7 @@ export const DecisionActionBar = () => {
               count={approvedCount}
               variant="success"
               icon={<CheckCircle2 size={14} />}
+              disabled={!hasSelection}
             />
             <ActionButton
               onClick={() => stageDecision(selectedApplicantIds, 'endorsed')}
@@ -57,6 +61,7 @@ export const DecisionActionBar = () => {
               count={endorsedCount}
               variant="primary"
               icon={<ArrowRightCircle size={14} />}
+              disabled={!hasSelection}
             />
             <ActionButton
               onClick={() => stageDecision(selectedApplicantIds, 'declined')}
@@ -64,6 +69,7 @@ export const DecisionActionBar = () => {
               count={declinedCount}
               variant="error"
               icon={<XCircle size={14} />}
+              disabled={!hasSelection}
             />
             <div className="w-px h-8 bg-gray-100 mx-1" />
             <button
@@ -90,19 +96,27 @@ interface ActionButtonProps {
   count: number;
   variant: 'success' | 'primary' | 'error';
   icon: React.ReactNode;
+  disabled?: boolean;
 }
 
-const ActionButton = ({ onClick, label, count, variant, icon }: ActionButtonProps) => {
+const ActionButton = ({ onClick, label, count, variant, icon, disabled }: ActionButtonProps) => {
   const styles = {
-    success: "border-green-600 text-green-700 hover:bg-green-50",
-    primary: "border-[#2D0C8A] text-[#2D0C8A] hover:bg-[#F5F3FF]",
-    error: "border-red-600 text-red-700 hover:bg-red-50"
+    success: { border: colors.success, text: colors.success, bg: colors.lightSuccess },
+    primary: { border: colors.primary, text: colors.primary, bg: colors.lightPrimary },
+    error: { border: colors.error, text: colors.error, bg: colors.lightError }
   };
+
+  const currentStyle = styles[variant];
 
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-1.5 px-3 py-2 bg-white border-2 rounded-xl font-black text-[10px] transition-all transform active:scale-95 ${styles[variant]}`}
+      disabled={disabled}
+      className={`flex items-center gap-1.5 px-3 py-2 bg-white border-2 rounded-xl font-black text-[10px] transition-all transform active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed disabled:grayscale disabled:scale-100`}
+      style={{
+        borderColor: disabled ? colors.disabled : currentStyle.border,
+        color: disabled ? colors.default : currentStyle.text
+      }}
     >
       {icon}
       <span>{label} {count > 0 ? `(${count})` : ''}</span>

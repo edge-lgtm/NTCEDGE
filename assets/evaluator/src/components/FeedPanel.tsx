@@ -19,12 +19,14 @@ export const FeedPanel = () => {
   });
 
   return (
-    <div className="w-[300px] flex-shrink-0 border-r border-gray-200 bg-white flex flex-col z-10 shadow-sm">
+    <aside className="w-[300px] flex-shrink-0 border-r border-gray-200 bg-white flex flex-col z-10 shadow-sm" aria-label="Application Feed">
       <div className="p-6 border-b border-gray-100 bg-white">
         <h2 className="text-xl font-extrabold text-gray-900 mb-5 tracking-tight">Feed</h2>
-        <div className="relative group">
+        <div className="relative group" role="search">
+          <label htmlFor="feed-search" className="sr-only">Search Reference Number or Title</label>
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#2D0C8A] transition-colors" size={18} />
           <input
+            id="feed-search"
             type="text"
             placeholder="Search Reference..."
             className="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2D0C8A]/20 focus:border-[#2D0C8A] transition-all text-sm font-medium"
@@ -34,8 +36,10 @@ export const FeedPanel = () => {
         </div>
       </div>
 
-      <div className="flex border-b border-gray-100 bg-gray-50/50 p-1 mx-4 my-2 rounded-lg">
+      <div className="flex border-b border-gray-100 bg-gray-50/50 p-1 mx-4 my-2 rounded-lg" role="tablist" aria-label="Filter applications by status">
         <button
+          role="tab"
+          aria-selected={feedTab === 'pending'}
           onClick={() => setFeedTab('pending')}
           className={cn(
             "flex-1 py-2 text-xs font-bold transition-all rounded-md",
@@ -45,6 +49,8 @@ export const FeedPanel = () => {
           Pending
         </button>
         <button
+          role="tab"
+          aria-selected={feedTab === 'history'}
           onClick={() => setFeedTab('history')}
           className={cn(
             "flex-1 py-2 text-xs font-bold transition-all rounded-md",
@@ -55,10 +61,12 @@ export const FeedPanel = () => {
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto custom-scrollbar">
+      <div className="flex-1 overflow-y-auto custom-scrollbar" role="list">
         {filteredApps.map((app) => (
           <button
             key={app.id}
+            role="listitem"
+            aria-current={selectedBulkId === app.id}
             onClick={() => setSelectedBulkId(app.id)}
             className={cn(
               "w-full p-5 border-b border-gray-50 text-left transition-all relative group",
@@ -86,6 +94,6 @@ export const FeedPanel = () => {
           </button>
         ))}
       </div>
-    </div>
+    </aside>
   );
 };

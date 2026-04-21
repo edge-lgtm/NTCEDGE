@@ -68,8 +68,14 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
       ? state.selectedApplicantIds.filter(aid => aid !== id)
       : [...state.selectedApplicantIds, id]
   })),
-  setAllApplicantsSelection: (ids, select) => set({
-    selectedApplicantIds: select ? ids : []
+  setAllApplicantsSelection: (ids, select) => set((state) => {
+    if (select) {
+      const newSelection = [...new Set([...state.selectedApplicantIds, ...ids])];
+      return { selectedApplicantIds: newSelection };
+    } else {
+      const newSelection = state.selectedApplicantIds.filter(id => !ids.includes(id));
+      return { selectedApplicantIds: newSelection };
+    }
   }),
   stageDecision: (ids, decision) => set((state) => {
     const newDecisions = { ...state.stagedDecisions };
@@ -94,16 +100,22 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
     set((state) => {
       const updatedBulkApplications = state.bulkApplications.map(bulk => {
         if (bulk.id === state.selectedBulkId) {
+          const updatedApplicants = bulk.applicants.map(app => {
+            const decision = state.stagedDecisions[app.id];
+            if (decision) {
+              const formattedStatus = (decision.charAt(0).toUpperCase() + decision.slice(1)) as ApplicantStatus;
+              return { ...app, status: formattedStatus };
+            }
+            return app;
+          });
+
+          // Transition to History if all applicants are processed
+          const allProcessed = updatedApplicants.every(app => app.status !== 'Pending');
+
           return {
             ...bulk,
-            applicants: bulk.applicants.map(app => {
-              const decision = state.stagedDecisions[app.id];
-              if (decision) {
-                const formattedStatus = (decision.charAt(0).toUpperCase() + decision.slice(1)) as ApplicantStatus;
-                return { ...app, status: formattedStatus };
-              }
-              return app;
-            })
+            applicants: updatedApplicants,
+            status: (allProcessed ? 'History' : 'Pending') as 'Pending' | 'History'
           };
         }
         return bulk;
