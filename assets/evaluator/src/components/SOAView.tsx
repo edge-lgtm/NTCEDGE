@@ -8,9 +8,10 @@ export const SOAView = () => {
 
   // Calculate total count including currently selected AND staged decisions
   const totalRelevantCount = useMemo(() => {
-    const stagedCount = Object.keys(stagedDecisions).length;
-    return selectedApplicantIds.length + stagedCount;
-  }, [selectedApplicantIds.length, stagedDecisions]);
+    const stagedIds = Object.keys(stagedDecisions);
+    const combinedUniqueIds = new Set([...selectedApplicantIds, ...stagedIds]);
+    return combinedUniqueIds.size;
+  }, [selectedApplicantIds, stagedDecisions]);
 
   const soa = useMemo(() => calculateSOA(totalRelevantCount), [totalRelevantCount]);
 

@@ -9,14 +9,14 @@ function cn(...inputs: ClassValue[]) {
 
 export const SidebarNav = () => {
   return (
-    <div className="w-20 bg-[#1A0B4B] flex flex-col items-center py-8 gap-8 flex-shrink-0 z-20">
-      <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg ring-4 ring-purple-500/20">E</div>
+    <nav className="w-20 bg-[#1A0B4B] flex flex-col items-center py-8 gap-8 flex-shrink-0 z-20" aria-label="Main Navigation">
+      <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg ring-4 ring-purple-500/20" aria-hidden="true">E</div>
       <div className="flex flex-col gap-4 mt-8">
         <NavItem icon={<LayoutDashboard size={24} />} label="Activities" active />
         <NavItem icon={<MessageSquare size={24} />} label="Chat" />
         <NavItem icon={<Video size={24} />} label="Meet" />
       </div>
-    </div>
+    </nav>
   );
 };
 

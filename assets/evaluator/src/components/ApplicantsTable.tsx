@@ -38,11 +38,13 @@ export const ApplicantsTable = () => {
   const isSomePagedSelected = pagedIds.some(id => selectedApplicantIds.includes(id)) && !isAllPagedSelected;
 
   return (
-    <div className="flex flex-col h-full">
+    <section className="flex flex-col h-full" aria-label="Applicants List">
       <div className="mb-6 flex justify-between items-center bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-        <div className="relative w-full max-sm:max-w-xs max-w-sm">
+        <div className="relative w-full max-sm:max-w-xs max-w-sm" role="search">
+          <label htmlFor="applicant-search" className="sr-only">Search applicants by name or ID</label>
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
           <input
+            id="applicant-search"
             type="text"
             placeholder="Search applicants..."
             className="w-full pl-11 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2D0C8A]/20 focus:border-[#2D0C8A] transition-all text-sm font-medium"
@@ -148,6 +150,6 @@ export const ApplicantsTable = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
