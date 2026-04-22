@@ -7,10 +7,10 @@ import { ApplicantsTable } from './components/ApplicantsTable';
 import { BulkApplicationDetails } from './components/BulkApplicationDetails';
 import { SOAView } from './components/SOAView';
 import { DecisionActionBar } from './components/DecisionActionBar';
-import { ConfirmDecisionModal, SubmissionSuccessModal, ApplicantDetailsModal } from './components/Modals';
+import { ConfirmDecisionModal, SubmissionSuccessModal, ApplicantDetailsModal, EditDueDateModal } from './components/Modals';
 
 export const EvaluatorApp = () => {
-  const { selectedBulkId, activeTab } = useEvaluatorStore();
+  const { selectedBulkId, activeTab, isInitialLoading } = useEvaluatorStore();
 
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden font-sans text-gray-900 selection:bg-purple-100 selection:text-purple-900">
@@ -22,7 +22,12 @@ export const EvaluatorApp = () => {
 
       {/* 3. Main Content Area on the right */}
       <main className="flex-1 flex flex-col h-full overflow-hidden relative">
-        {selectedBulkId ? (
+        {isInitialLoading ? (
+          <div className="flex-1 flex flex-col items-center justify-center bg-white/50 backdrop-blur-sm z-30">
+            <div className="w-12 h-12 border-4 border-purple-200 border-t-purple-700 rounded-full animate-spin mb-4" />
+            <p className="text-sm font-black text-purple-900 uppercase tracking-widest animate-pulse">Loading Application...</p>
+          </div>
+        ) : selectedBulkId ? (
           <>
             {/* Header with Tabs */}
             <BulkApplicationHeader />
@@ -50,6 +55,7 @@ export const EvaluatorApp = () => {
       <ConfirmDecisionModal />
       <SubmissionSuccessModal />
       <ApplicantDetailsModal />
+      <EditDueDateModal />
 
       {/* Custom Scrollbar Styles */}
       <style dangerouslySetInnerHTML={{ __html: `

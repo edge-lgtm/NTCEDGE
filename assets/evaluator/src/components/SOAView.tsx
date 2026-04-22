@@ -4,7 +4,7 @@ import { Calendar, Edit2, Info } from 'lucide-react';
 import { numberToWords } from '../utils/numberToWords';
 
 export const SOAView = () => {
-  const { selectedApplicantIds, stagedDecisions } = useEvaluatorStore();
+  const { selectedApplicantIds, stagedDecisions, dueDate, setDueDateModalOpen } = useEvaluatorStore();
 
   // Calculate total count including currently selected AND staged decisions
   const totalRelevantCount = useMemo(() => {
@@ -54,13 +54,16 @@ export const SOAView = () => {
                   <Calendar size={16} className="text-[#2D0C8A]" />
                   <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">Payment Due Date</span>
                 </div>
-                <button className="text-[#2D0C8A] p-1.5 hover:bg-white rounded-md transition-all shadow-sm opacity-0 group-hover:opacity-100">
+                <button
+                  onClick={() => setDueDateModalOpen(true)}
+                  className="text-[#2D0C8A] p-1.5 hover:bg-white rounded-md transition-all shadow-sm opacity-0 group-hover:opacity-100"
+                >
                   <Edit2 size={14} />
                 </button>
               </div>
               <div className="text-xl font-black text-gray-900">
-                {soa.dueDate && !isNaN(new Date(soa.dueDate).getTime())
-                  ? new Date(soa.dueDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+                {dueDate && !isNaN(new Date(dueDate).getTime())
+                  ? new Date(dueDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
                   : 'No due date set'}
               </div>
             </div>

@@ -132,7 +132,8 @@ export const ConfirmDecisionModal = () => {
 };
 
 export const SubmissionSuccessModal = () => {
-  const { isSuccessModalOpen, resetSelection } = useEvaluatorStore();
+  const { isSuccessModalOpen, resetSelection, stagedDecisions } = useEvaluatorStore();
+  const count = Object.keys(stagedDecisions).length;
 
   return (
     <Modal
@@ -146,7 +147,7 @@ export const SubmissionSuccessModal = () => {
         </div>
         <h4 className="text-2xl font-black text-gray-900 mb-3 tracking-tight">Decisions Finalized</h4>
         <p className="text-gray-500 font-medium mb-10 leading-relaxed max-w-xs mx-auto">
-          You have successfully submitted the decisions for the selected applicants. The records have been updated in the system.
+          You have successfully submitted the decisions for <span className="text-[#2D0C8A] font-bold">{count} applicants</span>. The records have been updated in the system.
         </p>
         <button
           onClick={resetSelection}
@@ -154,6 +155,56 @@ export const SubmissionSuccessModal = () => {
         >
           Return to Dashboard
         </button>
+      </div>
+    </Modal>
+  );
+};
+
+export const EditDueDateModal = () => {
+  const { isDueDateModalOpen, setDueDateModalOpen, dueDate, setDueDate } = useEvaluatorStore();
+  const [tempDate, setTempDate] = React.useState(dueDate || '');
+
+  React.useEffect(() => {
+    if (isDueDateModalOpen) setTempDate(dueDate || '');
+  }, [isDueDateModalOpen, dueDate]);
+
+  const handleSave = () => {
+    setDueDate(tempDate);
+    setDueDateModalOpen(false);
+  };
+
+  return (
+    <Modal
+      isOpen={isDueDateModalOpen}
+      onClose={() => setDueDateModalOpen(false)}
+      title="Set Payment Due Date"
+    >
+      <div className="space-y-6">
+        <div>
+          <label htmlFor="due-date" className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Select Due Date</label>
+          <input
+            id="due-date"
+            type="date"
+            className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2D0C8A]/20 focus:border-[#2D0C8A] font-bold text-gray-900"
+            value={tempDate}
+            onChange={(e) => setTempDate(e.target.value)}
+          />
+        </div>
+
+        <div className="flex gap-4 pt-4">
+          <button
+            onClick={() => setDueDateModalOpen(false)}
+            className="flex-1 py-4 font-black text-gray-500 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleSave}
+            className="flex-1 py-4 bg-[#2D0C8A] text-white rounded-xl font-black shadow-xl shadow-purple-900/20 hover:bg-[#1A0B4B] transition-all transform active:scale-95"
+          >
+            Save Changes
+          </button>
+        </div>
       </div>
     </Modal>
   );

@@ -10,6 +10,7 @@ interface EvaluatorState {
   stagedDecisions: Record<string, Decision>;
   isConfirmModalOpen: boolean;
   isSuccessModalOpen: boolean;
+  isDueDateModalOpen: boolean;
   feedTab: 'pending' | 'history';
   searchQuery: string;
   applicantSearchQuery: string;
@@ -17,10 +18,13 @@ interface EvaluatorState {
   currentPage: number;
   itemsPerPage: number;
   isSubmitting: boolean;
+  isInitialLoading: boolean;
+  dueDate: string | null;
 
   // Actions
   setSelectedBulkId: (id: string | null) => void;
   setSelectedApplicantId: (id: string | null) => void;
+  setDueDate: (date: string | null) => void;
   setFeedTab: (tab: 'pending' | 'history') => void;
   setActiveTab: (tab: 'bulk' | 'details' | 'soa') => void;
   toggleApplicantSelection: (id: string) => void;
@@ -28,6 +32,7 @@ interface EvaluatorState {
   stageDecision: (ids: string[], decision: Decision) => void;
   setConfirmModalOpen: (open: boolean) => void;
   setSuccessModalOpen: (open: boolean) => void;
+  setDueDateModalOpen: (open: boolean) => void;
   setSearchQuery: (query: string) => void;
   setApplicantSearchQuery: (query: string) => void;
   submitDecisions: () => void;
@@ -43,6 +48,7 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
   stagedDecisions: {},
   isConfirmModalOpen: false,
   isSuccessModalOpen: false,
+  isDueDateModalOpen: false,
   feedTab: 'pending',
   searchQuery: '',
   applicantSearchQuery: '',
@@ -50,17 +56,34 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
   currentPage: 1,
   itemsPerPage: 5,
   isSubmitting: false,
+  isInitialLoading: false,
+  dueDate: '2024-12-31',
 
-  setSelectedBulkId: (id) => set({
-    selectedBulkId: id,
-    selectedApplicantIds: [],
-    selectedApplicantId: null,
-    stagedDecisions: {},
-    activeTab: 'bulk',
-    currentPage: 1,
-    applicantSearchQuery: ''
-  }),
+  setSelectedBulkId: (id) => {
+    if (!id) {
+      set({ selectedBulkId: null });
+      return;
+    }
+
+    set({ isInitialLoading: true });
+
+    // Simulate "government-grade" loading delay
+    setTimeout(() => {
+      set({
+        selectedBulkId: id,
+        selectedApplicantIds: [],
+        selectedApplicantId: null,
+        stagedDecisions: {},
+        activeTab: 'bulk',
+        currentPage: 1,
+        applicantSearchQuery: '',
+        isInitialLoading: false,
+        dueDate: '2024-12-31'
+      });
+    }, 800);
+  },
   setSelectedApplicantId: (id) => set({ selectedApplicantId: id }),
+  setDueDate: (date) => set({ dueDate: date }),
   setFeedTab: (tab) => set({ feedTab: tab }),
   setActiveTab: (tab) => set({ activeTab: tab }),
   toggleApplicantSelection: (id) => set((state) => ({
@@ -89,50 +112,54 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
   }),
   setConfirmModalOpen: (open) => set({ isConfirmModalOpen: open }),
   setSuccessModalOpen: (open) => set({ isSuccessModalOpen: open }),
+  setDueDateModalOpen: (open) => set({ isDueDateModalOpen: open }),
   setSearchQuery: (query) => set({ searchQuery: query }),
   setApplicantSearchQuery: (query) => set({ applicantSearchQuery: query, currentPage: 1 }),
   submitDecisions: async () => {
+    const { selectedBulkId, stagedDecisions, bulkApplications } = useEvaluatorStore.getState();
+    if (!selectedBulkId) return;
+
     set({ isSubmitting: true });
 
     // Simulate API delay for a "government-grade" system
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    set((state) => {
-      const updatedBulkApplications = state.bulkApplications.map(bulk => {
-        if (bulk.id === state.selectedBulkId) {
-          const updatedApplicants = bulk.applicants.map(app => {
-            const decision = state.stagedDecisions[app.id];
-            if (decision) {
-              const formattedStatus = (decision.charAt(0).toUpperCase() + decision.slice(1)) as ApplicantStatus;
-              return { ...app, status: formattedStatus };
-            }
-            return app;
-          });
+    const updatedBulkApplications = bulkApplications.map(bulk => {
+      if (bulk.id === selectedBulkId) {
+        const updatedApplicants = bulk.applicants.map(app => {
+          const decision = stagedDecisions[app.id];
+          if (decision) {
+            const formattedStatus = (decision.charAt(0).toUpperCase() + decision.slice(1)) as ApplicantStatus;
+            return { ...app, status: formattedStatus };
+          }
+          return app;
+        });
 
-          // Transition to History if all applicants are processed
-          const allProcessed = updatedApplicants.every(app => app.status !== 'Pending');
+        // Transition to History if all applicants are processed
+        const allProcessed = updatedApplicants.every(app => app.status !== 'Pending');
 
-          return {
-            ...bulk,
-            applicants: updatedApplicants,
-            status: (allProcessed ? 'History' : 'Pending') as 'Pending' | 'History'
-          };
-        }
-        return bulk;
-      });
-      return {
-        bulkApplications: updatedBulkApplications,
-        isConfirmModalOpen: false,
-        isSuccessModalOpen: true,
-        isSubmitting: false
-      };
+        return {
+          ...bulk,
+          applicants: updatedApplicants,
+          status: (allProcessed ? 'History' : 'Pending') as 'Pending' | 'History'
+        };
+      }
+      return bulk;
+    });
+
+    set({
+      bulkApplications: updatedBulkApplications,
+      isConfirmModalOpen: false,
+      isSuccessModalOpen: true,
+      isSubmitting: false
     });
   },
   resetSelection: () => set({
     selectedApplicantIds: [],
     stagedDecisions: {},
     isSuccessModalOpen: false,
-    currentPage: 1
+    currentPage: 1,
+    selectedBulkId: null // Force unselect after completion
   }),
   setCurrentPage: (page) => set({ currentPage: page }),
 }));

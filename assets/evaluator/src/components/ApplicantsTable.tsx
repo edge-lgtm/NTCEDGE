@@ -79,12 +79,25 @@ export const ApplicantsTable = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {pagedApplicants.map((applicant) => (
+            {pagedApplicants.length === 0 ? (
+              <tr>
+                <td colSpan={4} className="p-20 text-center">
+                  <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-gray-100">
+                    <Search size={32} className="text-gray-200" />
+                  </div>
+                  <h4 className="text-sm font-black text-gray-900 uppercase tracking-widest mb-1">No applicants found</h4>
+                  <p className="text-xs text-gray-500 font-medium">No records match your search criteria.</p>
+                </td>
+              </tr>
+            ) : pagedApplicants.map((applicant) => (
               <tr
                 key={applicant.id}
-                className={`transition-colors hover:bg-gray-50/50 ${selectedApplicantIds.includes(applicant.id) ? 'bg-[#F9F8FF]' : ''}`}
+                className={`transition-all duration-200 hover:bg-gray-50/50 ${selectedApplicantIds.includes(applicant.id) ? 'bg-[#F9F8FF] ring-2 ring-purple-600/10 z-10' : ''}`}
               >
-                <td className="p-5">
+                <td className="p-5 relative">
+                  {selectedApplicantIds.includes(applicant.id) && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#2D0C8A] z-20" />
+                  )}
                   <Checkbox
                     checked={selectedApplicantIds.includes(applicant.id)}
                     onChange={() => toggleApplicantSelection(applicant.id)}
