@@ -101,9 +101,9 @@ interface ActionButtonProps {
 
 const ActionButton = ({ onClick, label, count, variant, icon, disabled }: ActionButtonProps) => {
   const styles = {
-    success: { border: colors.success, text: colors.success, bg: colors.lightSuccess },
-    primary: { border: colors.primary, text: colors.primary, bg: colors.lightPrimary },
-    error: { border: colors.error, text: colors.error, bg: colors.lightError }
+    success: { border: colors.success, text: '#FFFFFF', bg: colors.success },
+    primary: { border: colors.primary, text: colors.primary, bg: '#FFFFFF' },
+    error: { border: colors.error, text: colors.error, bg: '#FFFFFF' }
   };
 
   const currentStyle = styles[variant];
@@ -112,10 +112,11 @@ const ActionButton = ({ onClick, label, count, variant, icon, disabled }: Action
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`flex items-center gap-1.5 px-3 py-2 bg-white border-2 rounded-xl font-black text-[10px] transition-all transform active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed disabled:grayscale disabled:scale-100`}
+      className={`flex items-center gap-1.5 px-4 py-2 border-2 rounded-xl font-black text-[10px] transition-all transform active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed disabled:grayscale disabled:scale-100`}
       style={{
         borderColor: disabled ? colors.disabled : currentStyle.border,
-        color: disabled ? colors.default : currentStyle.text
+        color: disabled ? colors.default : currentStyle.text,
+        backgroundColor: disabled ? '#FFFFFF' : currentStyle.bg
       }}
     >
       {icon}

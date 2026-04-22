@@ -62,7 +62,15 @@ export const FeedPanel = () => {
       </div>
 
       <div className="flex-1 overflow-y-auto custom-scrollbar" role="list">
-        {filteredApps.map((app) => (
+        {filteredApps.length === 0 ? (
+          <div className="p-10 text-center">
+            <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-100">
+              <Search size={24} className="text-gray-300" />
+            </div>
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">No results found</p>
+            <p className="text-[10px] text-gray-500 mt-1 font-medium">Try a different reference number</p>
+          </div>
+        ) : filteredApps.map((app) => (
           <button
             key={app.id}
             role="listitem"

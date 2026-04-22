@@ -45,6 +45,8 @@ The `useEvaluatorStore` manages the global state for the evaluation workflow:
 - `selectedApplicantIds`: Array of IDs for currently selected rows.
 - `stagedDecisions`: A map of `Record<string, Decision>` representing draft evaluations.
 - `bulkApplications`: Mock data source (simulating backend repository).
+- `isInitialLoading`: Simulates data fetching state.
+- `dueDate`: Managed centrally for SOA consistency.
 
 ### Scalability Considerations
 
