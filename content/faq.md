@@ -16,3 +16,6 @@ Your reference number is provided on the success screen after you submit your ap
 
 ### What should I do if my application is incomplete?
 If our evaluators find your application incomplete, you will receive a notification via email with instructions on how to resubmit the missing documents.
+
+### How do I contact support?
+For technical assistance or inquiries regarding your application, you can reach us via our official hotline at (02) 8924-4008 or email us at support@ntc.gov.ph.

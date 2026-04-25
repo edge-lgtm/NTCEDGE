@@ -108,8 +108,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Modal Toggles ---
+    window.showModal = (id) => {
+        const modal = document.getElementById(id);
+        if (modal) modal.style.display = 'flex';
+    };
+
     window.closeModal = (id) => {
         const modal = document.getElementById(id);
         if (modal) modal.style.display = 'none';
     };
+
+    // Close modal when clicking outside content
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
 });
