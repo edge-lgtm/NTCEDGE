@@ -85,8 +85,13 @@ export const SOAView = () => {
 };
 
 const FeeRow = ({ label, value }: { label: string, value: number }) => (
-  <div className="flex justify-between items-center py-2 group">
-    <span className="text-gray-500 font-bold text-sm group-hover:text-gray-700 transition-colors">{label}</span>
+  <div className="flex justify-between items-center py-3 group relative px-4 -mx-4 hover:bg-gray-50/50 rounded-lg transition-all">
+    <div className="flex items-center gap-3">
+      <span className="text-gray-500 font-bold text-sm group-hover:text-gray-700 transition-colors">{label}</span>
+      <button className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white rounded border border-transparent hover:border-gray-100 shadow-sm text-gray-400 hover:text-[#2D0C8A]">
+        <Edit2 size={12} />
+      </button>
+    </div>
     <span className="font-black text-gray-900 tracking-tight">PHP {value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
   </div>
 );
