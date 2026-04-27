@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import { useEvaluatorStore } from '../store/useEvaluatorStore';
 import { StatusBadge, Checkbox } from './Common';
@@ -89,9 +90,12 @@ export const ApplicantsTable = () => {
                   <p className="text-xs text-gray-500 font-medium">No records match your search criteria.</p>
                 </td>
               </tr>
-            ) : pagedApplicants.map((applicant) => (
-              <tr
+            ) : pagedApplicants.map((applicant, index) => (
+              <motion.tr
                 key={applicant.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.03, duration: 0.2 }}
                 className={`transition-all duration-200 hover:bg-gray-50/50 ${selectedApplicantIds.includes(applicant.id) ? 'bg-[#F9F8FF] ring-2 ring-purple-600/10 z-10' : ''}`}
               >
                 <td className="p-5 relative">
@@ -118,7 +122,7 @@ export const ApplicantsTable = () => {
                     View Details
                   </button>
                 </td>
-              </tr>
+              </motion.tr>
             ))}
           </tbody>
         </table>

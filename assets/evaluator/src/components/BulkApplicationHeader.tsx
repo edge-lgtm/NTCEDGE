@@ -29,13 +29,17 @@ export const BulkApplicationHeader = () => {
             <h1 className="text-2xl font-black text-gray-900 tracking-tight">{bulkApp.title}</h1>
           </div>
           <div className="flex items-center gap-2 text-gray-500 font-medium">
-            <span className="text-sm">{bulkApp.applicantsCount} Total Applicants</span>
+            <span className="text-sm">Bulk Batch Processing</span>
             <span className="text-gray-300">•</span>
-            <span className="text-sm">Batch Evaluation</span>
+            <span className="text-sm">Evaluation Workflow</span>
           </div>
         </div>
-        <div className="flex flex-col items-end">
+        <div className="flex flex-col items-end gap-2">
           <span className="text-[11px] font-black text-purple-700 bg-purple-50 px-2.5 py-1 rounded-md border border-purple-100 uppercase tracking-widest">{bulkApp.referenceNumber}</span>
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-gray-50 border border-gray-100 rounded-md">
+            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Applicants:</span>
+            <span className="text-sm font-black text-[#2D0C8A]">{bulkApp.applicantsCount}</span>
+          </div>
         </div>
       </div>
 
