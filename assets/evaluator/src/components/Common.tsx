@@ -17,7 +17,7 @@ export const colors = {
   disabled: '#D1D1D1',
   info: '#3BA4F7',
   lightInfo: '#DBEAFE',
-  border: '#D9DCE3',
+  borderColor: '#D9DCE3',
   darkText: '#1E1E1E',
   mutedText: '#6B7280',
 };
