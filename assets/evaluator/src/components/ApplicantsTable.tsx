@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import { useEvaluatorStore } from '../store/useEvaluatorStore';
 import { StatusBadge, Checkbox } from './Common';
+import { PaginationControl } from './PaginationControl';
 
 export const ApplicantsTable = () => {
   const {
@@ -129,44 +130,15 @@ export const ApplicantsTable = () => {
       </div>
 
       {/* Pagination & Selected Count */}
-      <div className="mt-6 flex justify-between items-center bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-        <div className="text-sm font-medium text-gray-500">
-          Showing <span className="text-gray-900 font-bold">{startIndex + 1}</span> to <span className="text-gray-900 font-bold">{Math.min(startIndex + itemsPerPage, totalItems)}</span> of <span className="text-gray-900 font-bold">{totalItems}</span> applicants
-        </div>
-        <div className="flex items-center gap-6">
-          {selectedApplicantIds.length > 0 && (
-            <div className="text-[10px] font-black text-[#2D0C8A] bg-purple-50 px-3 py-2 rounded-lg border border-purple-100 uppercase tracking-widest">
-              {selectedApplicantIds.length} selected
-            </div>
-          )}
-          <div className="h-8 w-px bg-gray-100" />
-          <div className="flex gap-2">
-            <button
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(currentPage - 1)}
-              className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`w-10 h-10 rounded-lg font-bold text-sm transition-all ${currentPage === page ? 'bg-[#2D0C8A] text-white shadow-md' : 'border border-gray-200 text-gray-600 hover:bg-gray-50'}`}
-              >
-                {page}
-              </button>
-            ))}
-            <button
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage(currentPage + 1)}
-              className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
-        </div>
-      </div>
+      <PaginationControl
+        currentPage={currentPage}
+        totalPages={totalPages}
+        startIndex={startIndex}
+        itemsPerPage={itemsPerPage}
+        totalItems={totalItems}
+        onPageChange={setCurrentPage}
+        selectedCount={selectedApplicantIds.length}
+      />
     </section>
   );
 };

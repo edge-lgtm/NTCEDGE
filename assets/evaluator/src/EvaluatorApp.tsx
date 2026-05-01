@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEvaluatorStore } from './store/useEvaluatorStore';
-import { SidebarNav, EmptyState } from './components/Layout';
+import { SidebarNav } from './components/Layout';
+import { EmptyApplicationState } from './components/EmptyApplicationState';
 import { FeedPanel } from './components/FeedPanel';
 import { BulkApplicationHeader } from './components/BulkApplicationHeader';
 import { ApplicantsTable } from './components/ApplicantsTable';
@@ -33,21 +34,21 @@ export const EvaluatorApp = () => {
             <BulkApplicationHeader />
 
             {/* Scrollable Content Area */}
-            <div className="flex-1 overflow-y-auto px-10 py-8 custom-scrollbar pb-32">
+            <div className="flex-1 overflow-y-auto px-4 md:px-10 py-8 custom-scrollbar pb-32">
               {activeTab === 'bulk' && <ApplicantsTable />}
               {activeTab === 'details' && <BulkApplicationDetails />}
               {activeTab === 'soa' && <SOAView />}
             </div>
 
             {/* Float Action Bar (appears when selection exists) */}
-            <div className="fixed bottom-6 right-6 left-[340px] z-40 pointer-events-none">
+            <div className="fixed bottom-6 right-6 left-6 md:left-[340px] z-40 pointer-events-none">
               <div className="pointer-events-auto">
                 <DecisionActionBar />
               </div>
             </div>
           </>
         ) : (
-          <EmptyState />
+          <EmptyApplicationState />
         )}
       </main>
 

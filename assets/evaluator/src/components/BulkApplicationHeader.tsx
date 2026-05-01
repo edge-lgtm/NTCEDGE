@@ -21,7 +21,7 @@ export const BulkApplicationHeader = () => {
   ];
 
   return (
-    <div className="bg-white border-b border-gray-200 px-10 pt-8 z-10 relative overflow-hidden">
+    <div className="bg-white border-b border-gray-200 px-4 md:px-10 pt-8 z-10 relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1A0B4B] via-[#2D0C8A] to-[#3BA4F7]" />
       <div className="flex justify-between items-start mb-8">
         <div>
