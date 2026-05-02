@@ -51,15 +51,25 @@ export const StatusBadge = ({ status, decision }: { status: string, decision?: s
 export const Modal = ({ isOpen, onClose, title, children }: { isOpen: boolean, onClose: () => void, title: string, children: React.ReactNode }) => {
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300">
+      <div
+        className="absolute inset-0"
+        onClick={onClose}
+        aria-hidden="true"
+      />
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden border border-gray-100"
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden border border-gray-100 relative z-10"
       >
         <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-          <h3 className="text-lg font-bold text-gray-900">{title}</h3>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors p-1 hover:bg-gray-100 rounded-full">
+          <h3 className="text-lg font-bold text-gray-900 tracking-tight">{title}</h3>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 transition-colors p-1 hover:bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-[#2D0C8A]"
+            aria-label="Close modal"
+          >
             <X size={20} />
           </button>
         </div>
