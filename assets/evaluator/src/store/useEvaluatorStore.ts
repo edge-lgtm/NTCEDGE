@@ -178,8 +178,8 @@ export const calculateSOA = (selectedCount: number): SOASummary => {
   // Simplified calculation logic for "government-grade" feel
   const licenseFee = selectedCount * 550.00;
   const inspectionFee = selectedCount * 250.00;
-  const docStampTax = 30.00; // Fixed per batch or per application? Usually per application or batch.
-  const surcharge = 0.00;
+  const docStampTax = selectedCount * 30.00;
+  const surcharge = selectedCount > 10 ? 150.00 : 0.00;
 
   return {
     licenseFee,
