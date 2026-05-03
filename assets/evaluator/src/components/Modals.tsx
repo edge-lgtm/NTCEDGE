@@ -85,15 +85,14 @@ export const ConfirmDecisionModal = () => {
     <Modal
       isOpen={isConfirmModalOpen}
       onClose={() => !isSubmitting && setConfirmModalOpen(false)}
-      title="Confirm Final Submission"
+      title="Are you sure you want to submit the decisions for the selected applications?"
     >
       <div className="space-y-6">
         <div className="flex flex-col items-center text-center">
            <div className="w-20 h-20 bg-amber-50 rounded-full flex items-center justify-center mb-6">
              <ShieldAlert className="text-amber-500" size={48} />
            </div>
-           <h4 className="text-xl font-black text-gray-900 mb-2">Are you sure?</h4>
-           <p className="text-gray-500 font-medium">You are about to submit staged decisions. This action will finalize the evaluation and cannot be undone.</p>
+           <p className="text-gray-700 font-bold leading-relaxed">This action will finalize the evaluation and cannot be undone.</p>
         </div>
 
         <div className="p-4 bg-gray-50 rounded-xl border border-gray-100 flex gap-4">
@@ -145,9 +144,8 @@ export const SubmissionSuccessModal = () => {
         <div className="w-24 h-24 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 border-4 border-white shadow-lg">
           <Check size={48} strokeWidth={3} />
         </div>
-        <h4 className="text-2xl font-black text-gray-900 mb-3 tracking-tight">Decisions Finalized</h4>
-        <p className="text-gray-500 font-medium mb-10 leading-relaxed max-w-xs mx-auto">
-          You have successfully submitted the decisions for <span className="text-[#2D0C8A] font-bold">{count} applicants</span>. The records have been updated in the system.
+        <p className="text-gray-900 font-bold mb-10 leading-relaxed max-w-xs mx-auto">
+          You have successfully submitted the decisions for the selected applications.
         </p>
         <button
           onClick={resetSelection}
