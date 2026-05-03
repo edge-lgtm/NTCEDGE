@@ -18,6 +18,7 @@ interface EvaluatorState {
   currentPage: number;
   itemsPerPage: number;
   isSubmitting: boolean;
+  submitError: string | null;
   isInitialLoading: boolean;
   dueDate: string | null;
 
@@ -56,6 +57,7 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
   currentPage: 1,
   itemsPerPage: 5,
   isSubmitting: false,
+  submitError: null,
   isInitialLoading: false,
   dueDate: '2024-12-31',
 
@@ -117,14 +119,19 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
   setApplicantSearchQuery: (query) => set({ applicantSearchQuery: query, currentPage: 1 }),
   submitDecisions: async () => {
     const { selectedBulkId, stagedDecisions, bulkApplications } = useEvaluatorStore.getState();
-    if (!selectedBulkId) return;
+    if (!selectedBulkId || Object.keys(stagedDecisions).length === 0) return;
 
-    set({ isSubmitting: true });
+    set({ isSubmitting: true, submitError: null });
 
-    // Simulate API delay for a "government-grade" system
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Simulate API delay for a "government-grade" system
+      await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(true);
+        }, 1500);
+      });
 
-    const updatedBulkApplications = bulkApplications.map(bulk => {
+      const updatedBulkApplications = bulkApplications.map(bulk => {
       if (bulk.id === selectedBulkId) {
         const updatedApplicants = bulk.applicants.map(app => {
           const decision = stagedDecisions[app.id];
@@ -153,13 +160,20 @@ export const useEvaluatorStore = create<EvaluatorState>((set) => ({
       isSuccessModalOpen: true,
       isSubmitting: false
     });
+    } catch (error: any) {
+      set({
+        isSubmitting: false,
+        submitError: error.message || 'Submission failed'
+      });
+    }
   },
   resetSelection: () => set({
     selectedApplicantIds: [],
     stagedDecisions: {},
     isSuccessModalOpen: false,
-    currentPage: 1,
-    selectedBulkId: null // Force unselect after completion
+    submitError: null,
+    currentPage: 1
+    // Keep selectedBulkId if we want to stay in the list view of the same batch
   }),
   setCurrentPage: (page) => set({ currentPage: page }),
 }));
