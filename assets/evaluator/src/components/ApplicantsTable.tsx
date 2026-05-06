@@ -1,9 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useEvaluatorStore } from '../store/useEvaluatorStore';
-import { StatusBadge, Checkbox } from './Common';
+import { Checkbox } from './Common';
 import { PaginationControl } from './PaginationControl';
+import { ApplicantRow } from './ApplicantRow';
 
 export const ApplicantsTable = () => {
   const {
@@ -92,44 +92,20 @@ export const ApplicantsTable = () => {
                 </td>
               </tr>
             ) : pagedApplicants.map((applicant, index) => (
-              <motion.tr
+              <ApplicantRow
                 key={applicant.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.03, duration: 0.2 }}
-                className={`transition-all duration-200 hover:bg-gray-50/50 ${selectedApplicantIds.includes(applicant.id) ? 'bg-[#F9F8FF] ring-2 ring-purple-600/10 z-10' : ''}`}
-              >
-                <td className="p-5 relative">
-                  {selectedApplicantIds.includes(applicant.id) && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#2D0C8A] z-20" />
-                  )}
-                  <Checkbox
-                    checked={selectedApplicantIds.includes(applicant.id)}
-                    onChange={() => toggleApplicantSelection(applicant.id)}
-                  />
-                </td>
-                <td className="p-5">
-                  <div className="font-bold text-gray-900 text-sm">{applicant.name}</div>
-                  <div className="text-[10px] text-gray-400 font-medium">REF: {applicant.id.toUpperCase()}</div>
-                </td>
-                <td className="p-5">
-                  <StatusBadge status={applicant.status} decision={stagedDecisions[applicant.id]} />
-                </td>
-                <td className="p-5 text-right">
-                  <button
-                    onClick={() => setSelectedApplicantId(applicant.id)}
-                    className="text-[#2D0C8A] hover:bg-[#E9E3FF] px-3 py-1.5 rounded-lg font-bold text-xs transition-colors border border-transparent hover:border-purple-200"
-                  >
-                    View Details
-                  </button>
-                </td>
-              </motion.tr>
+                applicant={applicant}
+                index={index}
+                isSelected={selectedApplicantIds.includes(applicant.id)}
+                onToggleSelection={() => toggleApplicantSelection(applicant.id)}
+                onViewDetails={() => setSelectedApplicantId(applicant.id)}
+                stagedDecision={stagedDecisions[applicant.id]}
+              />
             ))}
           </tbody>
         </table>
       </div>
 
-      {/* Pagination & Selected Count */}
       <PaginationControl
         currentPage={currentPage}
         totalPages={totalPages}

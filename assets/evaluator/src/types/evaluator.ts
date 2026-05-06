@@ -8,6 +8,9 @@ export interface Applicant {
   status: ApplicantStatus;
   applicationType: string;
   submissionDate: string;
+  email: string;
+  phone: string;
+  location: string;
 }
 
 export interface BulkApplication {

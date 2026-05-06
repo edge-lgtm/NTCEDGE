@@ -1,24 +1,12 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useEvaluatorStore } from '../store/useEvaluatorStore';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { BulkApplicationTabs } from './BulkApplicationTabs';
 
 export const BulkApplicationHeader = () => {
   const { selectedBulkId, bulkApplications, activeTab, setActiveTab } = useEvaluatorStore();
   const bulkApp = bulkApplications.find(a => a.id === selectedBulkId);
 
   if (!bulkApp) return null;
-
-  const tabs: { id: 'bulk' | 'details' | 'soa'; label: string }[] = [
-    { id: 'bulk', label: 'Bulk Application' },
-    { id: 'details', label: 'Application Details' },
-    { id: 'soa', label: 'SOA & Payment' }
-  ];
 
   return (
     <div className="bg-white border-b border-gray-200 px-4 md:px-10 pt-8 z-10 relative overflow-hidden">
@@ -43,26 +31,7 @@ export const BulkApplicationHeader = () => {
         </div>
       </div>
 
-      <div className="flex gap-10">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={cn(
-              "pb-5 text-sm font-bold transition-all relative",
-              activeTab === tab.id ? "text-[#2D0C8A]" : "text-gray-400 hover:text-gray-600"
-            )}
-          >
-            {tab.label}
-            {activeTab === tab.id && (
-              <motion.div
-                layoutId="tab-underline"
-                className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#2D0C8A] rounded-t-full"
-              />
-            )}
-          </button>
-        ))}
-      </div>
+      <BulkApplicationTabs activeTab={activeTab} onTabChange={setActiveTab} />
     </div>
   );
 };
