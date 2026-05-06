@@ -1,13 +1,24 @@
 import { BulkApplication, Applicant } from '../types/evaluator';
 
 const generateApplicants = (count: number, startIndex: number): Applicant[] => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: `app-${startIndex + i}`,
-    name: `APPLICANT ${startIndex + i} - ${['JUAN DELA CRUZ', 'MARIA CLARA', 'JOSE RIZAL', 'ANDRES BONIFACIO', 'EMILIO AGUINALDO', 'APOLINARIO MABINI', 'MELCHORA AQUINO', 'GABRIELA SILANG'][i % 8]}`,
-    status: 'Pending',
-    applicationType: i % 3 === 0 ? 'New' : 'Renewal',
-    submissionDate: `2024-08-${String(10 + (i % 20)).padStart(2, '0')}`,
-  }));
+  const names = ['JUAN DELA CRUZ', 'MARIA CLARA', 'JOSE RIZAL', 'ANDRES BONIFACIO', 'EMILIO AGUINALDO', 'APOLINARIO MABINI', 'MELCHORA AQUINO', 'GABRIELA SILANG'];
+  const locations = ['Quezon City, NCR', 'Manila, NCR', 'Cebu City, Region VII', 'Davao City, Region XI', 'Baguio City, CAR', 'Iloilo City, Region VI'];
+
+  return Array.from({ length: count }, (_, i) => {
+    const name = names[i % names.length];
+    const emailName = name.toLowerCase().replace(/\s+/g, '.');
+
+    return {
+      id: `app-${startIndex + i}`,
+      name: `APPLICANT ${startIndex + i} - ${name}`,
+      status: 'Pending',
+      applicationType: i % 3 === 0 ? 'New' : 'Renewal',
+      submissionDate: `2024-08-${String(10 + (i % 20)).padStart(2, '0')}`,
+      email: `${emailName}${startIndex + i}@example.com`,
+      phone: `+63 9${Math.floor(100000000 + Math.random() * 900000000)}`,
+      location: locations[i % locations.length],
+    };
+  });
 };
 
 export const mockBulkApplications: BulkApplication[] = [

@@ -32,9 +32,9 @@ export const ApplicantDetailsModal = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-6">
-          <InfoBlock icon={<Mail size={14} />} label="Email Address" value="j.delacruz@example.com" />
-          <InfoBlock icon={<Phone size={14} />} label="Phone Number" value="+63 917 123 4567" />
-          <InfoBlock icon={<MapPin size={14} />} label="Location" value="Quezon City, NCR" />
+          <InfoBlock icon={<Mail size={14} />} label="Email Address" value={applicant.email} />
+          <InfoBlock icon={<Phone size={14} />} label="Phone Number" value={applicant.phone} />
+          <InfoBlock icon={<MapPin size={14} />} label="Location" value={applicant.location} />
           <InfoBlock icon={<FileText size={14} />} label="Application Type" value={applicant.applicationType} />
         </div>
 
