@@ -3,6 +3,7 @@ import { useEvaluatorStore } from './store/useEvaluatorStore';
 import { SidebarNav } from './components/Layout';
 import { EmptyApplicationState } from './components/EmptyApplicationState';
 import { FeedPanel } from './components/FeedPanel';
+import { TopHeader } from './components/TopHeader';
 import { BulkApplicationHeader } from './components/BulkApplicationHeader';
 import { ApplicantsTable } from './components/ApplicantsTable';
 import { BulkApplicationDetails } from './components/BulkApplicationDetails';
@@ -22,7 +23,8 @@ export const EvaluatorApp = () => {
       <FeedPanel />
 
       {/* 3. Main Content Area on the right */}
-      <main className="flex-1 flex flex-col h-full overflow-hidden relative">
+      <main className="flex-1 flex flex-col h-full overflow-hidden relative bg-white">
+        <TopHeader />
         {isInitialLoading ? (
           <div className="flex-1 flex flex-col items-center justify-center bg-white/50 backdrop-blur-sm z-30">
             <div className="w-12 h-12 border-4 border-purple-200 border-t-purple-700 rounded-full animate-spin mb-4" />
