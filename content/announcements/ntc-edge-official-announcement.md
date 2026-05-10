@@ -1,6 +1,0 @@
----
-title: "Official Launch of NTC EDGE: Pioneering Digital Regulatory Services"
-date: 2024-05-22T08:00:00+08:00
----
-
-The National Telecommunications Commission is proud to officially announce the launch of the NTC EDGE (Electronic Data Governance and Evaluation) system, a premier digital platform marking a significant milestone in our commitment to digital transformation and e-governance. As the Commission's official online information system, NTC EDGE is designed to modernize regulatory processes by providing a streamlined, secure, and reliable portal for the issuance of certificates, permits, and licenses, as well as the efficient handling of complaints and requests. This innovative system significantly improves public service delivery by reducing processing times and increasing operational efficiency, ensuring better accessibility for all citizens, businesses, and professionals. By simplifying complex workflows through online submissions and real-time tracking, NTC EDGE reduces the need for physical visits, offering a more convenient and transparent experience for all stakeholders. We encourage the public to embrace this digital advancement and utilize the platform for all telecommunications-related transactions to experience a faster, more responsive government service. Bringing NTC services closer to you.

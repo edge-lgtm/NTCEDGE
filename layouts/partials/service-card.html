@@ -4,7 +4,8 @@
     {{ end }}
     <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px;">{{ .Params.category }}</div>
     <h3>{{ .Title }}</h3>
-    <p class="mb-20">{{ .Description }}</p>
+    <p class="mb-10">{{ .Description }}</p>
+    <p class="mb-20 text-gray-dark" style="font-size: 0.9rem; font-style: italic;">Eligibility: {{ .Params.eligibility }}</p>
 
     {{ with .Params.requirements }}
     <div style="margin: 15px 0; font-size: 0.9rem;">
