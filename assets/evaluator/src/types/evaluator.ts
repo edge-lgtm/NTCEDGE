@@ -20,6 +20,9 @@ export interface BulkApplication {
   applicantsCount: number;
   applicants: Applicant[];
   status: 'Pending' | 'History';
+  createdAt: string;
+  assignedTo: string;
+  category: string;
 }
 
 export interface SOASummary {

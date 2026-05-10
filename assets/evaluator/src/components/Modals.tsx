@@ -78,6 +78,37 @@ const DocumentItem = ({ name, size }: { name: string, size: string }) => (
   </div>
 );
 
+export const DecisionSummaryBox = () => {
+  const { stagedDecisions } = useEvaluatorStore();
+  const decisions = Object.values(stagedDecisions);
+  const approved = decisions.filter(d => d === 'approved').length;
+  const endorsed = decisions.filter(d => d === 'endorsed').length;
+  const declined = decisions.filter(d => d === 'declined').length;
+
+  return (
+    <div className="grid grid-cols-3 gap-3 mb-6">
+      <SummaryItem label="Approved" count={approved} variant="success" />
+      <SummaryItem label="Endorsed" count={endorsed} variant="primary" />
+      <SummaryItem label="Declined" count={declined} variant="error" />
+    </div>
+  );
+};
+
+const SummaryItem = ({ label, count, variant }: { label: string, count: number, variant: 'success' | 'primary' | 'error' }) => {
+  const styles = {
+    success: 'bg-green-50 text-green-700 border-green-100',
+    primary: 'bg-purple-50 text-purple-700 border-purple-100',
+    error: 'bg-red-50 text-red-700 border-red-100'
+  };
+
+  return (
+    <div className={`p-3 rounded-xl border text-center ${styles[variant]}`}>
+      <div className="text-[9px] font-black uppercase tracking-widest mb-1 opacity-70">{label}</div>
+      <div className="text-xl font-black">{count}</div>
+    </div>
+  );
+};
+
 export const ConfirmDecisionModal = () => {
   const { isConfirmModalOpen, setConfirmModalOpen, submitDecisions, isSubmitting } = useEvaluatorStore();
 
@@ -92,8 +123,10 @@ export const ConfirmDecisionModal = () => {
            <div className="w-20 h-20 bg-amber-50 rounded-full flex items-center justify-center mb-6">
              <ShieldAlert className="text-amber-500" size={48} />
            </div>
-           <p className="text-gray-700 font-bold leading-relaxed">This action will finalize the evaluation and cannot be undone.</p>
+           <p className="text-gray-700 font-bold leading-relaxed mb-6">This action will finalize the evaluation and cannot be undone.</p>
         </div>
+
+        <DecisionSummaryBox />
 
         <div className="p-4 bg-gray-50 rounded-xl border border-gray-100 flex gap-4">
           <AlertCircle className="text-gray-400 flex-shrink-0" size={20} />

@@ -32,7 +32,7 @@ export const BulkApplicationDetails = () => {
               <DetailItem
                 icon={<Calendar size={18} className="text-purple-600" />}
                 label="Batch Created"
-                value="August 24, 2024"
+                value={new Date(bulkApp.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
               />
             </div>
 
@@ -40,7 +40,7 @@ export const BulkApplicationDetails = () => {
               <DetailItem
                 icon={<User size={18} className="text-purple-600" />}
                 label="Assigned Evaluator"
-                value="Senior Officer Reyes"
+                value={bulkApp.assignedTo}
               />
               <DetailItem
                 icon={<Info size={18} className="text-purple-600" />}
@@ -50,7 +50,7 @@ export const BulkApplicationDetails = () => {
               <DetailItem
                 icon={<FileText size={18} className="text-purple-600" />}
                 label="Category"
-                value="Radio Operator Licenses"
+                value={bulkApp.category}
               />
             </div>
           </div>

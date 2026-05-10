@@ -29,6 +29,9 @@ export const mockBulkApplications: BulkApplication[] = [
     applicantsCount: 25,
     status: 'Pending',
     applicants: generateApplicants(25, 1),
+    createdAt: '2024-08-24',
+    assignedTo: 'Senior Officer Reyes',
+    category: 'Radio Operator Licenses',
   },
   {
     id: 'bulk-2',
@@ -37,6 +40,9 @@ export const mockBulkApplications: BulkApplication[] = [
     applicantsCount: 8,
     status: 'Pending',
     applicants: generateApplicants(8, 26),
+    createdAt: '2024-08-25',
+    assignedTo: 'Senior Officer Reyes',
+    category: 'Equipment Registration',
   },
   {
     id: 'bulk-3',
@@ -45,5 +51,8 @@ export const mockBulkApplications: BulkApplication[] = [
     applicantsCount: 12,
     status: 'Pending',
     applicants: generateApplicants(12, 34),
+    createdAt: '2024-08-26',
+    assignedTo: 'Senior Officer Reyes',
+    category: 'Service Providers',
   },
 ];
