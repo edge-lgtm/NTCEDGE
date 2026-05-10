@@ -1,6 +1,6 @@
 ---
 title: "Equipment Registration"
-category: "Equipment Registration"
+category: "Equipment / Registration Services"
 icon: "equipment"
 featured: true
 description: "Mandatory registration and certification of customer premises equipment (CPE) and various radio communication devices."
