@@ -1,6 +1,7 @@
-baseURL = 'http://edge-lgtm.github.io/NTCEDGE/'
+baseURL = 'http://localhost:1313/NTCEDGE/'
 languageCode = 'en-us'
 title = 'NTC EDGE Portal'
+theme = []
 
 [params]
   description = 'Electronic Data Governance and Evaluation System - National Telecommunications Commission'
@@ -10,6 +11,7 @@ title = 'NTC EDGE Portal'
   contact_email = 'support@ntc.gov.ph'
   contact_phone = '(02) 8924-4008'
   address = 'NTC Bldg., BIR Road, East Triangle, Diliman, Quezon City'
+  official_tagline = 'Bringing NTC services closer to you'
 
 [[menu.main]]
   name = 'Home'
