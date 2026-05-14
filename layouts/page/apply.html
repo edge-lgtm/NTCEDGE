@@ -28,9 +28,9 @@
                         <label for="service_type" class="form-label">Type of Service</label>
                         <select id="service_type" class="form-control">
                             <option value="">-- Please Select a Service --</option>
-                            <option selected>Radio Operator Certificate</option>
-                            <option>Permits and Licenses</option>
-                            <option>Equipment Registration</option>
+                            <option value="radio-operator">Radio Operator Certificate</option>
+                            <option value="permits">Permits and Licenses</option>
+                            <option value="equipment">Equipment Registration</option>
                         </select>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div>
                                 <div class="text-gray-dark fw-bold" style="font-size: 0.8rem; text-transform: uppercase;">Service Type</div>
-                                <div class="text-navy">Radio Operator Certificate</div>
+                                <div class="text-navy" id="review-service">Radio Operator Certificate</div>
                             </div>
                             <div>
                                 <div class="text-gray-dark fw-bold" style="font-size: 0.8rem; text-transform: uppercase;">Regional Office</div>
@@ -133,6 +133,9 @@
                 <!-- Step 7: Submit Application -->
                 <div class="wizard-step" id="step-7">
                     <h3 class="mb-30 text-navy">Terms and Conditions</h3>
+                    <div id="terms-alert" class="alert alert-info" style="display: none; background-color: #fff3f3; border-color: #dc3545; color: #721c24; margin-bottom: 20px;">
+                        <strong>Error:</strong> Please agree to the Terms and Conditions before submitting your application.
+                    </div>
                     <div class="mb-30 text-gray-dark" style="max-height: 250px; overflow-y: auto; font-size: 0.9rem; line-height: 1.8; border: 1px solid var(--gray); padding: 20px; background: #fff;">
                         <p><strong>1. Data Privacy</strong><br>By using this portal, you agree to the collection and processing of your personal data in accordance with the Data Privacy Act of 2012.</p>
                         <p><strong>2. Accuracy of Information</strong><br>You certify that all information provided is true and correct. Falsification of documents is subject to legal action.</p>

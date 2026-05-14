@@ -80,9 +80,9 @@
                     {{ range $index, $office := .Site.Data.regions }}
                     <tr {{ if (mod $index 2) }}style="background: #fdfdfd;"{{ end }}>
                         <td class="fw-bold">{{ .region }}</td>
-                        <td>{{ .address }}</td>
-                        <td>{{ .phone }}</td>
-                        <td>{{ .email }}</td>
+                        <td style="font-size: 0.9rem;">{{ .address }}</td>
+                        <td style="font-size: 0.9rem;">{{ .phone }}</td>
+                        <td style="font-size: 0.9rem;">{{ .email }}</td>
                     </tr>
                     {{ end }}
                 </tbody>
@@ -90,11 +90,15 @@
         </div>
     </div>
 
-    <div class="mt-60" style="border-radius: 8px; overflow: hidden; height: 400px; background: #eee; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gray);">
-        <div class="text-center text-gray-dark">
-            <div style="font-size: 3rem; margin-bottom: 10px;">🗺️</div>
-            <p>Interactive Map Placeholder</p>
-            <p style="font-size: 0.8rem;">(Embedded Google Maps would appear here)</p>
+    <div class="mt-60" style="border-radius: 8px; overflow: hidden; height: 400px; background: #eee; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gray); position: relative;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)); z-index: 1;"></div>
+        <div class="text-center text-navy" style="position: relative; z-index: 2;">
+            <div style="font-size: 4rem; margin-bottom: 20px;">🗺️</div>
+            <h4 style="font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Interactive Map</h4>
+            <p class="text-gray-dark">NTC Central Office | Quezon City</p>
+            <div class="mt-20">
+                <a href="https://maps.google.com" target="_blank" class="btn btn-outline" style="border-color: var(--navy); color: var(--navy);">View on Google Maps</a>
+            </div>
         </div>
     </div>
 </div>

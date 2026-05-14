@@ -1,39 +1,11 @@
 {
-  "name": "app",
+  "name": "ntcedge-portal",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "NTC EDGE Digital Public Service Portal",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/edge-lgtm/NTCEDGE.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/edge-lgtm/NTCEDGE/issues"
-  },
-  "homepage": "https://github.com/edge-lgtm/NTCEDGE#readme",
-  "dependencies": {
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.38.0",
-    "lucide-react": "^0.479.0",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "tailwind-merge": "^3.5.0",
-    "zustand": "^5.0.12"
+    "test": "playwright test"
   },
   "devDependencies": {
-    "@playwright/test": "^1.59.1",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "autoprefixer": "^10.5.0",
-    "postcss": "^8.5.9",
-    "tailwindcss": "^4.2.2",
-    "typescript": "^6.0.2"
+    "@playwright/test": "^1.60.0"
   }
 }

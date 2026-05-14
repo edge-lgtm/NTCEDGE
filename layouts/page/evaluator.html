@@ -1,20 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDGE Evaluator Module</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-    </style>
-</head>
-<body class="bg-gray-100 h-screen">
-    <div id="evaluator-root" class="h-full"></div>
+{{ define "main" }}
+<div class="evaluator-dashboard" style="display: grid; grid-template-columns: 280px 1fr; height: calc(100vh - 160px); background: #f8fafc; margin: -40px 0;">
+    <!-- Sidebar -->
+    <aside style="background: #2D0C8A; color: white; padding: 30px; display: flex; flex-direction: column; gap: 40px;">
+        <div>
+            <div style="font-weight: 900; font-size: 1.2rem; letter-spacing: 1px; margin-bottom: 5px;">EDGE</div>
+            <div style="font-size: 0.7rem; opacity: 0.7; text-transform: uppercase;">Evaluator Module v1.0</div>
+        </div>
 
-    {{ $opts := dict "targetPath" "js/evaluator.js" "minify" true "target" "es2020" }}
-    {{ $js := resources.Get "evaluator/src/index.tsx" | js.Build $opts }}
-    <script src="{{ $js.RelPermalink }}"></script>
-</body>
-</html>
+        <nav style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="#" style="background: rgba(255,255,255,0.1); padding: 12px 15px; border-radius: 8px; color: white; font-weight: 600; display: flex; align-items: center; gap: 12px;">
+                <span>📊</span> Dashboard
+            </a>
+            <a href="#" style="padding: 12px 15px; border-radius: 8px; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 12px;">
+                <span>📥</span> Inbox <span style="margin-left: auto; background: #E53935; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; color: white;">24</span>
+            </a>
+            <a href="#" style="padding: 12px 15px; border-radius: 8px; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 12px;">
+                <span>📂</span> Archives
+            </a>
+            <a href="#" style="padding: 12px 15px; border-radius: 8px; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 12px;">
+                <span>⚙️</span> Settings
+            </a>
+        </nav>
+
+        <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 40px; height: 40px; background: #E9E3FF; color: #2D0C8A; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">JD</div>
+                <div>
+                    <div style="font-size: 0.85rem; font-weight: 600;">Juan Dela Cruz</div>
+                    <div style="font-size: 0.7rem; opacity: 0.6;">Senior Evaluator</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main style="padding: 40px; overflow-y: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+            <h1 style="font-size: 1.8rem; color: #1e293b; font-weight: 800;">Pending Applications</h1>
+            <div style="display: flex; gap: 15px;">
+                <input type="text" placeholder="Search by ID or Name..." style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 8px; width: 300px; font-size: 0.9rem;">
+                <button class="btn btn-primary" style="background: #2D0C8A;">Refresh List</button>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+                        <th style="padding: 15px 20px; font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 700;">Reference No.</th>
+                        <th style="padding: 15px 20px; font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 700;">Applicant</th>
+                        <th style="padding: 15px 20px; font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 700;">Service Type</th>
+                        <th style="padding: 15px 20px; font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 700;">Submission Date</th>
+                        <th style="padding: 15px 20px; font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 700;">Status</th>
+                        <th style="padding: 15px 20px; font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 700;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 20px; font-weight: 700; color: #2D0C8A;">NTC-2024-08152</td>
+                        <td style="padding: 20px;">
+                            <div style="font-weight: 600;">JUAN DELA CRUZ</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">juan@example.com</div>
+                        </td>
+                        <td style="padding: 20px; font-size: 0.9rem;">Radio Operator Certificate</td>
+                        <td style="padding: 20px; font-size: 0.9rem;">Aug 15, 2024</td>
+                        <td style="padding: 20px;">
+                            <span style="background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Evaluation</span>
+                        </td>
+                        <td style="padding: 20px;">
+                            <button style="color: #2D0C8A; font-weight: 700; font-size: 0.9rem; border: none; background: none; cursor: pointer;">Review &rarr;</button>
+                        </td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 20px; font-weight: 700; color: #2D0C8A;">NTC-2024-08160</td>
+                        <td style="padding: 20px;">
+                            <div style="font-weight: 600;">GLOBE TELECOM INC.</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">regulatory@globe.com.ph</div>
+                        </td>
+                        <td style="padding: 20px; font-size: 0.9rem;">Permits and Licenses</td>
+                        <td style="padding: 20px; font-size: 0.9rem;">Aug 16, 2024</td>
+                        <td style="padding: 20px;">
+                            <span style="background: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">For Payment</span>
+                        </td>
+                        <td style="padding: 20px;">
+                            <button style="color: #2D0C8A; font-weight: 700; font-size: 0.9rem; border: none; background: none; cursor: pointer;">Review &rarr;</button>
+                        </td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 20px; font-weight: 700; color: #2D0C8A;">NTC-2024-08165</td>
+                        <td style="padding: 20px;">
+                            <div style="font-weight: 600;">MARIA CLARA</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">maria.clara@email.com</div>
+                        </td>
+                        <td style="padding: 20px; font-size: 0.9rem;">Equipment Registration</td>
+                        <td style="padding: 20px; font-size: 0.9rem;">Aug 17, 2024</td>
+                        <td style="padding: 20px;">
+                            <span style="background: #f1f5f9; color: #475569; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Pending</span>
+                        </td>
+                        <td style="padding: 20px;">
+                            <button style="color: #2D0C8A; font-weight: 700; font-size: 0.9rem; border: none; background: none; cursor: pointer;">Review &rarr;</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="padding: 20px; display: flex; justify-content: space-between; align-items: center; background: #f8fafc; border-top: 1px solid #e2e8f0;">
+                <div style="font-size: 0.85rem; color: #64748b;">Showing 1 to 3 of 24 entries</div>
+                <div style="display: flex; gap: 5px;">
+                    <button style="padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 4px; background: white; font-size: 0.85rem;">Previous</button>
+                    <button style="padding: 8px 12px; border: 1px solid #2D0C8A; border-radius: 4px; background: #2D0C8A; color: white; font-size: 0.85rem;">1</button>
+                    <button style="padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 4px; background: white; font-size: 0.85rem;">2</button>
+                    <button style="padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 4px; background: white; font-size: 0.85rem;">3</button>
+                    <button style="padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 4px; background: white; font-size: 0.85rem;">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{{ end }}

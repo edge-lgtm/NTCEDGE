@@ -1,13 +1,17 @@
 <header role="banner">
     <div class="gov-banner">
-        <div class="container">
-            {{ .Site.Params.gov_name }}
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>{{ .Site.Params.gov_name }}</div>
+            <div style="font-size: 0.7rem;">Official Digital Service Portal</div>
         </div>
     </div>
     <div class="container">
         <div class="nav-container">
             <a href="{{ "" | relURL }}" class="logo" aria-label="{{ .Site.Params.portal_name }} Home">
-                <div class="logo-text">{{ .Site.Params.portal_name }}</div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 50px; height: 50px; background: var(--navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.2rem; border: 2px solid var(--accent);">NTC</div>
+                    <div class="logo-text">{{ .Site.Params.portal_name }}</div>
+                </div>
             </a>
             <nav id="main-nav" role="navigation" aria-label="Main Navigation">
                 <ul role="menubar">
