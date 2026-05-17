@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="container">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="content mb-40">
+        <p class="text-gray-dark">Browse content by <strong>{{ .Title }}</strong>.</p>
+    </div>
+
+    <div class="card-grid">
+        {{ range .Data.Terms.Alphabetical }}
+        <div class="card" style="padding: 25px; border-top-color: var(--accent);">
+            <h3 style="margin-bottom: 10px;"><a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></h3>
+            <p class="text-gray-dark">{{ .Count }} items</p>
+            <a href="{{ .Page.Permalink }}" class="fw-bold" style="margin-top: 15px; display: block;">Browse Category &rarr;</a>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
