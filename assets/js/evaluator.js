@@ -84,7 +84,8 @@ function formatCurrency(val) {
 }
 
 function numberToWords(num) {
-    if (num === 0) return 'Zero Pesos Only';
+    if (num <= 0) return 'Zero Pesos Only';
+    if (num > 999999999) return 'Amount Too Large';
 
     const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
     const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
@@ -97,12 +98,14 @@ function numberToWords(num) {
             n %= 100;
         }
         if (n >= 10 && n <= 19) {
-            res += teens[n - 10];
+            res += teens[n - 10] + ' ';
         } else {
-            res += tens[Math.floor(n / 10)];
-            if (n % 10 > 0) {
-                if (Math.floor(n / 10) > 0) res += '-';
-                res += ones[n % 10];
+            if (n >= 20) {
+                res += tens[Math.floor(n / 10)] + ' ';
+                n %= 10;
+            }
+            if (n > 0) {
+                res += ones[n] + ' ';
             }
         }
         return res;
@@ -114,16 +117,24 @@ function numberToWords(num) {
     const rest = Math.floor(num % 1000);
 
     if (million > 0) {
-        result += convertGroup(million) + ' Million ';
+        result += convertGroup(million) + 'Million ';
     }
     if (thousand > 0) {
-        result += convertGroup(thousand) + ' Thousand ';
+        result += convertGroup(thousand) + 'Thousand ';
     }
     if (rest > 0) {
         result += convertGroup(rest);
     }
 
-    return result.trim() + ' Pesos Only';
+    const pesos = Math.floor(num);
+    const cents = Math.round((num - pesos) * 100);
+
+    let finalStr = result.trim() + ' Pesos';
+    if (cents > 0) {
+        finalStr += ' and ' + convertGroup(cents).trim() + ' Centavos';
+    }
+
+    return finalStr + ' Only';
 }
 
 // --- State ---
@@ -132,19 +143,20 @@ let state = {
     activeTab: 'bulk-application',
     applicants: [],
     selectedApplicantIds: new Set(),
-    stagedDecisions: {},
+    stagedDecisions: {}, // Map of applicantId -> 'approved' | 'endorsed' | 'declined'
     soaSummary: {
-        licenseFee: 500,
-        inspectionFee: 200,
-        stampTax: 30,
-        surcharge: 50,
+        licenseFee: 500.00,
+        inspectionFee: 200.00,
+        stampTax: 30.00,
+        surcharge: 50.00,
         total: 0,
         dueDate: null
     },
     feedTab: 'pending',
     searchQuery: '',
     currentPage: 1,
-    pageSize: 10
+    pageSize: 10,
+    isSubmitting: false
 };
 
 // --- State Management ---
@@ -216,30 +228,44 @@ function recalculateSOA() {
 }
 
 function finalizeSubmission() {
-    state.applicants = state.applicants.map(a => {
-        if (state.stagedDecisions[a.id]) {
-            return { ...a, status: state.stagedDecisions[a.id].toUpperCase() };
-        }
-        return a;
-    });
+    if (state.isSubmitting) return;
 
-    updateState({
-        stagedDecisions: {},
-        selectedApplicantIds: new Set()
-    });
+    updateState({ isSubmitting: true });
 
-    closeModal('confirm-modal');
-    showModal('success-modal');
+    // Simulate API delay
+    setTimeout(() => {
+        state.applicants = state.applicants.map(a => {
+            if (state.stagedDecisions[a.id]) {
+                return { ...a, status: state.stagedDecisions[a.id].toUpperCase() };
+            }
+            return a;
+        });
+
+        updateState({
+            stagedDecisions: {},
+            selectedApplicantIds: new Set(),
+            isSubmitting: false
+        });
+
+        closeModal('confirm-modal');
+        showModal('success-modal');
+    }, 800);
 }
 
 function showModal(id) {
     const modal = document.getElementById(id);
-    if (modal) modal.style.display = 'flex';
+    if (modal) {
+        modal.style.display = 'flex';
+        setTimeout(() => modal.classList.add('active'), 10);
+    }
 }
 
 function closeModal(id) {
     const modal = document.getElementById(id);
-    if (modal) modal.style.display = 'none';
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => modal.style.display = 'none', 300);
+    }
 }
 
 window.closeModal = closeModal;
