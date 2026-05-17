@@ -14,18 +14,18 @@ NTC EDGE streamlines regulatory workflows by facilitating secure online submissi
 - **Government-Style UI**: A conservative and credible interface using an institutional color palette (Navy Blue, White, and Light Gray).
 - **Mobile Responsive**: Fully optimized for desktop and mobile devices.
 - **Announcement System**: A public advisory section for news, system maintenance, and deadline reminders.
-- **Staff Evaluator Module**: A React-based internal dashboard for processing bulk applications (located in the Staff Portal link).
+- **Staff Evaluator Module**: A framework-free internal dashboard for processing bulk applications (located in the Staff Portal link).
 
 ## 🛠️ Technology Stack
 
 - **Static Site Generator**: [Hugo](https://gohugo.io/)
 - **Frontend Core**: Plain HTML5, CSS3 (Flexbox/Grid), and Vanilla JavaScript
-- **Evaluator Module**: React 19, TypeScript, Zustand (State Management), Tailwind CSS, and Framer Motion
+- **Evaluator Module**: State-driven Vanilla JavaScript with custom CSS
 - **Iconography**: Lucide-style SVGs
 
 ## 📁 Project Structure
 
-- `assets/`: Contains global CSS, JavaScript, and the React source code for the Evaluator module.
+- `assets/`: Contains global CSS, JavaScript, and the Evaluator module logic.
 - `content/`: Markdown files for services, announcements, FAQs, and static pages.
 - `data/`: JSON files for regional offices, site statistics, and process steps.
 - `layouts/`: Hugo templates and partials for reusable UI components.
