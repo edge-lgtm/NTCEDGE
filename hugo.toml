@@ -1,0 +1,46 @@
+baseURL = "https://example.org/"
+languageCode = "en-us"
+title = "NTC EDGE Portal"
+theme = []
+
+[params]
+    description = "NTC EDGE Digital Public Service Portal"
+    gov_name = "Republic of the Philippines"
+    portal_name = "NTC EDGE Portal"
+    agency_name = "National Telecommunications Commission"
+    address = "BIR Road, East Triangle, Diliman, Quezon City"
+    contact_email = "support@ntc.gov.ph"
+    contact_phone = "(02) 8924-4008"
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+[[menu.main]]
+    name = "Services"
+    url = "/services/"
+    weight = 2
+[[menu.main]]
+    name = "Apply"
+    url = "/apply/"
+    weight = 3
+[[menu.main]]
+    name = "Track Application"
+    url = "/track/"
+    weight = 4
+[[menu.main]]
+    name = "Announcements"
+    url = "/announcements/"
+    weight = 5
+[[menu.main]]
+    name = "FAQ"
+    url = "/faq/"
+    weight = 6
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 7
+[[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 8
