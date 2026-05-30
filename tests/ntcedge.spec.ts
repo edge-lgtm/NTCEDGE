@@ -10,8 +10,36 @@ test.describe('NTC EDGE Portal Verification', () => {
   test('Services Page Content Check', async ({ page }) => {
     await page.goto('/services/');
     await expect(page.locator('h1')).toHaveText('NTC Services');
-    await expect(page.locator('.card')).toHaveCount(3);
+    // The memory mentions 4 official service categories.
+    // 'Certificates', 'Permits and Licenses', 'Equipment / Registration Services', and 'Other Public Transactions'.
+    await expect(page.locator('.card')).toHaveCount(4);
     await page.screenshot({ path: 'screenshots/services.png', fullPage: true });
+  });
+
+  test('Announcements Page Verification', async ({ page }) => {
+    await page.goto('/announcements/');
+    await expect(page.locator('h1')).toHaveText('Official Announcements');
+
+    // Check if the new announcement is present
+    const announcementTitle = 'National Telecommunications Commission Launches NTC EDGE: Advancing Digital Governance for a More Responsive Public Service';
+    const announcementLink = page.locator(`a:has-text("${announcementTitle}")`);
+    await expect(announcementLink).toBeVisible();
+
+    // Navigate to the announcement
+    await announcementLink.click();
+
+    // Verify content requirements: 3 paragraphs, agency names, and official tagline
+    const content = page.locator('article');
+    await expect(content).toContainText('National Telecommunications Commission');
+    await expect(content).toContainText('NTC EDGE');
+    await expect(content).toContainText('Electronic Data Governance and Evaluation');
+    await expect(content).toContainText('Bringing NTC services closer to you.');
+
+    // Verify there are at least 3 paragraphs in the article
+    const paragraphs = content.locator('p');
+    await expect(paragraphs).toHaveCount(3);
+
+    await page.screenshot({ path: 'screenshots/new-announcement.png', fullPage: true });
   });
 
   test('Apply Wizard Multi-step Navigation', async ({ page }) => {
