@@ -22,7 +22,7 @@ test.describe('NTC EDGE Portal Verification', () => {
 
     // Check if the new announcement is present
     const announcementTitle = 'National Telecommunications Commission Launches NTC EDGE: Advancing Digital Governance for a More Responsive Public Service';
-    const announcementLink = page.locator(`a:has-text("${announcementTitle}")`);
+    const announcementLink = page.locator(`a:has-text("${announcementTitle}")`).first();
     await expect(announcementLink).toBeVisible();
 
     // Navigate to the announcement
