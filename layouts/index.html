@@ -1,6 +1,34 @@
 {{ define "main" }}
     {{ partial "hero.html" . }}
 
+    <section class="quick-access">
+        <div class="container">
+            <div class="quick-access-grid">
+                <a href="{{ "apply/" | relURL }}" class="quick-card">
+                    <div class="quick-icon">📝</div>
+                    <div>
+                        <h4>Apply for Service</h4>
+                        <p>Submit new applications and renewals</p>
+                    </div>
+                </a>
+                <a href="{{ "track/" | relURL }}" class="quick-card">
+                    <div class="quick-icon">🔍</div>
+                    <div>
+                        <h4>Track Application</h4>
+                        <p>Check real-time status of your request</p>
+                    </div>
+                </a>
+                <a href="{{ "services/" | relURL }}" class="quick-card">
+                    <div class="quick-icon">📋</div>
+                    <div>
+                        <h4>View Requirements</h4>
+                        <p>Download forms and checklist</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     {{ partial "alerts.html" . }}
 
     <section class="section-padding bg-white">
