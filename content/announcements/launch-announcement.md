@@ -1,6 +1,6 @@
 ---
 title: "National Telecommunications Commission Launches NTC EDGE: Advancing Digital Governance for a More Responsive Public Service"
-date: 2026-06-23T15:34:41+00:00
+date: 2026-06-24T17:22:03+00:00
 ---
 
 The National Telecommunications Commission (NTC) officially introduces NTC EDGE (Electronic Data Governance and Evaluation), our primary online information system designed to modernize regulatory processes and champion digital transformation. As a cornerstone of our e-governance initiatives, NTC EDGE transitions traditional manual procedures into a seamless digital ecosystem, ensuring a more responsive, transparent, and accessible public service for all stakeholders. This platform represents a major milestone in our commitment to innovation, providing a centralized digital gateway that brings the Commission's essential regulatory functions directly to the Filipino people through technological excellence.
