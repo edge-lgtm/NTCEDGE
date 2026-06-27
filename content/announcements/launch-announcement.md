@@ -1,6 +1,6 @@
 ---
 title: "National Telecommunications Commission Launches NTC EDGE: Advancing Digital Governance for a More Responsive Public Service"
-date: 2026-06-26T15:51:29+00:00
+date: 2026-06-27T16:00:42+00:00
 ---
 
 The National Telecommunications Commission (NTC) is proud to announce the official launch of NTC EDGE (Electronic Data Governance and Evaluation), our flagship online information system dedicated to the modernization of regulatory workflows. As part of the national shift toward comprehensive e-governance, NTC EDGE replaces legacy manual transactions with a robust digital platform designed to improve transparency, accountability, and public accessibility. This initiative underscores our commitment to digital transformation, providing a secure and unified gateway for citizens and businesses to engage with the Commission's essential regulatory services from any location.
